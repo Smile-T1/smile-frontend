@@ -1,7 +1,7 @@
 .sidebar-portal {
     display: flex;
     flex-direction: column;
-    transition: width 0.3s ease;
+    /* transition: width 0.3s ease; */
 }
 
 .content-wrapper-sidebar{
@@ -79,27 +79,10 @@ a,
     line-height: 1.25rem;
     margin: 0;
 }
-.sidebar-toggle {
-    cursor: pointer;
-    padding: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.toggle-icon {
-    font-size: 1.5rem;
-    color: rgb(102, 181, 163);
-    transition: transform 0.5s ease;
-}
-
-.sidebar-portal.closed {
-    width: 4rem;
-}
 
 @media(max-width: 1250px){
     .sidebar-portal.closed {
-        width: 4rem; /* Adjust as needed */
+        width: 4rem; 
     }
     .sidebar-portal.closed .content-wrapper-sidebar {
         overflow-x: hidden;
