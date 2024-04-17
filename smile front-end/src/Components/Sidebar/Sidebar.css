@@ -4,23 +4,24 @@
 }
 
 .content-wrapper-sidebar{
-    background-color: gray;
+    background-color: rgba(248, 249, 250, 1);
     border-right-width: 1px;
     width: 100%;
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
 }
 
-a{
+a,
+.sidebar-link{
     color: inherit;
     text-decoration: inherit;
 }
 
 .logo{
     object-fit: contain;
-    width: 50%;
-    height: 3rem;
-    margin-left: 1rem;
+    width: 80%;
+    height: 5rem;
+    margin-left: 0.5rem;
     max-width: 100%;
     display: block;
 }
@@ -35,20 +36,26 @@ a{
 }
 
 .sidebar-link{
-    padding: 1rem;
-    background-color: rgb(242 250 248);
+    padding: 0.6rem 1rem;
     border-radius: .5rem;
     border-radius: .5rem;
     align-items: center;
     width: 100%;
     display: flex;
+    gap: 1em;
 }
+
+.sidebar-link.active {
+    background-color: rgb(242, 250, 248); 
+}
+
 .icon{
     color: rgb(102 181 163);
     font-size: 1.25rem;
     line-height: 1.75rem;
     display: block;
 }
+
 .sidebar-text{
     color: rgb(102 181 163);
     font-weight: 500;
