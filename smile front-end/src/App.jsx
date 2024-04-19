@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div>
-      {/* <Sidebar /> */}
+      <Sidebar />
       <ChakraProvider>
         <Routes>
           <Route path="/" element={<Home/>} />

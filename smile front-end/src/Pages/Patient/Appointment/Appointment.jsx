@@ -1,10 +1,12 @@
 import React from 'react';
 import "./Appointment.css";
+import Appointment_Component from "../../../Components/Appointment/Appointment";
 
 function Appointment() {
 
   return (
-    <div className='patient-portal'>
+    <div className=''>
+      <Appointment_Component />
     </div>
   )
 }
