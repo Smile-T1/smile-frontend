@@ -1,0 +1,35 @@
+.book-form-patient{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.row-fill-book-data,
+.row-button-book-data{
+    display: grid;
+    width: 100%;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.report-files-patient{
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+    box-sizing: border-box;
+    border-radius: 4px;
+    text-align: center;
+    border: 1px dashed black;
+}
+
+.book-cancel-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+.Book-appoin-header{
+    text-align: center;
+    margin-bottom: 2em;
+}
