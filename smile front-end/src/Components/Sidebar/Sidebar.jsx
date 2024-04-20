@@ -1,71 +1,79 @@
-import React, { useState, useEffect } from 'react';
-import "./Sidebar.css";
-import Logo from "../../assets/Smile.png";
-import Logo_without from "../../assets/Smile_without.png"
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import {
+  Flex,
+  Divider,
+  Avatar,
+  Heading,
+  Text,
+  IconButton,
+} from '@chakra-ui/react'
+import {
+  FiMenu 
+} from 'react-icons/fi'
+import avatar_image from "../../assets/avatar_default_6.png";
+import SideItem from "./SideItem";
+import { BiSolidDashboard } from "react-icons/bi";
+import { IoCalendarSharp } from "react-icons/io5";
+import { LiaBookMedicalSolid, LiaNotesMedicalSolid } from "react-icons/lia";
+import { CiLogout } from "react-icons/ci";
+
 
 function Sidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [activeLink, setActiveLink] = useState('/patient/dashboard');
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 1250) {
-        setSidebarOpen(false);
-      } else {
-        setSidebarOpen(true);
-      }
-    };
-
-    // Listen to window resize event
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup the event listener on component unmount
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
+  const [navSize, changeNavSize] = useState("large");
   return (
-    <div className={`sidebar-portal ${sidebarOpen ? 'open' : 'closed'}`}>
-      <div className='content-wrapper-sidebar px-4'>
-        <div className='image-container'>
-          {sidebarOpen ? (
-            <a href="/" className='logo-link'>
-              <img src={Logo} alt="Smile" className='logo'/>
-            </a>
-          ) : (
-            <div className="logo-wrapper">
-              <img src={Logo_without} alt="Closed Logo" className='logo-closed'/>
-            </div>
-          )}
-        </div>
-        <div className={`options-sidebar-list ${sidebarOpen ? 'open' : 'closed'}`}>
-          <Link to={'/patient/dashboard'} className={`sidebar-link ${activeLink === '/patient/dashboard' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/dashboard')}>
-            <i className="fa-solid fa-house icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Dashboard</p>
-          </Link>
-          <Link to="/patient/registration" className={`sidebar-link ${activeLink === '/patient/registration' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/registration')}>
-            <i className="fa-solid fa-address-card icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Registration</p>
-          </Link>
-          <Link to="/patient/appointment" className={`sidebar-link ${activeLink === '/patient/appointment' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/appointment')}>
-            <i className="fa-regular fa-calendar-check icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Appointment</p>
-          </Link>
-          <Link to="/patient/book_appointment" className={`sidebar-link ${activeLink === '/patient/book_appointment' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/book_appointment')}>
-            <i className="fa-solid fa-book-medical icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Book appointment</p>
-          </Link>
-          <Link to="/patient/medical_records" className={`sidebar-link ${activeLink === '/patient/medical_records' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/medical_records')}>
-            <i className="fa-solid fa-notes-medical icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Medical Records</p>
-          </Link>
-          <Link to="/" className='sidebar-link'>
-            <i class="fa-solid fa-arrow-right-from-bracket icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Log out</p>
-          </Link>
-        </div>
-      </div>
-    </div>
+    <Flex
+    pos="sticky"
+    left='5'
+    h='100vh'
+    marginTop='2.5vh'
+    // marginBottom='2.5vh'
+    boxShadow='0 4px 12px 0 rgba(0, 0, 0, 0.05)'
+    borderRadius={navSize == "small" ? "15px" : "30px"}
+    w={navSize == "small" ? "75px" : "200px"}
+    flexDir='column'
+    justifyContent='space-between'
+    >
+      <Flex
+      p="0.5rem"
+      flexDir="column"
+      w="100%"
+      alignItems={navSize == "small" ? "center" : "flex-start"}
+      as="nav"
+      >
+        <IconButton 
+        background='none'
+        mt={5}
+        _hover={{ background: 'none' }}
+        icon={<FiMenu />}
+        onClick={() => {
+          if (navSize == "small")
+              changeNavSize("large")
+          else
+              changeNavSize("small")
+        }}
+        />
+        <Flex mt={4} align='center'>
+          <Avatar size="sm" src={avatar_image} />
+          <Flex flexDir='column' ml={4}  display={navSize == "small" ? "none" : "flex"}>
+            <Heading as='h3' size='sm'>Omar Adel</Heading>
+            <Text color='gray'>Patient</Text>
+          </Flex>
+        </Flex>
+        <SideItem navSize={navSize} icon={BiSolidDashboard} title="Dashboard" />
+        <SideItem navSize={navSize} icon={IoCalendarSharp} title="Appointment" />
+        <SideItem navSize={navSize} icon={LiaBookMedicalSolid} title="Book appointment" />
+        <SideItem navSize={navSize} icon={LiaNotesMedicalSolid} title="Medical Records" />
+        <SideItem navSize={navSize} icon={CiLogout} title="Log out" />
+      </Flex>
+      <Flex
+      p='5%'
+      flexDir='column'
+      width='100%'
+      alignItems={navSize == "small" ? "center" : "flex-start"}
+      mb={4}
+      >
+      </Flex>
+    </Flex>
   )
 }
 
