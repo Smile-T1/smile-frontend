@@ -13,7 +13,7 @@ function App() {
     <>
       <Routes>
         <Route
-          path="/mainDashboard"
+          path="/doctor/dashboard"
           element={
             <Dashboard name="Dashboard">
               <MainDashboard />
@@ -21,7 +21,7 @@ function App() {
           }
         />
         <Route
-          path="/appointment"
+          path="/doctor/appointment"
           element={
             <Dashboard name="Appointments">
               <Appointment />
@@ -29,7 +29,7 @@ function App() {
           }
         />
         <Route
-          path="/patients"
+          path="/doctor/patients"
           element={
             <Dashboard name="Patients">
               <Patients />
@@ -37,7 +37,7 @@ function App() {
           }
         />
         <Route
-          path="/schedule"
+          path="/doctor/schedule"
           element={
             <Dashboard name="Schedule">
               <Schedule />
