@@ -80,13 +80,7 @@ const Dashboard = ({ name, children }) => {
         </div>
       </aside>
       <div className="w-full bg-white ">
-        <div className=" dashboard-header  text-lg p-2 pt-4 pb-4 items-center flex gap-2 text-gray-500 sticky z-20 top-0 bg-white pl-8">
-          <span className="font-bold text-black ">Doctor </span>{" "}
-          <div>
-            <IconamoonArrowRight2Light />
-          </div>
-          <span>{name}</span>
-        </div>{" "}
+        {" "}
         <div className=" min-h-dvh">{children}</div>{" "}
       </div>
     </div>
