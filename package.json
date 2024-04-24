@@ -17,7 +17,11 @@
     "date-fns": "^3.6.0",
     "framer-motion": "^11.1.7",
     "react": "^18.2.0",
+<<<<<<< HEAD:smile front-end/package.json
+    "react-datepicker": "^6.9.0",
+=======
     "react-chartjs-2": "^5.2.0",
+>>>>>>> development:package.json
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3"
   },

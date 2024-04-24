@@ -1,0 +1,28 @@
+.Book_appointment_Page {
+    background-color: #DDDD;
+    /* position: absolute; */
+    display: flex;
+    flex-direction: column;
+}
+.Book_appointment{
+    box-sizing: border-box;
+    left: 265px;
+    width: 1020px;
+    height: 1276px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    margin-top: 90px;
+    border-radius: 1rem;
+} 
+
+.page-header,
+.Book_appointment{
+    position: absolute;
+    background: white;
+}
+
+.page-header{
+    left: 250px;
+    height: 75px;
+    width: 100%;
+}
