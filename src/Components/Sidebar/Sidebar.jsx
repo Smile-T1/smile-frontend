@@ -18,7 +18,12 @@ import { CiLogout } from "react-icons/ci";
 
 
 function Sidebar() {
+<<<<<<< HEAD:smile front-end/src/Components/Sidebar/Sidebar.jsx
   const [navSize, changeNavSize] = useState("large");
+=======
+  const [activeLink, setActiveLink] = useState('/patient/dashboard');
+
+>>>>>>> development:src/Components/Sidebar/Sidebar.jsx
   return (
     <Flex
     pos="fixed"
