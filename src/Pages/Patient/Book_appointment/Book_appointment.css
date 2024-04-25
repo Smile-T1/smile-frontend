@@ -1,10 +1,10 @@
-.Book_appointment_Page{
-    background-color: #DDDDDD;
+.Book_appointment_Patient_Page{
+    background-color: #f6f6f6;
     height: 1450px;
     position: relative;
     width: 100%;
 }
-.Book_appointment{
+.Book_appointment_Patient{
     position: absolute;
     margin-left: 265px;
     top: 90px;

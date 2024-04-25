@@ -1,66 +1,48 @@
-import React from "react";
-import { format } from "date-fns";
+import React from 'react';
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-} from "@chakra-ui/react";
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
+    TableContainer,
+    Select
+  } from '@chakra-ui/react'
+import "./Table_Data.css";
 
-
-function Table_Data(){
-  const currentDate = new Date();
-  const formattedDate = format(currentDate, "d MMMM, yyyy");
-  const formattedTime = format(currentDate, "h:mm a");
+function Table_Data() {
 
   return (
-      <div className="bg-white mt-4 p-4 rounded-xl">
-        <h3 className=" text-xl font-medium">Recent appointments list</h3>
-        <TableContainer className="mt-12 p-2">
-          <Table variant="">
-            <Thead>
-              <Tr>
-                <Th>Sr no</Th>
-                <Th>Name</Th>
-                <Th isNumeric>Mobile</Th>
-                <Th>Date</Th>
-                <Th>Time</Th>
-                <Th>Action</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr>
-                <Td isNumeric>1.</Td>
-                <Td>Name</Td>
-                <Td isNumeric>1********0</Td>
-                <Td>{formattedDate}</Td>
-                <Td>{formattedTime}</Td>
-                <Td className="text-blue-500">upcoming</Td>
-              </Tr>
-              <Tr>
-                <Td>2.</Td>
-                <Td>Name</Td>
-                <Td isNumeric>1********0</Td>
-                <Td>{formattedDate}</Td>
-                <Td>{formattedTime}</Td>
-                <Td className="text-blue-500">upcoming</Td>
-              </Tr>
-              <Tr>
-                <Td>3.</Td>
-                <Td>Name</Td>
-                <Td isNumeric>1********0</Td>
-                <Td>{formattedDate}</Td>
-                <Td>{formattedTime}</Td>
-                <Td className="text-blue-500">upcoming</Td>
-              </Tr>
-            </Tbody>
-          </Table>
+    <div>
+        <TableContainer>
+            <Table size='sm'>
+                <Thead>
+                <Tr>
+                    <Th>#</Th>
+                    <Th>Name</Th>
+                    <Th>Date</Th>
+                    <Th>Time</Th>
+                    <Th>Appointment for</Th>
+                    <Th>Status</Th>
+                    <Th>Action</Th>
+                </Tr>
+                </Thead>
+                <Tbody>
+                <Tr>
+                    <Td>1</Td>
+                    <Td>Dr. Smith</Td>
+                    <Td>2024-04-19</Td>
+                    <Td>10:00 AM</Td>
+                    <Td>Check-up</Td>
+                    <Td>Pending</Td>
+                    <Td>View</Td>
+                </Tr>
+                </Tbody>
+            </Table>
         </TableContainer>
-      </div>
-  );
-};
+    </div>
+  )
+}
 
 export default Table_Data;
