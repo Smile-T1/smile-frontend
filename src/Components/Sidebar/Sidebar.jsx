@@ -15,7 +15,7 @@ function Sidebar() {
         </a>
         <div className='options-sidebar-list'>
           <Link to={'/patient/dashboard'} className={`sidebar-link ${activeLink === '/patient/dashboard' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/dashboard')}>
-          <MdDashboard className='icon'/>
+            <MdDashboard className='icon'/>
             <p className='sidebar-text'>Dashboard</p>
           </Link>
           <Link to="/patient/registration" className={`sidebar-link ${activeLink === '/patient/registration' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/registration')}>

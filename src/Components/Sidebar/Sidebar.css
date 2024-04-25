@@ -11,6 +11,7 @@
     width: 100%;
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
+    height: 100vh;
 }
 
 a,
@@ -65,16 +66,23 @@ a,
 .sidebar-text{
     color: #034561;
     font-weight: 500;
-    /* font-size: .875rem; */
     line-height: 1.25rem;
     margin: 0;
 }
-@media (min-width: 1280px) {
+@media (max-width: 800px) {
     .sidebar-portal{
-        display: block;
+        width: 70px;
     }
-
-    .content-wrapper-sidebar{
-        height: 100vh;
+    .sidebar-text{
+        display: none;
+    }
+    .sidebar-link{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+    .sidebar-link.active {
+        width: 50px;
     }
 }
