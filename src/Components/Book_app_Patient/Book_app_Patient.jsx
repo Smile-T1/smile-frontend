@@ -54,21 +54,21 @@ function Book_app_Patient() {
             <div className='row-fill-book-data'>
             <FormControl>
                 <FormLabel>First name</FormLabel>
-                <Input placeholder='First name' value={firstName} onChange={handleFirstNameChange} style={{background:'#DDDDDD'}}/>
+                <Input placeholder='First name' value={firstName} onChange={handleFirstNameChange} style={{background:'#f6f6f6'}}/>
             </FormControl>
             <FormControl>
                 <FormLabel>Last name</FormLabel>
-                <Input placeholder='Last name' value={lastName} onChange={handleLastNameChange} style={{background:'#DDDDDD'}}/>
+                <Input placeholder='Last name' value={lastName} onChange={handleLastNameChange} style={{background:'#f6f6f6'}}/>
             </FormControl>
             </div>
             <div className='row-fill-book-data'>
             <FormControl>
                 <FormLabel>Email address</FormLabel>
-                <Input type='email' placeholder='example@gmail.com' style={{background:'#DDDDDD'}}/>
+                <Input type='email' placeholder='example@gmail.com' style={{background:'#f6f6f6'}}/>
             </FormControl>
             <FormControl>
                 <FormLabel>Mobile no.</FormLabel>
-                <Input type='tel' placeholder='Mobile number' style={{background:'#DDDDDD'}}/>
+                <Input type='tel' placeholder='Mobile number' style={{background:'#f6f6f6'}}/>
             </FormControl>
             </div>
             <div className='row-fill-book-data'>
@@ -78,7 +78,7 @@ function Book_app_Patient() {
                     type="date"
                     selected={selectedDate}
                     onChange={handleDateChange}
-                    style={{background:'#DDDDDD'}}
+                    style={{background:'#f6f6f6'}}
                 />
             </FormControl>
             <FormControl as='fieldset'>
@@ -95,7 +95,7 @@ function Book_app_Patient() {
             <FormControl>
             <FormLabel  >Blood group</FormLabel>
             <Select placeholder="Blood group" 
-            style={{background:'#DDDDDD'}}
+            style={{background:'#f6f6f6'}}
             >
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
@@ -117,14 +117,14 @@ function Book_app_Patient() {
             <div style={{width:'100%'}}>
             <FormControl>
                 <FormLabel>Address</FormLabel>
-                <Input placeholder='Enter Your Address' style={{background:'#DDDDDD'}}/>
+                <Input placeholder='Enter Your Address' style={{background:'#f6f6f6'}}/>
             </FormControl>
             </div>
             <Divider />
             <div className='row-fill-book-data'>
                 <FormControl>
                     <FormLabel>Doctor</FormLabel>
-                    <Select placeholder="Choose doctor" style={{background:'#DDDDDD'}}>
+                    <Select placeholder="Choose doctor" style={{background:'#f6f6f6'}}>
                         <option value="Omar">Dr.Omar</option>
                         <option value="Omar">Dr.Hassan</option>
                         <option value="Hana">Dr.Hana</option>
@@ -135,7 +135,7 @@ function Book_app_Patient() {
             <div className='row-fill-book-data'>
                 <FormControl>
                     <FormLabel>Appointment for</FormLabel>
-                    <Select placeholder="Appointment for" style={{background:'#DDDDDD'}}>
+                    <Select placeholder="Appointment for" style={{background:'#f6f6f6'}}>
                         <option value="Omar">Dr.Omar</option>
                     </Select>
                 </FormControl>
@@ -145,7 +145,7 @@ function Book_app_Patient() {
                         type={'date'}
                         selected={selectedDate}
                         onChange={handleDateChange}
-                        style={{background:'#DDDDDD'}}
+                        style={{background:'#f6f6f6'}}
                     />
                 </FormControl>
             </div>
@@ -178,7 +178,7 @@ function Book_app_Patient() {
             <div style={{width:'100%'}}>
                 <FormControl>
                     <FormLabel>Note</FormLabel>
-                    <Input placeholder='Note (Optional)' size='lg' style={{background:'#DDDDDD'}}/>
+                    <Input placeholder='Note (Optional)' size='lg' style={{background:'#f6f6f6'}}/>
                 </FormControl>
             </div>
             <div style={{width:'100%'}}>
