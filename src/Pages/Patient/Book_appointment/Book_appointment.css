@@ -1,0 +1,26 @@
+.Book_appointment_Patient_Page{
+    background-color: #f6f6f6;
+    height: 1450px;
+    position: relative;
+    width: 100%;
+}
+.Book_appointment_Patient{
+    position: absolute;
+    margin-left: 265px;
+    top: 90px;
+    background-color: white;
+    border-radius: 15px;
+    height: 1276px;
+    width: 1000px;
+    padding: 5px;
+}
+.page-header{
+    height: 75px;
+    margin-left: 250px;
+    background: #fff;
+}
+/* @media (max-width: 1000px) {
+    .Book_appointment{
+        width: 900px;
+    }
+} */

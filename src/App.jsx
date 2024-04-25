@@ -14,11 +14,11 @@ import Medical_records_Patient from "./Pages/Patient/Medical_Records/Medical_Rec
 function App() {
   return (
     <div>
-      {/* <div className="d-flex">
+      <div className="d-flex">
         <div style={{ position: "fixed", zIndex: "99" }}>
           <Sidebar />
         </div>
-      </div> */}
+      </div>
       <ChakraProvider>
         <Routes>
           <Route path="/" element={<Home />} />

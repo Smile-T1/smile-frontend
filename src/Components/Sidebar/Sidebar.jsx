@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import "./Sidebar.css";
 import Logo from "../../assets/Smile.png";
 import { Link } from 'react-router-dom';
+import { MdDashboard } from "react-icons/md";
 
 function Sidebar() {
-  // State to manage active link
   const [activeLink, setActiveLink] = useState('/patient/dashboard');
 
   return (
@@ -15,7 +15,7 @@ function Sidebar() {
         </a>
         <div className='options-sidebar-list'>
           <Link to={'/patient/dashboard'} className={`sidebar-link ${activeLink === '/patient/dashboard' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/dashboard')}>
-            <i className="fa-solid fa-house icon" viewBox="0 0 24 24"/>
+          <MdDashboard className='icon'/>
             <p className='sidebar-text'>Dashboard</p>
           </Link>
           <Link to="/patient/registration" className={`sidebar-link ${activeLink === '/patient/registration' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/registration')}>

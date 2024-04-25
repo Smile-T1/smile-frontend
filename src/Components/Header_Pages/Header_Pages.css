@@ -1,0 +1,6 @@
+.dashboard-header{
+    display: flex;
+    position: relative;
+    top: 40px;
+    left: 30px;
+}
