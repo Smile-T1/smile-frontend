@@ -1,0 +1,13 @@
+.overview-cards{
+    //
+}
+  
+  .overview-card {
+    background-color: #fff; /* Or desired background color */
+    border-radius: 4px; /* Or desired corner radius */
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    padding: 15px; /* Or desired padding */
+    margin: 10px; /* Or desired margin (adjusted for removal in .overview-cards) */
+    text-align: center; /* Center content within the card */
+    width: calc(33% - 20px); /* Adjust width based on desired number of cards per row */
+  }
