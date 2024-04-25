@@ -1,10 +1,12 @@
 .sidebar-portal{
     grid-column-start:  2;
     grid-column-end: 2;
+    width: 250px;
+    height: 1101px;
 }
 
 .content-wrapper-sidebar{
-    background-color: rgba(248, 249, 250, 1);
+    background-color: white;
     border-right-width: 1px;
     width: 100%;
     padding-bottom: 1.5rem;
@@ -19,9 +21,10 @@ a,
 
 .logo{
     object-fit: contain;
-    width: 80%;
-    height: 5rem;
-    margin-left: 0.5rem;
+    width: 128px;
+    height: 97px;
+    margin-left: 20px;
+    margin-top: 19px;
     max-width: 100%;
     display: block;
 }
@@ -33,6 +36,7 @@ a,
     flex-direction: column;
     gap: .5rem;
     margin-top: 3rem;
+    margin-left: 5px;
 }
 
 .sidebar-link{
@@ -40,26 +44,28 @@ a,
     border-radius: .5rem;
     border-radius: .5rem;
     align-items: center;
-    width: 100%;
+    width: 240px;
+    height: 50px;
     display: flex;
     gap: 1em;
 }
 
 .sidebar-link.active {
-    background-color: rgb(242, 250, 248); 
+    background-color: #EBFFF5; 
+    border-radius: 15px;
 }
 
 .icon{
-    color: rgb(102 181 163);
+    color: #034561;
     font-size: 1.25rem;
     line-height: 1.75rem;
     display: block;
 }
 
 .sidebar-text{
-    color: rgb(102 181 163);
+    color: #034561;
     font-weight: 500;
-    font-size: .875rem;
+    /* font-size: .875rem; */
     line-height: 1.25rem;
     margin: 0;
 }

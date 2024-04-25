@@ -44,7 +44,7 @@ function Book_app_Patient() {
     };
 
   return (
-    <div style={{height:"1154px", width:'800px',marginLeft:'100px', marginRight:'100px', marginTop:'40px',marginBottom:'40px'}}>
+    <div style={{marginLeft:'100px', marginRight:'100px', marginTop:'60px',marginBottom:'40px'}}>
         <div className='Book-appoin-header'>
             <h4>
             Book an appointment
