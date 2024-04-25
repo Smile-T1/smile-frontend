@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Book_appointment.css";
 import Book_app_Patient from '../../../Components/Book_app_Patient/Book_app_Patient';
-import Page_header from "../../../Components/Page_header/Page_header";
+import Page_header from "../../../Components/Sidebar/Header_Pages/Header_Pages";
 
 function Book_appointment() {
   return (

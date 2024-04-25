@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import Sidebar from "./Components/Sidebar/Sidebar.jsx";
+import { ChakraProvider } from "@chakra-ui/react";
+import Home from "./Pages/Home/Home.jsx";
+import Dashboard_Patient from "./Pages/Patient/Dashboard/Dashboard.jsx";
+import Registration_Patient from "./Pages/Patient/Registration/Registration.jsx";
+import Appointment_Patient from "./Pages/Patient/Appointment/Appointment.jsx";
+import Book_appointment_Patient from "./Pages/Patient/Book_appointment/Book_appointment.jsx";
+import Medical_records_Patient from "./Pages/Patient/Medical_Records/Medical_Records.jsx";
+
 function App() {
   return (
     <div>
