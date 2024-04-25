@@ -1,13 +1,53 @@
-.overview-cards{
-    //
+.admin-dashboard {
+  background-color: #f6f6f6;
+  height: 100vh;
+  margin-left: 300px;
 }
-  
-  .overview-card {
-    background-color: #fff; /* Or desired background color */
-    border-radius: 4px; /* Or desired corner radius */
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); /* Optional shadow */
-    padding: 15px; /* Or desired padding */
-    margin: 10px; /* Or desired margin (adjusted for removal in .overview-cards) */
-    text-align: center; /* Center content within the card */
-    width: calc(33% - 20px); /* Adjust width based on desired number of cards per row */
-  }
+
+.overview-cards {
+  /*each two cards are in a row*/
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 600px;
+}
+
+.new {
+  padding-top: 30px;
+  padding-bottom: 60px;
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  background-color: white;
+  text-align: center;
+}
+
+.new-appointments {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#requests {
+  text-align: center;
+}
+
+.view {
+  display: flex;
+  gap: 1.5em;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#view-requests {
+  background-color: #d6e5ff;
+  border: 1px solid #0661ff;
+  font-size: 0.9em;
+  color: #0661ff;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 30px;
+}

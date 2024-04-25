@@ -3,6 +3,8 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
 import OverviewCard from "../../../Components/OverviewCards/OverviewCard";
+import NewRequestCard from "../../../Components/NewRequestCard/NewRequestCard";
+import Table_Data from "../../../Components/Table_Data/Table_Data";
 
 function AdminDashboard() {
   const today = new Date();
@@ -18,19 +20,20 @@ function AdminDashboard() {
         <OverviewCard title="Total Doctors" value="10" />
         <OverviewCard title="Total Nurses" value="20" />
       </div>
-      <div className="admin-actions">
-        <Link to="/admin/patients" className="admin-action">
-          Patients
-        </Link>
-        <Link to="/admin/appointments" className="admin-action">
-          Appointments
-        </Link>
-        <Link to="/admin/doctors" className="admin-action">
-          Doctors
-        </Link>
-        <Link to="/admin/nurses" className="admin-action">
-          Nurses
-        </Link>
+      <div className="new">
+        <h3>Newest Appointment request</h3>
+        <div className="new-appointments">
+          <NewRequestCard />
+        </div>
+        <div className="view">
+          <p id="requests">+15 more requests</p>
+          <button id="view-requests">
+            <Link to="/admin/requests">View all</Link>
+          </button>
+        </div>
+      </div>
+      <div className="table">
+        <Table_Data />
       </div>
     </div>
   );
