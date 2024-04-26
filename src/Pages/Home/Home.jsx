@@ -5,6 +5,7 @@ function Home() {
 
   return (
     <div className=''>
+      <h3>home</h3>
     </div>
   )
 }

@@ -8,6 +8,10 @@ import MainDashboard from "./Admin/dashboard";
 import Appointment from "./Admin/appointments";
 import Patients from "./Admin/patients";
 import Schedule from "./Admin/schedule";
+import Signup from './Components/Signup/Signup.jsx';
+import Login from './Components/Login/Login.jsx';
+import Home from './Pages/Home/Home.jsx';
+
 function App() {
   return (
     <>
@@ -44,6 +48,10 @@ function App() {
             </Dashboard>
           }
         />
+       <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home/>} />
+
       </Routes>
     </>
   );
