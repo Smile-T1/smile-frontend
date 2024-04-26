@@ -4,7 +4,6 @@ import Logo from "../../assets/Smile.png";
 import { Link } from 'react-router-dom';
 
 function Sidebar() {
-  // State to manage active link
   const [activeLink, setActiveLink] = useState('/patient/dashboard');
 
   return (
