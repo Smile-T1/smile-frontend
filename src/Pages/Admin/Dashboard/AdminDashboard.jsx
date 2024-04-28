@@ -14,11 +14,15 @@ function AdminDashboard() {
     <div className="admin-dashboard">
       <h1>Admin Dashboard</h1>
       <h2>{formattedDate}</h2>
-      <div className="overview-cards">
-        <OverviewCard title="Total Patients" value="100" />
-        <OverviewCard title="Total Appointments" value="200" />
-        <OverviewCard title="Total Doctors" value="10" />
-        <OverviewCard title="Total Nurses" value="20" />
+      <div className="cards-container">
+        <div className="overview-cards1">
+          <OverviewCard title="Total Doctors" value="10" />
+          <OverviewCard title="Total Nurses" value="20" />
+        </div>
+        <div className="overview-cards2">
+          <OverviewCard title="Total Doctors" value="10" />
+          <OverviewCard title="Total Nurses" value="20" />
+        </div>
       </div>
       <div className="new">
         <h3>Newest Appointment request</h3>

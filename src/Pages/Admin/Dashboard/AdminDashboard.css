@@ -4,14 +4,19 @@
   margin-left: 300px;
 }
 
-.overview-cards {
+.overview-cards1 {
   /*each two cards are in a row*/
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.overview-cards2 {
+  /*each two cards are in a row*/
+  display: flex;
+  justify-content: center;
   gap: 20px;
   margin-top: 20px;
-  margin-left: 20px;
-  width: 600px;
 }
 
 .new {
