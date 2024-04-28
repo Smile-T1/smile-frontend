@@ -9,7 +9,8 @@ import Registration_Patient from "./Pages/Patient/Registration/Registration.jsx"
 import Appointment_Patient from "./Pages/Patient/Appointment/Appointment.jsx";
 import Book_appointment_Patient from "./Pages/Patient/Book_appointment/Book_appointment.jsx";
 import Medical_records_Patient from "./Pages/Patient/Medical_Records/Medical_Records.jsx";
-import PatientRegistration from "./Pages/Admin/PatientRegistration/PatientRegistration.jsx";
+import PatientRegistration from "./Pages/Admin/PatientRegistration/DoctorRegistration.jsx";
+import DoctorRegistration from "./Pages/Admin/PatientRegistration/DoctorRegistration.jsx";
 
 function App() {
   return (
@@ -43,6 +44,10 @@ function App() {
           <Route
             path="/admin/patient_registration"
             element={<PatientRegistration />}
+          />
+          <Route
+            path="/admin/doctor_registration"
+            element={<DoctorRegistration />}
           />
         </Routes>
       </ChakraProvider>

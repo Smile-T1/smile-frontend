@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./PatientRegistrationForm.css";
+import "./DoctorRegistrationForm.css";
 import {
   FormControl,
   FormLabel,
@@ -15,7 +15,7 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function PatientRegistrationForm() {
+function DoctorRegistrationForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -53,7 +53,7 @@ function PatientRegistrationForm() {
       }}
     >
       <div className="Book-appoin-header">
-        <h4>Add new patient</h4>
+        <h4>Add new Doctor</h4>
       </div>
       <div className="book-form-patient">
         <div className="row-fill-book-data">
@@ -114,17 +114,6 @@ function PatientRegistrationForm() {
             </RadioGroup>
           </FormControl>
         </div>
-        <div className="row-fill-book-data">
-          <FormControl as="fieldset">
-            <FormLabel>Patient</FormLabel>
-            <RadioGroup>
-              <HStack spacing="80px">
-                <Radio value="Male">New Patient</Radio>
-                <Radio value="Female">Old Patient</Radio>
-              </HStack>
-            </RadioGroup>
-          </FormControl>
-        </div>
         <div style={{ width: "100%" }}>
           <FormControl>
             <FormLabel>Address</FormLabel>
@@ -136,31 +125,13 @@ function PatientRegistrationForm() {
         </div>
 
         <FormControl>
-          <FormLabel>Patient History</FormLabel>
+          <FormLabel> Doctor Speciality</FormLabel>
           <Input
-            placeholder="Enter History, ex. diabetes,"
+            placeholder="Braces, Root Canal, etc"
             style={{ background: "#f6f6f6" }}
           />
         </FormControl>
-        <FormControl>
-          <FormLabel>Report / files</FormLabel>
-          <div className="report-files-patient">
-            <Button
-              colorScheme="blue"
-              style={{
-                borderRadius: "9999px",
-                width: "100px",
-                fontFamily: "Noto Sans, Arial, sans-serif",
-                fontSize: "14px",
-                margin: "8px 2px",
-                marginLeft: "1rem",
-              }}
-            >
-              Upload
-            </Button>
-            <p style={{ marginTop: "16px" }}> or drag and drop files</p>
-          </div>
-        </FormControl>
+
         <div className="row-button-book-data" style={{ marginTop: "10px" }}>
           <div className="book-cancel-buttons">
             <Button
@@ -190,4 +161,4 @@ function PatientRegistrationForm() {
   );
 }
 
-export default PatientRegistrationForm;
+export default DoctorRegistrationForm;
