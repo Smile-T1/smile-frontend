@@ -5,7 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Home from "./Pages/Home/Home.jsx";
 import Dashboard_Patient from "./Pages/Patient/Dashboard/Dashboard.jsx";
 import AdminDashboard from "./Pages/Admin/Dashboard/AdminDashboard.jsx";
-import Registration_Patient from "./Pages/Patient/Registration/Registration.jsx";
+import Registration_Patient from "./Pages/Patient/Registration_Edit_info/Registration_Edit_info.jsx";
 import Appointment_Patient from "./Pages/Patient/Appointment/Appointment.jsx";
 import Book_appointment_Patient from "./Pages/Patient/Book_appointment/Book_appointment.jsx";
 import Medical_records_Patient from "./Pages/Patient/Medical_Records/Medical_Records.jsx";
