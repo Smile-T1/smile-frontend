@@ -5,6 +5,7 @@ function Dashboard() {
 
   return (
     <div className='patient-portal'>
+      vrgf
     </div>
   )
 }

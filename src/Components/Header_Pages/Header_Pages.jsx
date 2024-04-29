@@ -3,16 +3,18 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import "./Header_Pages.css"
 
 
-function Header_Pages() {
+function Header_Pages(props) {
     return (
         <div className=" dashboard-header">
-            <b style={{width:'68px', height:'25px'}}>
-                Patient 
-            </b>
-            <div>
-                <MdKeyboardArrowRight  style={{fontSize:'20px'}}/>
+            <div className='header-conatainer'>
+                <b style={{width:'68px', height:'25px'}}>
+                    Patient 
+                </b>
+                <div>
+                    <MdKeyboardArrowRight  style={{fontSize:'20px'}}/>
+                </div>
+                <span>{props.header}</span>
             </div>
-            <span>Book appointment</span>
         </div>
         // <div></div>
     );

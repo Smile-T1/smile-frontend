@@ -1,0 +1,28 @@
+.Registration_Edit_Page {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #f6f6f6;
+}
+
+.Registration_Edit_Patient {
+    width: 100%;
+    background-color: white;
+    overflow-y: auto;
+    align-self: center;
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 40px 100px 40px 100px;
+}
+
+.Registration_Edit_Patient-container{
+    padding: 15px 10px 10px 10px;
+    max-width: 900px;
+}
+
+@media (max-width: 530px) {
+    .Registration_Edit_Patient {
+        padding: 40px 30px 40px 30px;
+    }
+}

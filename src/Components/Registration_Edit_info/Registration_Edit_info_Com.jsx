@@ -7,15 +7,11 @@ import {
     RadioGroup,
     HStack,
     Radio,
-    Select,
     Button,
-    Flex,
-    Divider,
     InputGroup,
     InputRightElement,
     Textarea
 } from '@chakra-ui/react';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function Registration_Edit_info_Com() {
@@ -49,7 +45,7 @@ function Registration_Edit_info_Com() {
     };
 
     return (
-        <div style={{ marginLeft: '100px', marginRight: '100px', marginTop: '60px', marginBottom: '40px' }}>
+        <div className='Book-appoin-card'>
             <div className='Book-appoin-header'>
                 <h4>
                     Patient Profile

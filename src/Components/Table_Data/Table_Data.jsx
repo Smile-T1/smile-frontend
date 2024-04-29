@@ -7,7 +7,6 @@ import {
     Th,
     Td,
     TableContainer,
-    Select
   } from '@chakra-ui/react'
 import "./Table_Data.css";
 
