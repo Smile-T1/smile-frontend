@@ -7,6 +7,8 @@ import Smile_without from "../../assets/Smile_without.png";
 import profile_pic from "../../assets/avatar_default_6.png";
 import { DashboardIcon } from "./icons/dashboard";
 import AppointmentsIcon from "./icons/appointments";
+import BookAppointmentsIcon from "./icons/bookappointments"; 
+import MedicalRecordIcon from "./icons/medicalrecords"
 
 function Sidebar() {
   const [activeLink, setActiveLink] = useState('/patient/dashboard');
@@ -69,11 +71,15 @@ function Sidebar() {
             <p className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment</p>
           </Link>
           <Link to="/patient/book_appointment" className={`sidebar-link ${activeLink === '/patient/book_appointment' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/book_appointment')}>
-            <i className="fa-solid fa-book-medical icon" viewBox="0 0 24 24" />
+            <BookAppointmentsIcon 
+            fill={`${activeLink == "/patient/book_appointment" ? "#034561" : "black"}`}
+            />
             <p className={`sidebar-text ${activeLink === '/patient/book_appointment' ? 'active' : ''}`}>Book appointment</p>
           </Link>
           <Link to="/patient/medical_records" className={`sidebar-link ${activeLink === '/patient/medical_records' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/medical_records')}>
-            <i className="fa-solid fa-notes-medical icon" viewBox="0 0 24 24" />
+            <MedicalRecordIcon 
+            fill={`${activeLink == "/patient/medical_records" ? "#034561" : "black"}`}
+/>
             <p className={`sidebar-text ${activeLink === '/patient/medical_records' ? 'active' : ''}`}>Medical Records</p>
           </Link>
         </div>
