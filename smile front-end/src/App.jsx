@@ -7,8 +7,6 @@ import Registration_Patient from "./Pages/Patient/Registration/Registration.jsx"
 import Appointment_Patient from "./Pages/Patient/Appointment/Appointment.jsx";
 import Book_appointment_Patient from "./Pages/Patient/Book_appointment/Book_appointment.jsx";
 import Medical_records_Patient from "./Pages/Patient/Medical_Records/Medical_Records.jsx";
-import Signup from './Components/Signup/Signup.jsx';
-import Login from './Components/Login/Login.jsx';
 
 function App() {
 
@@ -16,14 +14,12 @@ function App() {
     <div>
       <Sidebar />
       <Routes>
-        <Route path="/" element={<Home/>} />
         <Route path="/patient/dashboard" element={<Dashboard_Patient />} /> 
         <Route path="/patient/registration" element={<Registration_Patient />} /> 
         <Route path="/patient/appointment" element={<Appointment_Patient />} /> 
         <Route path="/patient/book_appointment" element={<Book_appointment_Patient />} /> 
         <Route path="/patient/medical_records" element={<Medical_records_Patient />} /> 
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+
       </Routes>
     </div>
   )
