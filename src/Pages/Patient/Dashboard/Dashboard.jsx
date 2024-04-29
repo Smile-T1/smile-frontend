@@ -7,7 +7,6 @@ function Dashboard() {
   return (
     <div className='patient-portal'>
       <Page_header type='Patient' header='Dashboard'/>
-      vrgf
     </div>
   )
 }
