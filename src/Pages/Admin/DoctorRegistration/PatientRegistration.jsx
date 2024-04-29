@@ -6,11 +6,11 @@ import Page_header from "../../../Components/Header_Pages/Header_Pages";
 function PatientRegistration() {
   return (
     <div className="Book_appointment_Patient_Page">
-      <div className="page-header">
-        <Page_header />
-      </div>
-      <div className="Book_appointment_Patient">
-        <PatientRegistrationForm />
+      <Page_header type='Admin' header='Patient registration' />
+      <div className='Book_appointment_Patient-container'>
+        <div className="Book_appointment_Patient">
+          <PatientRegistrationForm />
+        </div>
       </div>
     </div>
   );

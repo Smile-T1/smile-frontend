@@ -7,7 +7,7 @@ function Appointment() {
 
   return (
     <div className='Appointment_Patient_Page'>
-      <Page_header header='Appointment' />
+      <Page_header type='Patient' header='Appointment' />
       <div className='Appointment_Patient_Page-container'>
         <div className='Appointment_Patient'>
           <Appointment_Table />

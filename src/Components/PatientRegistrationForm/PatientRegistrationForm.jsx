@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./PatientRegistrationForm.css";
 import {
   FormControl,
   FormLabel,
@@ -45,12 +44,6 @@ function PatientRegistrationForm() {
 
   return (
     <div
-      style={{
-        marginLeft: "100px",
-        marginRight: "100px",
-        marginTop: "60px",
-        marginBottom: "40px",
-      }}
     >
       <div className="Book-appoin-header">
         <h4>Add new patient</h4>

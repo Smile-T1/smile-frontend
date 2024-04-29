@@ -25,7 +25,7 @@ function Sidebar() {
     <div className='sidebar-portal'>
       <div className='content-wrapper-sidebar'>
         <a href="/" className='logo-link'>
-          {screenWidth <= 800 ? (
+          {screenWidth <= 900 ? (
             <img src={Smile_without} alt="Smile" className='logo' />
           ) : (
             <img src={Logo} alt="Smile" className='logo' />

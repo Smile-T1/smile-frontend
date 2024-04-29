@@ -6,7 +6,7 @@ import Page_header from "../../../Components/Header_Pages/Header_Pages";
 function Book_appointment() {
   return (
     <div className='Book_appointment_Patient_Page'>
-      <Page_header header='Book appointment'/>
+      <Page_header type='Patient' header='Book appointment'/>
       <div className='Book_appointment_Patient-container'>
         <div className='Book_appointment_Patient'>
           <Book_app_Patient />

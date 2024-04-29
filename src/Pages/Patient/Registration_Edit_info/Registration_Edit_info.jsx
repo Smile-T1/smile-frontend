@@ -6,7 +6,7 @@ import Registration_Edit_info_Com from "../../../Components/Registration_Edit_in
 function Registration_Edit_info() {
   return (
     <div className='Registration_Edit_Page'>
-      <Page_header header='Edit information'/>
+      <Page_header type='Patient' header='Edit information'/>
       <div className='Registration_Edit_Patient-container'>
         <div className='Registration_Edit_Patient'>
           <Registration_Edit_info_Com />

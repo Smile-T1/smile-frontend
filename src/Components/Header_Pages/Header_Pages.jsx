@@ -8,7 +8,7 @@ function Header_Pages(props) {
         <div className=" dashboard-header">
             <div className='header-conatainer'>
                 <b style={{width:'68px', height:'25px'}}>
-                    Patient 
+                    {props.type} 
                 </b>
                 <div>
                     <MdKeyboardArrowRight  style={{fontSize:'20px'}}/>

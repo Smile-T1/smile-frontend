@@ -69,7 +69,7 @@ a,
     line-height: 1.25rem;
     margin: 0;
 }
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .sidebar-text{
         display: none;
     }

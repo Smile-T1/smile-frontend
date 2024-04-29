@@ -19,7 +19,7 @@ const PageContainer = styled.div`
   overflow: hidden;
   grid-template-columns: 250px 1fr;
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     grid-template-columns: 70px 1fr
   }
 `;

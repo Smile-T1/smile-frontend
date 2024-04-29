@@ -14,9 +14,7 @@ function AdminDashboard() {
   return (
     <div className="admin-dashboard">
       <div className="admin">
-        <div className="page-header">
-          <Page_header />
-        </div>
+          <Page_header type='Admin' header='Dashboard'/>
         <h2>{formattedDate}</h2>
         <div className="cards-container">
           <div className="overview-cards1">

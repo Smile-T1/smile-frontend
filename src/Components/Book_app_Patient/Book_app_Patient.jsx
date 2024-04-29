@@ -88,7 +88,7 @@ function Book_app_Patient() {
     };
 
     return (
-        <div className='Book-appoin-card'>
+        <div>
             <div className='Book-appoin-header'>
                 <h4>
                     Book an appointment
@@ -206,7 +206,7 @@ function Book_app_Patient() {
                                 <Button
                                     key={index}
                                     className='button-post-method'
-                                    size='md'
+                                    size={(window.innerWidth <= 1166 && window.innerWidth > 750) ? 'sm' : 'md'}
                                     variant='ghost'
                                     style={{
                                         borderWidth: `1px 0 1px ${index === array.length - 1 ? '1px' : '0'}`,
