@@ -18,26 +18,32 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <div>
-        <label>Username:</label>
+
+    <div className='login-page'>
+    <div className="login-container">
+      <h2 className="login-header">Login</h2>
+      <h6 className='login-message'>Hello!  Please enter your credentials</h6>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <div className="input-container">
+        <label className="input-label">Username:</label>
         <input
           type="text"
+          className="input-field"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-      <div>
-        <label>Password:</label>
+      <div className="input-container">
+        <label className="input-label">Password:</label>
         <input
           type="password"
+          className="input-field"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button onClick={handleLogin}>Login</button>
+      <button className="login-button" onClick={handleLogin}>Login</button>
+    </div>
     </div>
   );
 }
