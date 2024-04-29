@@ -12,6 +12,7 @@
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
     height: 100vh;
+    padding: 24px 24px;
 }
 
 a,
@@ -21,13 +22,12 @@ a,
 }
 
 .logo{
-    object-fit: contain;
-    width: 128px;
-    height: 97px;
-    margin-left: 20px;
+    display: flex;
     margin-top: 19px;
-    max-width: 100%;
-    display: block;
+    font-size: 10px;
+    height: 100px;
+    text-align: center;
+    justify-content: center;
 }
 
 .options-sidebar-list{
@@ -84,5 +84,16 @@ a,
     }
     .sidebar-link.active {
         width: 50px;
+    }
+    .logo{
+        margin-top: 19px;
+        font-size: 10px;
+        height: 60px;
+        width: 100px;
+    }
+    .content-wrapper-sidebar{
+        /* padding: 15px; */
+        padding-left: 10px;
+        padding-right: 0;
     }
 }
