@@ -44,13 +44,9 @@ function Sidebar() {
             src={profile_pic}
             alt=""
             loading="lazy"
-            style={{
-              borderRadius: '50%',
-              width: '100px',
-              height: '100px'
-            }}
+            className='Profile_picture'
           />
-          <p>Dr. Anushka Singh</p>
+          <p className='Patient_name'>Dr. Anushka Singh</p>
         </div>
         <div className='options-sidebar-list'>
           <Link to={'/patient/dashboard'} className={`sidebar-link ${activeLink === '/patient/dashboard' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/dashboard')}>

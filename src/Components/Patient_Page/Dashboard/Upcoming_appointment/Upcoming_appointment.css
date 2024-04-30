@@ -1,0 +1,32 @@
+.Upcoming_appointment_Conainer{
+    border-radius: 15px;
+    width: 721px;
+    height: 380px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #cbd8ec 100%);
+}
+.Upcoming_appointment_Inner_Conainer{
+    padding: 15px 35px 35px 15px;
+}
+.Upcoming_appointment_header{
+    font-weight: 400;
+    font-size: 26px;
+    margin-bottom: 45px;
+}
+
+.left-side-upcoming-appointment{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.Appointments_table_container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-left: 22px;
+}
+.guide-upcoming-appointment-left{
+    color: #4483FD;
+    font-weight: 500;
+    font-size: 35px;
+}

@@ -80,8 +80,14 @@ a,
     gap: 2px;
 }
 
+.Profile_picture{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
 @media (max-width: 900px) {
-    .sidebar-text{
+    .sidebar-text,
+    .Patient_name{
         display: none;
     }
     .sidebar-link{
@@ -98,6 +104,10 @@ a,
         font-size: 10px;
         height: 60px;
         width: 100px;
+    }
+    .Profile_picture{
+        margin-top: 10px;
+        height: 50px;
     }
     .content-wrapper-sidebar{
         padding-left: 5px;
