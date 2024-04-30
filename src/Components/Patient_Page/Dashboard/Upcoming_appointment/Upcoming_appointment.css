@@ -1,32 +1,67 @@
-.Upcoming_appointment_Conainer{
+.Upcoming_appointment_Conainer {
     border-radius: 15px;
     width: 721px;
     height: 380px;
     background: linear-gradient(135deg, #f5f7fa 0%, #cbd8ec 100%);
 }
-.Upcoming_appointment_Inner_Conainer{
+
+.Upcoming_appointment_Inner_Conainer {
     padding: 15px 35px 35px 15px;
 }
-.Upcoming_appointment_header{
+
+.Upcoming_appointment_header {
     font-weight: 400;
     font-size: 26px;
     margin-bottom: 45px;
 }
 
-.left-side-upcoming-appointment{
+.left-side-upcoming-appointment {
+    width: 333px;
+    height: 248px;
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.Appointments_table_container{
+.Appointments_table_container {
     display: flex;
     flex-direction: row;
     gap: 20px;
     padding-left: 22px;
 }
-.guide-upcoming-appointment-left{
+
+.guide-upcoming-appointment-left {
     color: #4483FD;
     font-weight: 500;
     font-size: 35px;
+}
+
+.right-side-upcoming-appointment {
+    width: 333px;
+    height: 248px;
+    background-color: white;
+    border: 1px solid #4483FD;
+    border-radius: 17.53px;
+}
+
+.day-calendar-title {
+    margin-left: 19.28px;
+    margin-top: 9.64px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 12px;
+}
+
+.day-calendar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 18.4px;
+    padding-right: 18.4px;
 }

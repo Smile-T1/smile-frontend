@@ -1,0 +1,42 @@
+.Recent_Medications_Container {
+    width: 300px;
+    height: 381px;
+    background: white;
+    border-radius: 15px;
+}
+
+.Recent_Medications_inner_Conainer {
+    margin: 15px 15px 61px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.Recent_Medications_header {
+    font-weight: 450;
+    font-size: 16px;
+    margin-bottom: 45px;
+}
+
+.Recent_Medications_inner_box{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.Recent_Medications_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 52px;
+}
+
+.Recent_Medications_row_left{
+    display: flex;
+    gap: 10px;
+}
+
+.Recent_Medications_dosage{
+    display: flex;
+    gap: 4px;
+}

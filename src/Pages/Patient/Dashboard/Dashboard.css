@@ -6,7 +6,6 @@
     background-color: #f6f6f6;
 }
 .Dashboard_Patient-container{
-    width: 100%;
     overflow-y: auto;
     align-self: center;
     box-sizing: border-box;
@@ -15,11 +14,9 @@
     display: flex;
     flex-direction: column;
 }
-.Dashboard-Patient-upperside{
-    display: flex;
-    flex-direction: row;
-}
+.Dashboard-Patient-upperside,
 .Dashboard-Patient-downside{
     display: flex;
     flex-direction: row;
+    gap: 20px;
 }
