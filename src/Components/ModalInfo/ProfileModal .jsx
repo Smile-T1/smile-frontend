@@ -1,25 +1,41 @@
 import React, { useState } from 'react';
-// import "./ProfileModal.css";
 import "./ProfileModal.css";
-import { 
-    Modal, 
-    ModalOverlay, 
-    ModalContent, 
-    ModalHeader, 
-    ModalCloseButton, 
-    ModalBody, 
-    ModalFooter, 
-    FormLabel, 
-    Input, 
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalCloseButton,
+    ModalBody,
+    ModalFooter,
+    FormLabel,
+    Input,
     FormControl,
     InputGroup,
     Button,
-    InputRightElement
+    InputRightElement,
+    Textarea
 } from '@chakra-ui/react';
+import PasswordChangeModal from "./PasswordChangeModal"
+
 
 function ProfileModal({ isOpen, onClose, profile_pic }) {
-    const [show, setShow] = useState(false)
-    const handleClick = () => setShow(!show)
+    const [isPasswordChangeModal, setIsPasswordChangeModal] = useState(false);
+    const [address, setAddress] = useState("Faculty of Engineering");
+    const [isAddressEditable, setIsAddressEditable] = useState(false);
+    const [isChangesMade, setIsChangesMade] = useState(false);
+
+
+    const handleAddressEdit = () => {
+        setIsAddressEditable(!isAddressEditable);
+        setIsChangesMade(true);
+    };
+
+    const handleSaveChanges = () => {
+        // Handle save changes logic here
+        setIsChangesMade(false); // Reset changes made flag after saving changes
+    };
+
     return (
         <Modal isOpen={isOpen} onClose={onClose} size='xl'>
             <ModalOverlay />
@@ -27,9 +43,9 @@ function ProfileModal({ isOpen, onClose, profile_pic }) {
                 <ModalHeader>Profile</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody style={{
-                    display:'flex',
-                    flexDirection:'column',
-                    gap:'25px'
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '25px'
                 }}>
                     <div className='row-modal-info'>
                         <div>
@@ -64,26 +80,28 @@ function ProfileModal({ isOpen, onClose, profile_pic }) {
                     </div>
                     <div className='row-modal-info'>
                         <div className='name-info-input'>
-                        <FormLabel>Password</FormLabel>
-                        <InputGroup size='md'>
-                            <Input
-                                pr='4.5rem'
-                                type={show ? 'text' : 'password'}
-                                placeholder='Enter password'
-                            />
-                            <InputRightElement width='4.5rem'>
-                                <Button h='1.75rem' size='sm' onClick={handleClick}>
-                                    {show ? <i class="fa-regular fa-eye-slash" /> : <i class="fa-regular fa-eye" />}
-                                </Button>
-                            </InputRightElement>
-                        </InputGroup>
+                            <FormLabel>Password</FormLabel>
+                            <InputGroup size='md'>
+                                <Input
+                                    isReadOnly
+                                    value={"06/30/2002"}
+                                    pr='4.5rem'
+                                    type='password'
+                                    style={{ background: '#f6f6f6' }}
+                                />
+                                <InputRightElement width='4.5rem'>
+                                    <Button h='1.75rem' size='sm' background='white' onClick={() => setIsPasswordChangeModal(true)}>
+                                        <i className="fa-regular fa-pen-to-square" />
+                                    </Button>
+                                </InputRightElement>
+                            </InputGroup>
                         </div>
                     </div>
                     <div className='row-modal-info'>
                         <div className='name-info-input'>
                             <FormControl>
                                 <FormLabel>Date of birth</FormLabel>
-                                <Input value={"06/30/2002"} isReadOnly style={{ background: '#f6f6f6' , width: '100%' }} />
+                                <Input value={"06/30/2002"} isReadOnly style={{ background: '#f6f6f6', width: '100%' }} />
                             </FormControl>
                         </div>
                         <div className='name-info-input'>
@@ -93,10 +111,35 @@ function ProfileModal({ isOpen, onClose, profile_pic }) {
                             </FormControl>
                         </div>
                     </div>
+                    <div className='row-modal-info'>
+                        <FormControl>
+                            <FormLabel>Address</FormLabel>
+                            <InputGroup>
+                                <Textarea
+                                    value={address}
+                                    isReadOnly={!isAddressEditable}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    style={{ background: '#f6f6f6', minHeight: '96px' }} />
+                                <InputRightElement width='4.5rem'>
+                                    <Button h='1.75rem' size='sm' onClick={handleAddressEdit} background='white'>
+                                        <i className={`fa-regular ${isAddressEditable ? 'fa-check' : 'fa-pen-to-square'}`} />
+                                    </Button>
+                                </InputRightElement>
+                            </InputGroup>
+                        </FormControl>
+                    </div>
                 </ModalBody>
                 <ModalFooter>
-                    {/* Add any additional buttons or actions here */}
+                    {isChangesMade && ( // Conditionally render Save Changes button if changes are made
+                        <Button colorScheme="teal" onClick={handleSaveChanges}>Save Changes</Button>
+                    )}
                 </ModalFooter>
+                {isPasswordChangeModal && (
+                    <PasswordChangeModal
+                        isOpen={isPasswordChangeModal}
+                        onClose={() => setIsPasswordChangeModal(false)}
+                    />
+                )}
             </ModalContent>
         </Modal>
     );

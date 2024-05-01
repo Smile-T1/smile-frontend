@@ -9,7 +9,7 @@ function PasswordChangeModal({ isOpen, onClose }) {
             <ModalContent>
                 <ModalHeader>Change Password</ModalHeader>
                 <ModalCloseButton />
-                <ModalBody>
+                <ModalBody style={{display:'flex', flexDirection:'column', gap:'8px'}}>
                     <FormControl>
                         <FormLabel>New Password</FormLabel>
                         <Input type="password" placeholder="Enter new password" />

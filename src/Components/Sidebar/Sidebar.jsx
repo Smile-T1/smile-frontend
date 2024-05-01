@@ -58,10 +58,6 @@ function Sidebar() {
             />
             <p className={`sidebar-text ${activeLink === '/patient/dashboard' ? 'active' : ''}`}>Dashboard</p>
           </Link>
-          <Link to="/patient/registration" className={`sidebar-link ${activeLink === '/patient/registration' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/registration')}>
-            <i className="fa-solid fa-address-card icon" viewBox="0 0 24 24" />
-            <p className={`sidebar-text ${activeLink === '/patient/registration' ? 'active' : ''}`}>Registration</p>
-          </Link>
           <Link to="/patient/appointment" className={`sidebar-link ${activeLink === '/patient/appointment' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/appointment')}>
             <AppointmentsIcon
               fill={`${activeLink == "/patient/appointment" ? "#034561" : "black"}`}
