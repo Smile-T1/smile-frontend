@@ -1,22 +1,8 @@
 import React from 'react';
 import "./Upcoming_appointment.css";
 import {
-    Box,
     Text,
-    Heading,
-    VStack,
-    Grid,
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    Stack,
-    HStack,
     Button,
-    Flex,
-    Divider,
 } from '@chakra-ui/react'
 
 function Upcoming_appointment() {
@@ -33,7 +19,7 @@ function Upcoming_appointment() {
                             Monday
                         </div>
                         <Text>Dr. Xyz Sharma</Text>
-                        <Button size="sm" colorScheme="blue" width='55%' height='35px'>
+                        <Button size="sm" colorScheme="blue" width='55%' minheight='35px'>
                             Reschedule
                         </Button>
                     </div>
