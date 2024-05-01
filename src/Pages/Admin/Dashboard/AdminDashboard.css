@@ -1,8 +1,7 @@
 .admin-dashboard {
   background-color: #f6f6f6;
   position: relative;
-  height: 100vh;
-  margin-left: 300px;
+  min-height: 100vh;
 }
 
 .overview-cards1 {
@@ -34,6 +33,9 @@
   margin-right: 20px;
   border-radius: 10px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
@@ -62,4 +64,39 @@
   padding-left: 20px;
   padding-right: 20px;
   border-radius: 30px;
+}
+
+#view-requests:hover {
+  background-color: #0661ff;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    margin-left: 1rem;
+  }
+  #ad_head {
+    text-align: center;
+    font-size: small;
+  }
+  h3 {
+    font-size: small;
+  }
+  #requests {
+    font-size: small;
+  }
+  .new {
+    padding-bottom: 10px;
+  }
+  #view-requests {
+    /*make button smaller*/
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: small;
+  }
+  .table {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -14,11 +14,11 @@ function AdminDashboard() {
   return (
     <div className="admin-dashboard">
       <div className="admin">
-          <Page_header type='Admin' header='Dashboard'/>
-        <h2>{formattedDate}</h2>
+        <Page_header type="Admin" header="Dashboard" />
+        <h2 id="ad_head">{formattedDate}</h2>
         <div className="cards-container">
           <div className="overview-cards1">
-            <OverviewCard title="Total Doctors" value="10" />
+            <OverviewCard id="card1" title="Total Doctors" value="10" />
             <OverviewCard title="Total Nurses" value="20" />
           </div>
           <div className="overview-cards2">
