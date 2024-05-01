@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import "./Sidebar.css";
 import Logo from "../../assets/Smile.png";
 import { Link } from 'react-router-dom';
-import { MdDashboard } from "react-icons/md";
 import Smile_without from "../../assets/Smile_without.png";
 import profile_pic from "../../assets/avatar_default_6.png";
 import { DashboardIcon } from "./icons/dashboard";
 import AppointmentsIcon from "./icons/appointments";
 import BookAppointmentsIcon from "./icons/bookappointments"; 
-import MedicalRecordIcon from "./icons/medicalrecords"
+import MedicalRecordIcon from "./icons/medicalrecords";
+import ProfileModal from "../ModalInfo/ProfileModal ";
 
 function Sidebar() {
   const [activeLink, setActiveLink] = useState('/patient/dashboard');
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false); 
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,6 +46,7 @@ function Sidebar() {
             alt=""
             loading="lazy"
             className='Profile_picture'
+            onClick={() => setIsProfileModalOpen(true)}
           />
           <p className='Patient_name'>Dr. Anushka Singh</p>
         </div>
@@ -78,6 +80,10 @@ function Sidebar() {
 />
             <p className={`sidebar-text ${activeLink === '/patient/medical_records' ? 'active' : ''}`}>Medical Records</p>
           </Link>
+          <ProfileModal 
+          isOpen={isProfileModalOpen} 
+          onClose={() => setIsProfileModalOpen(false)} 
+          profile_pic={profile_pic}/>
         </div>
       </aside>
     </div>
