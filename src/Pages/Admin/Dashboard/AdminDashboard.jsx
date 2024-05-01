@@ -18,12 +18,12 @@ function AdminDashboard() {
         <h2 id="ad_head">{formattedDate}</h2>
         <div className="cards-container">
           <div className="overview-cards1">
-            <OverviewCard id="card1" title="Total Doctors" value="10" />
-            <OverviewCard title="Total Nurses" value="20" />
+            <OverviewCard id="card1" header="Total Doctors" value="10" />
+            <OverviewCard header="Total appointments" value="20" />
           </div>
           <div className="overview-cards2">
-            <OverviewCard title="Total Doctors" value="10" />
-            <OverviewCard title="Total Nurses" value="20" />
+            <OverviewCard header="Total Patients" value="10" />
+            <OverviewCard header="Total Surgeries" value="20" />
           </div>
         </div>
         <div className="new">
