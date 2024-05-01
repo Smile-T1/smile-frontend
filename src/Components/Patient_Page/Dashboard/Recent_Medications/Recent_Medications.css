@@ -3,10 +3,11 @@
     height: 381px;
     background: white;
     border-radius: 15px;
+    overflow-y: auto;
 }
 
 .Recent_Medications_inner_Conainer {
-    margin: 15px 15px 61px 15px;
+    margin: 15px 15px 15px 15px;
     display: flex;
     flex-direction: column;
     gap: 50px;
