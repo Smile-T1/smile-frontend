@@ -15,11 +15,11 @@ function Upcoming_appointment() {
                     <div className='left-side-upcoming-appointment'>
                         <Text className='guide-upcoming-appointment-left'>You next visit is arriving soon</Text>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-                            <span>April 20, 2023</span>
-                            Monday
+                            <span className="appointment-details">April 20, 2023</span>
+                            <span className="appointment-details">  Monday </span>
                         </div>
-                        <Text>Dr. Xyz Sharma</Text>
-                        <Button size="sm" colorScheme="blue" width='55%' minheight='35px'>
+                        <Text className="appointment-details">Dr. Xyz Sharma</Text>
+                        <Button className="Reschedule_button_appointment" colorScheme="blue">
                             Reschedule
                         </Button>
                     </div>

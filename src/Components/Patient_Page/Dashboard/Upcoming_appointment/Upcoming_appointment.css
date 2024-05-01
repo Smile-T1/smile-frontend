@@ -65,3 +65,58 @@
     padding-left: 18.4px;
     padding-right: 18.4px;
 }
+
+.Reschedule_button_appointment{
+    width: 170px;
+    min-height: 38px;
+}
+
+@media (max-width: 980px) {
+    .Upcoming_appointment_Conainer{
+        width: 650px;
+    }
+}
+
+@media (max-width: 720px) {
+    .Upcoming_appointment_Conainer{
+        width: 500px;
+    }
+    .Upcoming_appointment_header {
+        margin-bottom: 25px;
+    }
+    .guide-upcoming-appointment-left{
+        font-size: 25px;
+    }
+    .day-calendar{
+        gap: 6px;
+    }
+}
+
+@media (max-width: 580px) {
+    .Upcoming_appointment_Conainer{
+        width: 400px;
+    }
+    .Upcoming_appointment_header {
+        margin-bottom: 15px;
+    }
+    .guide-upcoming-appointment-left{
+        font-size: 15px;
+    }
+    .Appointments_table_container{
+        gap: 10px;
+    }
+    .day-calendar{
+        padding-left: 5px;
+        padding-right: 5px;
+        gap: 6px;
+    }
+    .right-side-upcoming-appointment{
+        width: 240px;
+    }
+    .appointment-details{
+        font-size: 14px;
+    }
+    .Reschedule_button_appointment{
+        width: 100px;
+    }
+}

@@ -7,6 +7,7 @@ function Medical_History() {
         <div className='Medical_History_Container'>
             <div className='Medical_History_inner_Container'>
                 <h2 className='Medical_History_title'>Medical History</h2>
+                <div className='Medical_History_outer_Card'>
                 <div className='Medical_History_Table'>
                     <div className='Medical_History_Card'>
                         <div className='Medical_History_Card_Header'>
@@ -40,6 +41,8 @@ function Medical_History() {
                         </div>
                     </div>
                 </div>
+                </div>
+
             </div>
         </div>
     )

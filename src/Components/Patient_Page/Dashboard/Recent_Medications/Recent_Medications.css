@@ -41,3 +41,26 @@
     gap: 4px;
 }
 
+@media (max-width: 1300px) {
+    .Recent_Medications_Container{
+        width: 100%;
+    }
+}
+
+@media (max-width: 980px) {
+    .Recent_Medications_Container{
+        width: 650px;
+    }
+}
+
+@media (max-width: 720px) {
+    .Recent_Medications_Container{
+        width: 500px;
+    }
+}
+
+@media (max-width: 580px) {
+    .Recent_Medications_Container{
+        width: 400px;
+    }
+}

@@ -45,3 +45,27 @@
     display: flex;
     gap: 20px;
 }
+
+@media (max-width: 1300px) {
+    .Latest_reports_Container{
+        width: 100%;
+    }
+}
+
+@media (max-width: 980px) {
+    .Latest_reports_Container{
+        width: 650px;
+    }
+}
+
+@media (max-width: 720px) {
+    .Latest_reports_Container{
+        width: 500px;
+    }
+}
+
+@media (max-width: 580px) {
+    .Latest_reports_Container{
+        width: 400px;
+    }
+}
