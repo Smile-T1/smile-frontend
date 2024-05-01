@@ -1,0 +1,47 @@
+.Latest_reports_Container{
+    background: white;
+    border-radius: 15px;
+    width: 300px;
+    height: 485px;
+    overflow-y: auto;
+}
+
+.Latest_reports_inner_Container{
+    margin: 15px 13px;
+}
+
+.Latest_reports_title{
+    font-weight: 400;
+    font-size: 22px;
+    margin-bottom: 55px;
+}
+
+.Latest_reports_details{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.Latest_reports_row{
+    padding: 16px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Latest_reports_row_left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.Latest_reports_row_left_type{
+    font-weight: 600;
+}
+
+.Latest_reports_row_right{
+    display: flex;
+    gap: 20px;
+}

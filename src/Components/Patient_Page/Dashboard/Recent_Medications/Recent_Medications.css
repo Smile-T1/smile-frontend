@@ -13,8 +13,8 @@
 }
 
 .Recent_Medications_header {
-    font-weight: 450;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 22px;
     margin-bottom: 45px;
 }
 
@@ -40,3 +40,4 @@
     display: flex;
     gap: 4px;
 }
+
