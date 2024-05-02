@@ -17,6 +17,9 @@ import Book_appointment_Patient from "./Pages/Patient/Book_appointment/Book_appo
 import Medical_records_Patient from "./Pages/Patient/Medical_Records/Medical_Records.jsx";
 import PatientRegistration from "./Pages/Admin/PatientRegistration/PatientRegistration.jsx";
 import DoctorRegistration from "./Pages/Admin/DoctorRegistration/DoctorRegistration.jsx";
+import RequestedAppointments from "./Pages/Admin/RequestedAppointments/RequestedAppointments.jsx";
+import Patients from "./Pages/Admin/Patients/Patients.jsx";
+import Doctors from "./Pages/Admin/Doctors/Doctors.jsx";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
@@ -60,6 +63,12 @@ function App() {
               path="/admin/doctor_registration"
               element={<DoctorRegistration />}
             />
+            <Route
+              path="/admin/appointments"
+              element={<RequestedAppointments />}
+            />
+            <Route path="/admin/patients" element={<Patients />} />
+            <Route path="/admin/doctors" element={<Doctors />} />
           </Routes>
         </ChakraProvider>
       </PageContainer>
