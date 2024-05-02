@@ -19,7 +19,7 @@ function AdminDashboard() {
         <div className="cards-container">
           <div className="overview-cards1">
             <OverviewCard id="card1" header="Total Doctors" value="10" />
-            <OverviewCard header="Total appointments" value="20" />
+            <OverviewCard header="Appointments" value="20" />
           </div>
           <div className="overview-cards2">
             <OverviewCard header="Total Patients" value="10" />
