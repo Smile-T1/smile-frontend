@@ -1,21 +1,52 @@
 import React, { useState } from 'react';
 import './Login.css';
+const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
+
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = () => {
-    if (!username || !password) {
-      setErrorMessage('Please fill in all fields.');
-    } else {
-      console.log('Logging in with username:', username, 'and password:', password);
+const handleLogin = async () => {
+  if (!username || !password) {
+    setErrorMessage('Please fill in all fields.');
+  } else {
+    try {
+      const responseData = await loginUser(username, password);
+      console.log('Login successful:', responseData);
       setUsername('');
       setPassword('');
       setErrorMessage('');
+    } catch (error) {
+      console.log('Login failed:', error);
+      setErrorMessage('Login failed. Please try again.');
     }
+  }
+};
+
+  const loginUser = async (username, password) => {
+    const url = `${VITE_SERVER_HOST}/api/auth/login`;
+    const data = {
+    username,
+    password,
   };
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+
+  const responseData = await response.json();
+  return responseData;
+};
 
   return (
 

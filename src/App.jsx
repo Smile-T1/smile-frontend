@@ -5,8 +5,8 @@ import { Route, Routes } from "react-router-dom";
 // import Appointment from "./Admin/appointments";
 // import Patients from "./Admin/patients";
 // import Schedule from "./Admin/schedule";
-// import Signup from './Components/Signup/Signup.jsx';
-// import Login from './Components/Login/Login.jsx';
+import Signup from './Components/Signup/Signup.jsx';
+import Login from './Components/Login/Login.jsx';
 import Home from "./Pages/Home/Home.jsx";
 import Sidebar from "./Components/Sidebar/Sidebar.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -50,6 +50,8 @@ function App() {
               path="/patient/book_appointment"
               element={<Book_appointment_Patient />}
             />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
             <Route
               path="/patient/medical_records"
               element={<Medical_records_Patient />}
