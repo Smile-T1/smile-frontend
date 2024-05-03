@@ -1,0 +1,29 @@
+.NewRequest-card {
+  border-radius: 10px;
+  width: 400px;
+}
+
+#new {
+  border: 1px solid #0661ff;
+  border-radius: 10px;
+  border-style: dashed;
+}
+
+#body-name {
+  text-align: start;
+  font-size: 0.9em;
+}
+
+.bellow {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+  .NewRequest-card {
+    width: 250px;
+    font-size: small;
+  }
+}

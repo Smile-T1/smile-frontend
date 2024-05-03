@@ -1,0 +1,123 @@
+.admin-dashboard {
+  background-color: #f6f6f6;
+  position: relative;
+  min-height: 100vh;
+}
+
+.overview-cards1 {
+  /*each two cards are in a row*/
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.overview-cards2 {
+  /*each two cards are in a row*/
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.page-header {
+  height: 75px;
+  margin-left: 250px;
+  background: #fff;
+}
+
+.new {
+  padding-top: 30px;
+  padding-bottom: 60px;
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.new-appointments {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#requests {
+  text-align: center;
+}
+
+.view {
+  display: flex;
+  gap: 1.5em;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#view-requests {
+  background-color: #d6e5ff;
+  border: 1px solid #0661ff;
+  font-size: 0.9em;
+  color: #0661ff;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 30px;
+}
+
+#view-requests:hover {
+  background-color: #0661ff;
+  color: white;
+}
+
+.table-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#app {
+  text-align: start;
+  margin-left: 50px;
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    margin-left: 1rem;
+  }
+  #ad_head {
+    text-align: center;
+    font-size: small;
+  }
+  h3 {
+    font-size: small;
+  }
+  #requests {
+    font-size: small;
+  }
+  .new {
+    padding-bottom: 10px;
+  }
+  #view-requests {
+    /*make button smaller*/
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: small;
+  }
+  .table {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  #app {
+    margin-left: 20px;
+  }
+}

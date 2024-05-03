@@ -1,0 +1,33 @@
+.Overview-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 400px;
+}
+
+#card2 {
+  /* make a gradient background */
+  background: linear-gradient(135deg, #f5f7fa 0%, #cbd8ec 100%);
+  border-radius: 10px;
+}
+
+#body {
+  /* make it in the end of the card */
+  font-size: 2em;
+  text-align: end;
+}
+
+.Overview-card:hover {
+  background-color: #002b6c;
+  cursor: pointer;
+}
+
+#card2:hover {
+  background: linear-gradient(135deg, #cbd8ec 0%, #f5f7fa 100%);
+  transition: 2s ease;
+}
+@media (max-width: 768px) {
+  .Overview-card {
+    width: 130px;
+    font-size: small;
+  }
+}
