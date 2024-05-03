@@ -1,8 +1,31 @@
-*{
-    font-family: Poppins, sans-serif;
-    border: 0 solid #e5e7eb;
-    box-sizing: border-box;
+.Dashboard-patient-portal{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #f6f6f6;
 }
-.patient-portal{
-    background: rgba(248, 249, 250, 1);
+.Dashboard_Patient_container{
+    overflow-y: auto;
+    align-self: center;
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.Dashboard-Patient-upperside,
+.Dashboard-Patient-downside{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+@media (max-width: 1300px) {
+    .Dashboard-Patient-upperside,
+    .Dashboard-Patient-downside {
+        flex-direction: column;
+        align-items: center;
+    }
 }

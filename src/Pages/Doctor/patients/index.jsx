@@ -27,7 +27,7 @@ import React, { useState } from "react";
 import Delete from "./icons/delete";
 import Edit from "./icons/edit";
 
-const Patients = () => {
+const DoctorPatients = () => {
   const currentDate = new Date();
   const formattedDate = format(currentDate, "d MMMM, yyyy");
   const formattedTime = format(currentDate, "h:mm a");
@@ -484,4 +484,4 @@ const Patients = () => {
   );
 };
 
-export default Patients;
+export default DoctorPatients;

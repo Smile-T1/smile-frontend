@@ -13,10 +13,10 @@ const Dashboard = ({ name, children }) => {
   const [Menu, setMenu] = useState(false);
   return (
     <div className="flex">
-      <MobileSide Menu={Menu} name={name} setMenu={setMenu} />
+      {/* <MobileSide Menu={Menu} name={name} setMenu={setMenu} />
 
       <aside
-        className={`bg-white h-screen sticky top-0 p-2 min-w-[50px] dashboard-sidebar md:block hidden  w-1/5 `}
+        className={`bg-white h-screen sticky  top-0 p-2 min-w-[50px] dashboard-sidebar md:block hidden  w-1/5 `}
       >
         <div className="flex flex-col gap-12 items-center h-full  ">
           <div>
@@ -83,9 +83,9 @@ const Dashboard = ({ name, children }) => {
             </Link>
           </div>
         </div>
-      </aside>
+      </aside> */}
       <div className="w-full bg-white ">
-        <div className="text-lg p-2 pt-4 pb-4 items-center flex gap-2 text-gray-500 sticky z-20 top-0 bg-white pl-8">
+        <div className="text-lg  p-2 pt-4 pb-4 items-center flex gap-2 text-gray-500 sticky z-20 top-0 bg-white pl-8">
           <Hamburger
             className="md:hidden flex-shrink-0 w-6 h-6 cursor-pointer mr-4"
             onClick={() => setMenu(!Menu)}

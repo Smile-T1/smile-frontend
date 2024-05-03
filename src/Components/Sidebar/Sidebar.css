@@ -1,8 +1,8 @@
 .sidebar-portal{
-    grid-column-start:  2;
-    grid-column-end: 2;
-    width: 250px;
-    height: 1101px;
+    border-right: 1px solid #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .content-wrapper-sidebar{
@@ -12,6 +12,7 @@
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
     height: 100vh;
+    padding: 24px 24px;
 }
 
 a,
@@ -21,13 +22,12 @@ a,
 }
 
 .logo{
-    object-fit: contain;
-    width: 128px;
-    height: 97px;
-    margin-left: 20px;
+    display: flex;
     margin-top: 19px;
-    max-width: 100%;
-    display: block;
+    font-size: 10px;
+    height: 100px;
+    text-align: center;
+    justify-content: center;
 }
 
 .options-sidebar-list{
@@ -56,6 +56,10 @@ a,
     border-radius: 15px;
 }
 
+.sidebar-text.active{
+    color: #034561;
+}
+
 .icon{
     color: #034561;
     font-size: 1.25rem;
@@ -64,16 +68,27 @@ a,
 }
 
 .sidebar-text{
-    color: #034561;
     font-weight: 500;
     line-height: 1.25rem;
     margin: 0;
 }
-@media (max-width: 800px) {
-    .sidebar-portal{
-        width: 70px;
-    }
-    .sidebar-text{
+
+.profile-pic-sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.Profile_picture{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+@media (max-width: 900px) {
+    .sidebar-text,
+    .Patient_name{
         display: none;
     }
     .sidebar-link{
@@ -84,5 +99,19 @@ a,
     }
     .sidebar-link.active {
         width: 50px;
+    }
+    .logo{
+        margin-top: 19px;
+        font-size: 10px;
+        height: 60px;
+        width: 100px;
+    }
+    .Profile_picture{
+        margin-top: 10px;
+        height: 50px;
+    }
+    .content-wrapper-sidebar{
+        padding-left: 5px;
+        padding-right: 0;
     }
 }

@@ -7,12 +7,13 @@ function Appointment() {
 
   return (
     <div className='Appointment_Patient_Page'>
-      <div className='page-header'>
-        <Page_header />
+      <Page_header type='Patient' header='Appointment' />
+      <div className='Appointment_Patient_Page-container'>
+        <div className='Appointment_Patient'>
+          <Appointment_Table />
+        </div>
       </div>
-      <div className='Appointment_Patient'>
-        <Appointment_Table />
-      </div>
+
     </div>
   )
 }
