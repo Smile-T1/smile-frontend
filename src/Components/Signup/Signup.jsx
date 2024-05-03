@@ -5,6 +5,7 @@ function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [gender, setGender] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSignUp = () => {
@@ -13,12 +14,11 @@ function Signup() {
     } else if (password !== confirmPassword) {
       setErrorMessage('Passwords do not match.');
     } else {
-      // Here you can implement your account creation logic
       console.log('Creating account with username:', username, 'and password:', password);
-      // Reset form fields
       setUsername('');
       setPassword('');
       setConfirmPassword('');
+      setGender(''); 
       setErrorMessage('');
     }
   };
@@ -50,6 +50,15 @@ function Signup() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
+      </div>
+      <div>
+        <label>
+          <select value={gender} onChange={(e) => setGender(e.target.value)}>
+            <option value="">Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </label>
       </div>
       <button onClick={handleSignUp}>Sign Up</button>
     </div>
