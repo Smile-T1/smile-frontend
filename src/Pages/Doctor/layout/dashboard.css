@@ -1,0 +1,15 @@
+.opened {
+  position: fixed;
+  left: 0;
+  top: 60px;
+  background-color: #fff;
+  width: 0px;
+  height: calc(100vh - 60px);
+  transition: all 0.5s ease-in;
+  overflow: hidden;
+  z-index: 9999;
+}
+.opened.active {
+  width: 100%;
+  z-index: 9999;
+}
