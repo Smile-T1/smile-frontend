@@ -5,8 +5,8 @@ import { Route, Routes, useLocation } from "react-router-dom";
 // import Appointment from "./Admin/appointments";
 // import Patients from "./Admin/patients";
 // import Schedule from "./Admin/schedule";
-import Signup from "./Components/Signup/Signup.jsx";
-import Login from "./Components/Login/Login.jsx";
+import Signup from './Components/Signup/Signup.jsx';
+import Login from './Components/Login/Login.jsx';
 import Home from "./Pages/Home/Home.jsx";
 import Sidebar from "./Components/Sidebar/Sidebar.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -43,13 +43,7 @@ function App() {
   return (
     <div>
       <PageContainer>
-        {!isDoctorPage && (
-          <div className={`d-flex hidden`}>
-            <div style={{ position: "fixed", zIndex: "99" }}>
-              <Sidebar />
-            </div>
-          </div>
-        )}
+        <Sidebar />
         <ChakraProvider>
           <Routes>
             <Route path="/" element={<Home />} />
