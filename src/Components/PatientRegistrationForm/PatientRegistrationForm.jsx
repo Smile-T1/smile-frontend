@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   FormControl,
   FormLabel,
@@ -8,11 +9,16 @@ import {
   Radio,
   Select,
   Button,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
   Flex,
   Divider,
 } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { se } from "date-fns/locale";
 
 function PatientRegistrationForm() {
   const [firstName, setFirstName] = useState("");
@@ -24,11 +30,9 @@ function PatientRegistrationForm() {
   const [bloodGroup, setBloodGroup] = useState("");
   const [patientType, setPatientType] = useState("New Patient");
   const [address, setAddress] = useState("");
-  const [selectedDoctor, setSelectedDoctor] = useState("");
-  const [appointmentFor, setAppointmentFor] = useState("");
-  const [selectedAppointmentDate, setSelectedAppointmentDate] = useState(null);
-  const [selectedTime, setSelectedTime] = useState("");
-  const [note, setNote] = useState("");
+  const [message, setMessage] = useState("");
+  const [history, setHistory] = useState("");
+
   const [files, setFiles] = useState([]);
 
   const handleFirstNameChange = (e) => {
@@ -39,12 +43,67 @@ function PatientRegistrationForm() {
     setLastName(e.target.value);
   };
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Months are zero-based
+    const year = date.getFullYear();
+
+    const formattedDate = `${day}-${month}-${year}`;
+    setSelectedDate(formattedDate);
+  };
+  const handleGenderChange = (e) => {
+    setGender(e.target.value);
+  };
+
+  const handleMobileChange = (e) => {
+    setMobile(e.target.value);
+  };
+
+  const handleHistoryChange = (e) => {
+    setHistory(e.target.value);
+  };
+
+  // Function to handle registration
+  const handleRegistration = async () => {
+    try {
+      console.log("Registering patient...");
+      // Make a POST request to your server endpoint
+      const response = await axios.post(
+        "http://localhost:8000/api/auth/patient/register",
+        {
+          "Content-Type": "application/json",
+          firstName,
+          lastName,
+          gender: gender.toLocaleLowerCase(),
+          email,
+          mobile,
+          dob: selectedDate,
+          address,
+          history,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjM1YWU5ZjkyZGIyMGEzYmI4ZTFiNDkiLCJhY2Nlc3MiOiJBZG1pbiIsImlhdCI6MTcxNDc5NDgwMCwiZXhwIjoxNzE2MDkwODAwfQ.PKHvRkiMZMc6s_4u9NhCSmFoHH6ang0uNRWGYKrELkM`,
+          },
+        }
+      );
+
+      if (response.status == 201) {
+        setMessage("Patient registered successfully");
+      }
+      if (response.status == 400) {
+        setMessage("Patient registration failed");
+        console.log("messageeee", message);
+      }
+    } catch (error) {
+      setMessage("Patient registration failed");
+      console.error("Registration failed:", error);
+      // Handle error, maybe show an error message to the user
+    }
   };
 
   return (
-    <div
-    >
+    <div>
       <div className="Book-appoin-header">
         <h4>Add new patient</h4>
       </div>
@@ -76,6 +135,7 @@ function PatientRegistrationForm() {
               type="email"
               placeholder="example@gmail.com"
               style={{ background: "#f6f6f6" }}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </FormControl>
           <FormControl>
@@ -84,6 +144,7 @@ function PatientRegistrationForm() {
               type="tel"
               placeholder="Mobile number"
               style={{ background: "#f6f6f6" }}
+              onChange={handleMobileChange}
             />
           </FormControl>
         </div>
@@ -99,21 +160,10 @@ function PatientRegistrationForm() {
           </FormControl>
           <FormControl as="fieldset">
             <FormLabel>Gender</FormLabel>
-            <RadioGroup>
+            <RadioGroup onChange={handleGenderChange}>
               <HStack spacing="80px">
                 <Radio value="Male">Male</Radio>
                 <Radio value="Female">Female</Radio>
-              </HStack>
-            </RadioGroup>
-          </FormControl>
-        </div>
-        <div className="row-fill-book-data">
-          <FormControl as="fieldset">
-            <FormLabel>Patient</FormLabel>
-            <RadioGroup>
-              <HStack spacing="80px">
-                <Radio value="Male">New Patient</Radio>
-                <Radio value="Female">Old Patient</Radio>
               </HStack>
             </RadioGroup>
           </FormControl>
@@ -124,6 +174,7 @@ function PatientRegistrationForm() {
             <Input
               placeholder="Enter Your Address"
               style={{ background: "#f6f6f6" }}
+              onChange={(e) => setAddress(e.target.value)}
             />
           </FormControl>
         </div>
@@ -133,6 +184,7 @@ function PatientRegistrationForm() {
           <Input
             placeholder="Enter History, ex. diabetes,"
             style={{ background: "#f6f6f6" }}
+            onChange={handleHistoryChange}
           />
         </FormControl>
         <FormControl>
@@ -163,6 +215,7 @@ function PatientRegistrationForm() {
                 borderRadius: "9999px",
                 width: "115px",
               }}
+              onClick={handleRegistration}
             >
               Register
             </Button>
@@ -173,10 +226,34 @@ function PatientRegistrationForm() {
                 borderRadius: "9999px",
                 width: "115px",
               }}
+              onClick={() => {
+                // Redirect to the previous page
+                window.history.back();
+              }}
             >
               Cancel
             </Button>
           </div>
+          {message && message == "Patient registered successfully" && (
+            <div>
+              <Alert status="success">
+                <Flex>
+                  <AlertIcon />
+                  <AlertTitle mr={2}>{message}</AlertTitle>
+                </Flex>
+              </Alert>
+            </div>
+          )}
+          {message && message == "Patient registration failed" && (
+            <div>
+              <Alert status="error">
+                <Flex>
+                  <AlertIcon />
+                  <AlertTitle mr={2}>{message}</AlertTitle>
+                </Flex>
+              </Alert>
+            </div>
+          )}
         </div>
       </div>
     </div>
