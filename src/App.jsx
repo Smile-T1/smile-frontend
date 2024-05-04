@@ -21,6 +21,7 @@ import RequestedAppointments from "./Pages/Admin/RequestedAppointments/Requested
 import Patients from "./Pages/Admin/Patients/Patients.jsx";
 import Doctors from "./Pages/Admin/Doctors/Doctors.jsx";
 import styled from "styled-components";
+
 const PageContainer = styled.div`
   display: grid;
   height: 100%;
