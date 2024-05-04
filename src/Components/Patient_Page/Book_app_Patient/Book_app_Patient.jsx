@@ -43,16 +43,16 @@ function Book_app_Patient() {
     };
 
     const handleBooking = () => {
-        const appointmentData = {
-            doctor: selectedDoctor,
-            date: selectedAppointmentDate,
-            time: selectedTime,
-            notes: note,
-            files: files
-        };
+        // const appointmentData = {
+        //     doctor: selectedDoctor,
+        //     date: selectedAppointmentDate,
+        //     time: selectedTime,
+        //     notes: note,
+        //     files: files
+        // };
 
-        // console.log(appointmentData)
-        handleBooking(appointmentData); 
+        // // console.log(appointmentData)
+        // handleBooking(appointmentData); 
     };
 
     const handleCancel = () => {

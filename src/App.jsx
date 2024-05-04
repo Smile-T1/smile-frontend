@@ -48,45 +48,23 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/patient/dashboard" element={<Dashboard_Patient />} />
-            <Route
-              path="/patient/appointment"
-              element={<Appointment_Patient />}
-            />
-            <Route
-              path="/patient/book_appointment"
-              element={<Book_appointment_Patient />}
-            />
+            <Route path="/patient/appointment" element={<Appointment_Patient />}/>
+            <Route path="/patient/book_appointment" element={<Book_appointment_Patient />}/>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route
-              path="/patient/medical_records"
-              element={<Medical_records_Patient />}
-            />
+            <Route path="/patient/medical_records" element={<Medical_records_Patient />}/>
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route
-              path="/admin/patient_registration"
-              element={<PatientRegistration />}
-            />
-            <Route
-              path="/admin/doctor_registration"
-              element={<DoctorRegistration />}
-            />
-            <Route
-              path="/admin/appointments"
-              element={<RequestedAppointments />}
-            />
+            <Route path="/admin/patient_registration" element={<PatientRegistration />}/>
+            <Route path="/admin/doctor_registration" element={<DoctorRegistration />}/>
+            <Route path="/admin/appointments" element={<RequestedAppointments />}/>
             <Route path="/admin/patients" element={<Patients />} />
             <Route path="/admin/doctors" element={<Doctors />} />
-            <Route
-              path="/doctorDashboard"
-              element={
-                <Dashboard name="Dashboard">
+            <Route path="/doctorDashboard" element={ <Dashboard name="Dashboard">
                   <MainDashboard />
                 </Dashboard>
               }
             />
-            <Route
-              path="/doctorAppointment"
+            <Route path="/doctorAppointment"
               element={
                 <Dashboard name="Appointments">
                   <DoctorAppointments />
@@ -101,8 +79,7 @@ function App() {
                 </Dashboard>
               }
             />
-            <Route
-              path="/doctorSchedule"
+            <Route path="/doctorSchedule"
               element={
                 <Dashboard name="Schedule">
                   <Schedule />
