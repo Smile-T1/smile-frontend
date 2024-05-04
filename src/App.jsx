@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 // import Dashboard from "./Admin/layout/dashboard";
 // import MainDashboard from "./Admin/dashboard";
 // import Appointment from "./Admin/appointments";
@@ -21,11 +21,6 @@ import RequestedAppointments from "./Pages/Admin/RequestedAppointments/Requested
 import Patients from "./Pages/Admin/Patients/Patients.jsx";
 import Doctors from "./Pages/Admin/Doctors/Doctors.jsx";
 import styled from "styled-components";
-import Dashboard from "./Pages/Doctor/layout/dashboard.jsx";
-import MainDashboard from "./Pages/Doctor/dashboard/index.jsx";
-import DoctorAppointments from "./Pages/Doctor/appointments/index.jsx";
-import DoctorPatients from "./Pages/Doctor/patients/index.jsx";
-import Schedule from "./Pages/Doctor/schedule/index.jsx";
 const PageContainer = styled.div`
   display: grid;
   height: 100%;
@@ -38,8 +33,6 @@ const PageContainer = styled.div`
 `;
 
 function App() {
-  const { pathname } = useLocation();
-  const isDoctorPage = pathname.includes("doctor");
   return (
     <div>
       <PageContainer>
@@ -48,44 +41,35 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/patient/dashboard" element={<Dashboard_Patient />} />
-            <Route path="/patient/appointment" element={<Appointment_Patient />}/>
-            <Route path="/patient/book_appointment" element={<Book_appointment_Patient />}/>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/patient/medical_records" element={<Medical_records_Patient />}/>
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/patient_registration" element={<PatientRegistration />}/>
-            <Route path="/admin/doctor_registration" element={<DoctorRegistration />}/>
-            <Route path="/admin/appointments" element={<RequestedAppointments />}/>
-            <Route path="/admin/patients" element={<Patients />} />
-            <Route path="/admin/doctors" element={<Doctors />} />
-            <Route path="/doctorDashboard" element={ <Dashboard name="Dashboard">
-                  <MainDashboard />
-                </Dashboard>
-              }
-            />
-            <Route path="/doctorAppointment"
-              element={
-                <Dashboard name="Appointments">
-                  <DoctorAppointments />
-                </Dashboard>
-              }
+            <Route
+              path="/patient/appointment"
+              element={<Appointment_Patient />}
             />
             <Route
-              path="/doctorPatients"
-              element={
-                <Dashboard name="Patients">
-                  <DoctorPatients />
-                </Dashboard>
-              }
+              path="/patient/book_appointment"
+              element={<Book_appointment_Patient />}
             />
-            <Route path="/doctorSchedule"
-              element={
-                <Dashboard name="Schedule">
-                  <Schedule />
-                </Dashboard>
-              }
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/patient/medical_records"
+              element={<Medical_records_Patient />}
             />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route
+              path="/admin/patient_registration"
+              element={<PatientRegistration />}
+            />
+            <Route
+              path="/admin/doctor_registration"
+              element={<DoctorRegistration />}
+            />
+            <Route
+              path="/admin/appointments"
+              element={<RequestedAppointments />}
+            />
+            <Route path="/admin/patients" element={<Patients />} />
+            <Route path="/admin/doctors" element={<Doctors />} />
           </Routes>
         </ChakraProvider>
       </PageContainer>
