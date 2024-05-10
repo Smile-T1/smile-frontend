@@ -4,68 +4,19 @@ import {
     FormControl,
     FormLabel,
     Input,
-    RadioGroup,
-    HStack,
-    Radio,
     Select,
     Button,
     Flex,
-    Divider,
-    Textarea
 } from '@chakra-ui/react';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function Book_app_Patient() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [mobile, setMobile] = useState('');
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [gender, setGender] = useState('Male');
-    const [bloodGroup, setBloodGroup] = useState('');
-    const [patientType, setPatientType] = useState('New Patient');
-    const [address, setAddress] = useState('');
     const [selectedDoctor, setSelectedDoctor] = useState('');
     const [appointmentFor, setAppointmentFor] = useState('');
     const [selectedAppointmentDate, setSelectedAppointmentDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState('');
     const [note, setNote] = useState('');
     const [files, setFiles] = useState([]);
-
-    const handleFirstNameChange = (e) => {
-        setFirstName(e.target.value);
-    };
-
-    const handleLastNameChange = (e) => {
-        setLastName(e.target.value);
-    };
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-    };
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handleMobileChange = (e) => {
-        setMobile(e.target.value);
-    };
-
-    const handleBloodGroupChange = (e) => {
-        setBloodGroup(e.target.value);
-    };
-
-    const handleGenderChange = (value) => {
-        setGender(value);
-    };
-
-    const handlePatientTypeChange = (value) => {
-        setPatientType(value);
-    };
-
-    const handleAddressChange = (e) => {
-        setAddress(e.target.value);
-    };
 
     const handleSelectedDoctorChange = (e) => {
         setSelectedDoctor(e.target.value);
@@ -87,95 +38,39 @@ function Book_app_Patient() {
         setNote(e.target.value);
     };
 
+    const handleFileUpload = (e) => {
+        // Handle file upload logic here
+    };
+
+    const handleBooking = () => {
+        const appointmentData = {
+            doctor: selectedDoctor,
+            date: selectedAppointmentDate,
+            time: selectedTime,
+            notes: note,
+            files: files
+        };
+
+        // console.log(appointmentData)
+        handleBooking(appointmentData); 
+    };
+
+    const handleCancel = () => {
+        // Handle cancel logic here
+    };
+
     return (
         <div>
             <div className='Book-appoin-header'>
-                <h4>
-                    Book an appointment
-                </h4>
+                <h4>Book an appointment</h4>
             </div>
             <div className='book-form-patient'>
                 <div className='row-fill-book-data'>
                     <FormControl>
-                        <FormLabel>First name</FormLabel>
-                        <Input placeholder='First name' value={firstName} onChange={handleFirstNameChange} style={{ background: '#f6f6f6' }} />
-                    </FormControl>
-                    <FormControl>
-                        <FormLabel>Last name</FormLabel>
-                        <Input placeholder='Last name' value={lastName} onChange={handleLastNameChange} style={{ background: '#f6f6f6' }} />
-                    </FormControl>
-                </div>
-                <div className='row-fill-book-data'>
-                    <FormControl>
-                        <FormLabel>Email address</FormLabel>
-                        <Input type='email' placeholder='example@gmail.com' value={email} onChange={handleEmailChange} style={{ background: '#f6f6f6' }} />
-                    </FormControl>
-                    <FormControl>
-                        <FormLabel>Mobile no.</FormLabel>
-                        <Input type='tel' placeholder='Mobile number' value={mobile} onChange={handleMobileChange} style={{ background: '#f6f6f6' }} />
-                    </FormControl>
-                </div>
-                <div className='row-fill-book-data'>
-                    <FormControl>
-                        <FormLabel>Date of birth</FormLabel>
-                        <Input
-                            type="date"
-                            selected={selectedDate}
-                            onChange={handleDateChange}
-                            style={{ background: '#f6f6f6' }}
-                        />
-                    </FormControl>
-                    <FormControl as='fieldset'>
-                        <FormLabel>Gender</FormLabel>
-                        <RadioGroup value={gender} onChange={handleGenderChange}>
-                            <HStack spacing='80px'>
-                                <Radio value='Male'>Male</Radio>
-                                <Radio value='Female'>Female</Radio>
-                            </HStack>
-                        </RadioGroup>
-                    </FormControl>
-                </div>
-                <div className='row-fill-book-data'>
-                    <FormControl>
-                        <FormLabel>Blood group</FormLabel>
-                        <Select placeholder="Blood group"
-                            value={bloodGroup}
-                            onChange={handleBloodGroupChange}
-                            style={{ background: '#f6f6f6' }}
-                        >
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="AB+">AB+</option>
-                        </Select>
-                    </FormControl>
-                    <FormControl as='fieldset'>
-                        <FormLabel>Patient</FormLabel>
-                        <RadioGroup value={patientType} onChange={handlePatientTypeChange}>
-                            <HStack spacing='80px'>
-                                <Radio value='Male'>New Patient</Radio>
-                                <Radio value='Female'>Old Patient</Radio>
-                            </HStack>
-                        </RadioGroup>
-                    </FormControl>
-                </div>
-                <div style={{ width: '100%' }}>
-                    <FormControl>
-                        <FormLabel>Address</FormLabel>
-                        <Textarea placeholder='Enter Your Address'
-                            value={address}
-                            onChange={handleAddressChange}
-                            style={{ background: '#f6f6f6', minHeight: '96px' }} />
-                    </FormControl>
-                </div>
-                <Divider />
-                <div className='row-fill-book-data'>
-                    <FormControl>
                         <FormLabel>Doctor</FormLabel>
-                        <Select placeholder="Choose doctor" style={{ background: '#f6f6f6' }}>
+                        <Select placeholder="Choose doctor" style={{ background: '#f6f6f6' }} onChange={handleSelectedDoctorChange}>
                             <option value="Omar">Dr.Omar</option>
-                            <option value="Omar">Dr.Hassan</option>
+                            <option value="Hassan">Dr.Hassan</option>
                             <option value="Hana">Dr.Hana</option>
                             <option value="Ahmed">Dr.Ahmed</option>
                         </Select>
@@ -184,25 +79,26 @@ function Book_app_Patient() {
                 <div className='row-fill-book-data'>
                     <FormControl>
                         <FormLabel>Appointment for</FormLabel>
-                        <Select placeholder="Appointment for" style={{ background: '#f6f6f6' }}>
-                            <option value="Omar">Dr.Omar</option>
+                        <Select placeholder="Appointment for" style={{ background: '#f6f6f6' }} onChange={handleAppointmentForChange}>
+                            <option value="Omar">Routine Check-up and Cleaning</option>
+                            <option value="Omar">Dental Filling</option>
+                            <option value="Omar">Root Canal Therapy</option>
+                            <option value="Omar">Tooth Extraction</option>
+                            <option value="Omar">Orthodontic Consultation</option>
+                            <option value="Omar">Cosmetic Dentistry</option>
+                            <option value="Omar">Emergency Dental Care</option>
                         </Select>
                     </FormControl>
                     <FormControl>
                         <FormLabel>Appointment date</FormLabel>
-                        <Input
-                            type={'date'}
-                            selected={selectedDate}
-                            onChange={handleDateChange}
-                            style={{ background: '#f6f6f6' }}
-                        />
+                        <Input type={'date'} selected={selectedAppointmentDate} onChange={handleSelectedAppointmentDateChange} style={{ background: '#f6f6f6' }} />
                     </FormControl>
                 </div>
                 <div style={{ width: '100%' }}>
                     <FormControl>
                         <FormLabel> Time</FormLabel>
                         <Flex className='post-methods'>
-                            {['10:45PM', '11:00AM', '11:30AM', '12:30PM', '2:00PM', '3:30PM', '4:45PM', '5:00PM',].map((time, index, array) => (
+                            {['10:45PM', '11:00AM', '11:30AM', '12:30PM', '2:00PM', '3:30PM', '4:45PM', '5:00PM'].map((time, index, array) => (
                                 <Button
                                     key={index}
                                     className='button-post-method'
@@ -217,6 +113,7 @@ function Book_app_Patient() {
                                         width: '100%',
                                         fontSize: '14px',
                                     }}
+                                    onClick={() => handleSelectedTimeChange(time)}
                                 >
                                     {time}
                                 </Button>
@@ -227,48 +124,21 @@ function Book_app_Patient() {
                 <div style={{ width: '100%' }}>
                     <FormControl>
                         <FormLabel>Note</FormLabel>
-                        <Input placeholder='Note (Optional)' size='lg' style={{ background: '#f6f6f6' }} />
+                        <Input placeholder='Note (Optional)' size='lg' style={{ background: '#f6f6f6' }} onChange={handleNoteChange} />
                     </FormControl>
                 </div>
                 <div style={{ width: '100%' }}>
                     <FormControl>
                         <FormLabel>Report / files</FormLabel>
                         <div className='report-files-patient'>
-                            <Button
-                                colorScheme='blue'
-                                style={{
-                                    borderRadius: '9999px',
-                                    width: '100px',
-                                    fontFamily: 'Noto Sans, Arial, sans-serif',
-                                    fontSize: '14px',
-                                    margin: '8px 2px',
-                                    marginLeft: '1rem'
-                                }}>
-                                Upload
-                            </Button>
+                            <Button colorScheme='blue' style={{ borderRadius: '9999px', width: '100px', fontFamily: 'Noto Sans, Arial, sans-serif', fontSize: '14px', margin: '8px 2px', marginLeft: '1rem' }} onClick={handleFileUpload}>Upload</Button>
                             <p style={{ marginTop: '16px' }}> or drag and drop files</p>
                         </div>
                     </FormControl>
                     <div className='row-button-book-data' style={{ marginTop: '10px' }}>
                         <div className='book-cancel-buttons'>
-                            <Button
-                                colorScheme='blue'
-                                mr={3}
-                                style={{
-                                    borderRadius: '9999px',
-                                    width: '115px'
-                                }}>
-                                Book
-                            </Button>
-                            <Button
-                                variant='outline'
-                                colorScheme='blue'
-                                style={{
-                                    borderRadius: '9999px',
-                                    width: '115px'
-                                }}>
-                                Cancel
-                            </Button>
+                            <Button colorScheme='blue' mr={3} style={{ borderRadius: '9999px', width: '115px' }} onClick={handleBooking}>Book</Button>
+                            <Button variant='outline' colorScheme='blue' style={{ borderRadius: '9999px', width: '115px' }} onClick={handleCancel}>Cancel</Button>
                         </div>
                     </div>
                 </div>
@@ -277,4 +147,4 @@ function Book_app_Patient() {
     )
 }
 
-export default Book_app_Patient
+export default Book_app_Patient;
