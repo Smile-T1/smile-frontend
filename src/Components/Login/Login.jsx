@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
-
+import { loginUser } from './LoginEndpoints';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -25,28 +24,6 @@ const handleLogin = async () => {
   }
 };
 
-  const loginUser = async (username, password) => {
-    const url = `${VITE_SERVER_HOST}/api/auth/login`;
-    const data = {
-    username,
-    password,
-  };
-
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-
-  const responseData = await response.json();
-  return responseData;
-};
 
   return (
 

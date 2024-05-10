@@ -62,7 +62,7 @@ const handleSignUp = async () => {
       <h2>Sign Up</h2>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
      <div>
-      <div>
+      <div className='input-container'>
     <label>Full Name:</label>
     <input
       type="text"
