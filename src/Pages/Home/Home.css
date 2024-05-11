@@ -275,7 +275,7 @@ margin-top: 40px;}
   display: flex;
   flex-direction: row; /* Change this to row */
   justify-content: space-between;
-  margin-top: 0px;
+  margin-top: 200px;
 }
 .about-text4{
   width: 615px;
