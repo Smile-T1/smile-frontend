@@ -75,18 +75,17 @@ text-align: left;
     list-style: none;
     padding-right: 15%;
     padding-top: 5%;
-    /* min-width: 60%; */
+    min-width: 70%;
+    max-width: 80%;
   }
 
 .doctor {
     position: relative;
-    background-color:#FEEB97;
-    border-radius: 50%;
 }
 
   .doctor img {
-    width: 300px;
-    height: 250px;
+    width: 400px;
+    height: 300px;
     top: 159px;
     left: 25px;
     gap: 0px;
@@ -200,6 +199,7 @@ opacity: 0px;
     .hometab {
         display: flex;
         justify-content: space-between;
+
     }
 
     .card-title span{
@@ -249,4 +249,66 @@ text-align: left;
 color: #222222;
 margin-right: 50px;
 margin-left: 20px;
+}
+
+.bookbutton{
+  width: 225px;
+height: 49px;
+top: 479px;
+left: 712px;
+padding: 12px 60px 12px 60px;
+gap: 10px;
+border-radius: 30px 30px 30px 30px;
+border: 1px 0px 0px 0px;
+opacity: 0px;
+background: #4483FD;
+
+}
+
+.bookapp{
+  display: flex;
+  flex-direction: row;
+justify-content: flex-start;
+margin-top: 40px;}
+
+.about-bottom{
+  display: flex;
+  flex-direction: row; /* Change this to row */
+  justify-content: space-between;
+  margin-top: 200px;
+}
+.about-text4{
+  width: 615px;
+  height: 78px;
+  font-family: Caudex;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 38.7px;
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+.about-bottom img{
+  width: 340px;
+  height: 250px;
+}
+
+.abouttxt{
+  display: flex;
+  flex-direction: column;
+}
+
+.about-text5{
+  width: 560px;
+height: 250px;
+top: 844px;
+left: 149px;
+gap: 0px;
+opacity: 0px;
+font-family: Open Sans;
+font-size: 18px;
+font-weight: 400;
+line-height: 25px;
+letter-spacing: 0.02em;
+text-align: left;
+
 }

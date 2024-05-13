@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import './Login.css';
+const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 import { loginUser } from './LoginEndpoints';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
-const handleLogin = async () => {
-  if (!username || !password) {
-    setErrorMessage('Please fill in all fields.');
-  } else {
-    try {
-      const responseData = await loginUser(username, password);
-      console.log('Login successful:', responseData);
-      setUsername('');
-      setPassword('');
-      setErrorMessage('');
-    } catch (error) {
-      console.log('Login failed:', error);
-      setErrorMessage('Login failed. Please try again.');
+  const handleLogin = async () => {
+    const responseData = await loginUser(username, password);
+  
+    const userAccess = responseData.userAccess;
+  
+    if (userAccess === 'Patient') {
+      navigate('/patient');
+    } else if (userAccess === 'Admin') {
+      navigate('/admin');
+    } else if (userAccess === 'Doctor') {
+      navigate('/doctor');
     }
   }
 };
