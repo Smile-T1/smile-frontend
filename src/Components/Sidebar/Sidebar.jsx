@@ -8,7 +8,7 @@ import { DashboardIcon } from "./icons/dashboard";
 import AppointmentsIcon from "./icons/appointments";
 import BookAppointmentsIcon from "./icons/bookappointments";
 import MedicalRecordIcon from "./icons/medicalrecords";
-import ProfileModal from "../ModalInfo/ProfileModal";
+import ProfileModal from '../ModalInfo/ProfileModal ';
 
 function Sidebar() {
   const [activeLink, setActiveLink] = useState('/patient/dashboard');

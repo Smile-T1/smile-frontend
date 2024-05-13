@@ -32,8 +32,8 @@ function App() {
   return (
     <div>
       <PageContainer>
-        <Sidebar />
         <ChakraProvider>
+          <Sidebar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/patient/dashboard" element={<Dashboard_Patient />} />
