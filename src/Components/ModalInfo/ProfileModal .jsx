@@ -36,7 +36,7 @@ function ProfileModal({ isOpen, onClose, profile_pic }) {
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} size='xl'>
+        <Modal isOpen={isOpen} onClose={onClose} size='xxl'>
             <ModalOverlay />
             <ModalContent>
                 <ModalHeader>Profile</ModalHeader>

@@ -16,6 +16,7 @@ import RequestedAppointments from "./Pages/Admin/RequestedAppointments/Requested
 import Patients from "./Pages/Admin/Patients/Patients.jsx";
 import Doctors from "./Pages/Admin/Doctors/Doctors.jsx";
 import styled from "styled-components";
+import Settings from "./Pages/Settings/Settings.jsx";
 
 const PageContainer = styled.div`
   display: grid;
@@ -39,6 +40,7 @@ function App() {
             <Route path="/patient/dashboard" element={<Dashboard_Patient />} />
             <Route path="/patient/appointment" element={<Appointment_Patient />} />
             <Route path="/patient/book_appointment" element={<Book_appointment_Patient />} />
+            <Route path="/patient/settings" element={<Settings />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/patient/medical_records" element={<Medical_records_Patient />} />
