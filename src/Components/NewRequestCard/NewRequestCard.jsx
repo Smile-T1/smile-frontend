@@ -2,7 +2,6 @@ import react from "react";
 import "./NewRequestCard.css";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 
-//make a doted card for new request
 function NewRequestCard() {
   return (
     <div className="NewRequest-card">

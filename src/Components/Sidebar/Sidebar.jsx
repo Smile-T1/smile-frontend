@@ -6,14 +6,14 @@ import Smile_without from "../../assets/Smile_without.png";
 import profile_pic from "../../assets/avatar_default_6.png";
 import { DashboardIcon } from "./icons/dashboard";
 import AppointmentsIcon from "./icons/appointments";
-import BookAppointmentsIcon from "./icons/bookappointments"; 
+import BookAppointmentsIcon from "./icons/bookappointments";
 import MedicalRecordIcon from "./icons/medicalrecords";
-import ProfileModal from "../ModalInfo/ProfileModal ";
+import ProfileModal from "../ModalInfo/ProfileModal";
 
 function Sidebar() {
   const [activeLink, setActiveLink] = useState('/patient/dashboard');
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false); 
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -65,21 +65,21 @@ function Sidebar() {
             <p className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment</p>
           </Link>
           <Link to="/patient/book_appointment" className={`sidebar-link ${activeLink === '/patient/book_appointment' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/book_appointment')}>
-            <BookAppointmentsIcon 
-            fill={`${activeLink == "/patient/book_appointment" ? "#034561" : "black"}`}
+            <BookAppointmentsIcon
+              fill={`${activeLink == "/patient/book_appointment" ? "#034561" : "black"}`}
             />
             <p className={`sidebar-text ${activeLink === '/patient/book_appointment' ? 'active' : ''}`}>Book appointment</p>
           </Link>
           <Link to="/patient/medical_records" className={`sidebar-link ${activeLink === '/patient/medical_records' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/medical_records')}>
-            <MedicalRecordIcon 
-            fill={`${activeLink == "/patient/medical_records" ? "#034561" : "black"}`}
-/>
+            <MedicalRecordIcon
+              fill={`${activeLink == "/patient/medical_records" ? "#034561" : "black"}`}
+            />
             <p className={`sidebar-text ${activeLink === '/patient/medical_records' ? 'active' : ''}`}>Medical Records</p>
           </Link>
-          <ProfileModal 
-          isOpen={isProfileModalOpen} 
-          onClose={() => setIsProfileModalOpen(false)} 
-          profile_pic={profile_pic}/>
+          <ProfileModal
+            isOpen={isProfileModalOpen}
+            onClose={() => setIsProfileModalOpen(false)}
+            profile_pic={profile_pic} />
         </div>
       </aside>
     </div>

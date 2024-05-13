@@ -11,7 +11,6 @@ import {
 import "./Table_Data.css";
 
 const appointmentsData = [
-  // Replace with your actual data array objects
   {
     id: 1,
     name: "Metawaly",
@@ -57,7 +56,6 @@ const appointmentsData = [
     status: "Pending",
     action: "View",
   },
-  // ... other appointments
 ];
 
 function Table_Data() {

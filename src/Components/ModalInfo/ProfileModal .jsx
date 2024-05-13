@@ -32,8 +32,7 @@ function ProfileModal({ isOpen, onClose, profile_pic }) {
     };
 
     const handleSaveChanges = () => {
-        // Handle save changes logic here
-        setIsChangesMade(false); // Reset changes made flag after saving changes
+        setIsChangesMade(false); 
     };
 
     return (

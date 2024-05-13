@@ -1,4 +1,3 @@
-// PasswordChangeModal.js
 import React from 'react';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 
@@ -9,7 +8,7 @@ function PasswordChangeModal({ isOpen, onClose }) {
             <ModalContent>
                 <ModalHeader>Change Password</ModalHeader>
                 <ModalCloseButton />
-                <ModalBody style={{display:'flex', flexDirection:'column', gap:'8px'}}>
+                <ModalBody style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <FormControl>
                         <FormLabel>New Password</FormLabel>
                         <Input type="password" placeholder="Enter new password" />
