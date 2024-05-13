@@ -7,11 +7,11 @@ import Header_Pages from "../../../Components/Header_Pages/Header_Pages";
 function Patients() {
   const [appointments, setAppointments] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:3001/appointments")
-      .then((response) => response.json())
-      .then((data) => setAppointments(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:3001/appointments")
+  //     .then((response) => response.json())
+  //     .then((data) => setAppointments(data));
+  // }, []);
 
   return (
     <div className="patients">
