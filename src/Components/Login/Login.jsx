@@ -23,6 +23,8 @@ function Login() {
       navigate('/doctor');
     }
   }
+};
+
 
   return (
 

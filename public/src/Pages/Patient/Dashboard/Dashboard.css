@@ -1,0 +1,8 @@
+*{
+    font-family: Poppins, sans-serif;
+    border: 0 solid #e5e7eb;
+    box-sizing: border-box;
+}
+.patient-portal{
+    background: rgba(248, 249, 250, 1);
+}
