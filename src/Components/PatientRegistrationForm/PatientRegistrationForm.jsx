@@ -60,6 +60,20 @@ function PatientRegistrationForm() {
     setHistory(e.target.value);
   };
 
+  const handleUpload = (e) => {
+    if (files.length > 0) {
+      setFiles([]);
+    } else {
+      //open browse file
+      const input = document.createElement("input");
+      input.type = "file";
+      input.onchange = (e) => {
+        setFiles([...files, ...e.target.files]);
+      };
+      input.click();
+    }
+  };
+
   // Function to handle registration
   const handleRegistration = async () => {
     try {
@@ -204,10 +218,13 @@ function PatientRegistrationForm() {
                 margin: "8px 2px",
                 marginLeft: "1rem",
               }}
+              onClick={handleUpload}
             >
-              Upload
+              {files.length > 0 ? "Remove File" : "Upload"}
             </Button>
-            <p style={{ marginTop: "16px" }}> or drag and drop files</p>
+            <p style={{ marginTop: "16px" }}>
+              {files.length > 0 ? files[0].name : "Upload a file"}
+            </p>
           </div>
         </FormControl>
         <div className="row-button-book-data" style={{ marginTop: "10px" }}>

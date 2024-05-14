@@ -92,7 +92,7 @@ function DoctorRegistrationForm() {
         setMessage("Email already exists");
       } else {
         console.log(error.response.data.error);
-        setMessage("Error registering doctor"); 
+        setMessage("Error registering doctor");
       }
     }
   };
