@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./PasswordCard.css";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
-import { DeleteIcon, CheckIcon } from '@chakra-ui/icons'
+import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import { CheckIcon } from '@chakra-ui/icons'
 
 function PasswordCard() {
     return (
