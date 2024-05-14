@@ -19,6 +19,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 
+const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
+
 function DoctorRegistrationForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -61,7 +63,7 @@ function DoctorRegistrationForm() {
       console.log("Registering doctor...");
       // Make a POST request to your server endpoint
       const response = await axios.post(
-        "http://localhost:8000/api/auth/doctor/register",
+        `${VITE_SERVER_HOST}/api/auth/doctor/register`,
         {
           "Content-Type": "application/json",
           firstName,
@@ -76,7 +78,7 @@ function DoctorRegistrationForm() {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjM1YWU5ZjkyZGIyMGEzYmI4ZTFiNDkiLCJhY2Nlc3MiOiJBZG1pbiIsImlhdCI6MTcxNTcxMzUzNCwiZXhwIjoxNzE3MDA5NTM0fQ.i7rsSFAelC4Gev8i_8GIojkb8S_4E8h7J04FMMAt3vU`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       );
