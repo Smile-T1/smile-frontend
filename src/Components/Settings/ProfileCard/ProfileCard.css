@@ -45,4 +45,5 @@
     padding-right: .5rem;
     gap: .75rem;
     width: 100%;
+    /* min-width: 100px; */
 }

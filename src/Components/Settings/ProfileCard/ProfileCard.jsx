@@ -30,13 +30,13 @@ function ProfileCard() {
                 <Button
                     colorScheme='teal' variant='outline'
                     className='button-ProfileCard-method'
-                    size='lg'
                     leftIcon={<IoMdPersonAdd />}
                     style={{
                         color: 'rgb(102 181 163)',
                         borderColor: '#edeff1',
                         borderStyle: 'solid',
                         borderRadius: '0.25rem',
+                        width: '100%'
                     }}
                 >
                     Personal Information
@@ -44,13 +44,14 @@ function ProfileCard() {
                 <Button
                     colorScheme='teal' variant='outline'
                     className='button-ProfileCard-method'
-                    size='lg'
+                    // size='lg'
                     leftIcon={<RiLockPasswordFill />}
                     style={{
                         color: 'rgb(102 181 163)',
                         borderColor: '#edeff1',
                         borderStyle: 'solid',
                         borderRadius: '0.25rem',
+                        width: '100%'
                     }}
                 >
                     Change Password
