@@ -60,7 +60,7 @@ const appointmentsData = [
   // ... other appointments
 ];
 
-function Table_Data() {
+function Table_Data(props) {
   return (
     <div className="table-container">
       <TableContainer>
