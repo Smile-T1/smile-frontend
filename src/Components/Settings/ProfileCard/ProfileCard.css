@@ -1,4 +1,4 @@
-.ProfileCardConatainer{
+.ProfileCardConatainer {
     transition-delay: .1s;
     opacity: 1;
     transform: translateZ(0);
@@ -17,7 +17,7 @@
     background: white;
 }
 
-.ProfilePicContainer{
+.ProfilePicContainer {
     object-fit: cover;
     border-color: rgb(102 181 163);
     border-style: dashed;
@@ -28,7 +28,7 @@
     max-width: 100%;
 }
 
-.ProfileCardInfo{
+.ProfileCardInfo {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -36,7 +36,7 @@
     gap: .5rem;
 }
 
-.ProfileCardButtons{
+.ProfileCardButtons {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -45,5 +45,16 @@
     padding-right: .5rem;
     gap: .75rem;
     width: 100%;
-    /* min-width: 100px; */
+}
+
+.button-selected {
+    color: rgb(102, 181, 163) !important;
+    border-color: transparent !important;
+    border-style: solid !important;
+}
+
+.button-unselected {
+    color: black !important;
+    background: rgb(248, 249, 250) !important;
+    border-color: transparent !important;
 }
