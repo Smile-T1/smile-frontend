@@ -12,7 +12,6 @@ import {
     InputRightElement,
     Textarea
 } from '@chakra-ui/react';
-import { RiDeleteBin5Line } from "react-icons/ri";
 import { DeleteIcon, CheckIcon } from '@chakra-ui/icons'
 
 function InfoCard() {
