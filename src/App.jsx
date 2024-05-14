@@ -40,6 +40,9 @@ const PageContainer = styled.div`
 function App() {
   const { pathname } = useLocation();
   const isDoctorPage = pathname.includes("doctor");
+  const location = useLocation();
+  const path = location.pathname;
+
   return (
     <div>
       {/* uncomment this if you want to use the old sidebar */}
@@ -53,7 +56,7 @@ function App() {
           </div>
         )}
         <ChakraProvider>
-          <Sidebar />
+        {path !== '/' && path !== '/login' && <Sidebar />}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/patient/dashboard" element={<Dashboard_Patient />} />
