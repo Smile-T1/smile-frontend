@@ -1,9 +1,11 @@
 import React from 'react';
+import axios from 'axios'; // Import axios
 import "./Book_appointment.css";
 import Book_app_Patient from "../../../Components/Patient_Page/Book_app_Patient/Book_app_Patient";
 import Page_header from "../../../Components/Header_Pages/Header_Pages";
 
 const serverHost = import.meta.env.VITE_SERVER_HOST;
+
 function Book_appointment() {
 
   const handleBooking = (appointmentData) => {

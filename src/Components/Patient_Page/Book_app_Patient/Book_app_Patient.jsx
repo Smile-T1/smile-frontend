@@ -17,6 +17,7 @@ function Book_app_Patient() {
     const [selectedTime, setSelectedTime] = useState('');
     const [note, setNote] = useState('');
     const [files, setFiles] = useState([]);
+    const [bookingData, setBookingData] = useState(null);
 
     const handleSelectedDoctorChange = (e) => {
         setSelectedDoctor(e.target.value);
