@@ -10,6 +10,9 @@ import time from "../../assets/time.png";
 import logo from "../../assets/Smile_without.png";
 import doctor from "../../assets/doctor.png";
 import about from "../../assets/about.png";
+import logo from "../../assets/Smile_without.png";
+import doctor from "../../assets/doctor.png";
+import about from "../../assets/about.png";
 
 function Home() {
   const navigate = useNavigate();
@@ -40,6 +43,7 @@ function Home() {
       <div className={`upper-rectangle ${activeTab}`}>        
 
         <div className='logo'>
+          <img src={logo} alt="" />
           <img src={logo} alt="" />
           <span className='logo-name'>Smile Clinic</span>
         </div>
@@ -124,7 +128,7 @@ Our clinic offers a comprehensive range of services, including routine eye exams
   </TabPanels>
 </Tabs>
 
-      </div>
+        </div>
       </div>
 
     </div>

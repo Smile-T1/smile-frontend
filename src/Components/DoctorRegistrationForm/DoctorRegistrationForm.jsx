@@ -44,9 +44,7 @@ function DoctorRegistrationForm() {
   };
 
   return (
-    <div
-
-    >
+    <div>
       <div className="Book-appoin-header">
         <h4>Add new Doctor</h4>
       </div>

@@ -1,10 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-// import Dashboard from "./Admin/layout/dashboard";
-// import MainDashboard from "./Admin/dashboard";
-// import Appointment from "./Admin/appointments";
-// import Patients from "./Admin/patients";
-// import Schedule from "./Admin/schedule";
 import Signup from './Components/Signup/Signup.jsx';
 import Login from './Components/Login/Login.jsx';
 import Home from "./Pages/Home/Home.jsx";
@@ -21,6 +16,7 @@ import RequestedAppointments from "./Pages/Admin/RequestedAppointments/Requested
 import Patients from "./Pages/Admin/Patients/Patients.jsx";
 import Doctors from "./Pages/Admin/Doctors/Doctors.jsx";
 import styled from "styled-components";
+import Settings from "./Pages/Settings/Settings.jsx";
 
 const PageContainer = styled.div`
   display: grid;
@@ -37,56 +33,21 @@ function App() {
   return (
     <div>
       <PageContainer>
-        <Sidebar />
         <ChakraProvider>
+          <Sidebar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/patient/dashboard" element={<Dashboard_Patient />} />
-            <Route
-              path="/patient/appointment"
-              element={<Appointment_Patient />}
-            />
-            <Route
-              path="/patient/book_appointment"
-              element={<Book_appointment_Patient />}
-            />
-            <Route
-              path="/patient/appointment"
-              element={<Appointment_Patient />}
-            />
-            <Route
-              path="/patient/book_appointment"
-              element={<Book_appointment_Patient />}
-            />
+            <Route path="/patient/appointment" element={<Appointment_Patient />} />
+            <Route path="/patient/book_appointment" element={<Book_appointment_Patient />} />
+            <Route path="/patient/settings" element={<Settings />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route
-              path="/patient/medical_records"
-              element={<Medical_records_Patient />}
-            />
-            <Route
-              path="/patient/medical_records"
-              element={<Medical_records_Patient />}
-            />
+            <Route path="/patient/medical_records" element={<Medical_records_Patient />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route
-              path="/admin/patient_registration"
-              element={<PatientRegistration />}
-            />
-            <Route
-              path="/admin/doctor_registration"
-              element={<DoctorRegistration />}
-            />
-            <Route
-              path="/admin/appointments"
-              element={<RequestedAppointments />}
-            />
-            <Route path="/admin/patients" element={<Patients />} />
-            <Route path="/admin/doctors" element={<Doctors />} />
-            <Route
-              path="/admin/appointments"
-              element={<RequestedAppointments />}
-            />
+            <Route path="/admin/patient_registration" element={<PatientRegistration />} />
+            <Route path="/admin/doctor_registration" element={<DoctorRegistration />} />
+            <Route path="/admin/appointments" element={<RequestedAppointments />} />
             <Route path="/admin/patients" element={<Patients />} />
             <Route path="/admin/doctors" element={<Doctors />} />
           </Routes>
