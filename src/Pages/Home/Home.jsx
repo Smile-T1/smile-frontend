@@ -7,31 +7,50 @@ import waves from "../../assets/waves.png";
 import location from "../../assets/location.png";
 import date from "../../assets/date.png";
 import time from "../../assets/time.png";
+import logo from "../../assets/Smile_without.png";
+import doctor from "../../assets/doctor.png";
+import about from "../../assets/about.png";
 
 function Home() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
+
+  const handleTabChange = (index) => {
+    if (index === 3) { 
+      navigate('/login');
+    }
+    else if (index === 0) {
+      setActiveTab('home');
+    }
+    else if (index === 1) {
+      setActiveTab('about');
+    }
+    else if (index === 2) {
+      setActiveTab('home');
+    }
+  };
 
   return (
     <div className='home'>
        {activeTab === 'about' &&  
       <div className='about-waves'>
       <img src={waves} alt="background" /> </div> }
-{ (activeTab === 'home' || activeTab === 'contact') && <div className='eclipsehome1'></div> }      
-{(activeTab === 'home' || activeTab==='contact') && <div className='eclipsehome2'></div>}
+      {activeTab === 'home' && <div className='eclipsehome1'></div>}
+      {activeTab === 'home' && <div className='eclipsehome2'></div>}
       <div className={`upper-rectangle ${activeTab}`}>        
 
         <div className='logo'>
-          <img src="https://s3-alpha-sig.figma.com/img/6b21/a3e1/f998fc732e043ac75497dd13ac5c6171?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cUE-~mzYhIylaXSLea-e~6UGxTVZnVClkFLwRSU5m5CMC6R9qy2YIOOAmer5IJQ9OBzFNtE64Dtb7i6qF2T14Sn~tL7aTM63le3yx-qewbc45xHcJI14gMIeft5HRbTYXZqts6C9hPOoz5HWexQRE20YnP3Y4AE6MFu1VbhJzZbbW3~M2j5Ch-odvM8~7LvJBdljuJXYsb9oDmPtW4iMu69X7226Z4AmS8DU1E8HGOgv9n4CQU7wA~b-fY8ibCnoaNOGkoHB-XzuuA1Apwm56dgsbdXU-mXqS3r0kRjwS0Zq70Z3dLQg7KagNG5aDn4aXK4Q7BsrXYux9QRTuJmG7A__" alt="" />
+          <img src={logo} alt="" />
+          <img src={logo} alt="" />
           <span className='logo-name'>Smile Clinic</span>
         </div>
       <div className='homeMenu'>
-      <Tabs position='relative' variant='unstyled'>      
+      <Tabs position='relative' variant='unstyled' onChange={handleTabChange}>      
       <TabList>
       <Tab onClick={()=> setActiveTab('home')} >Home</Tab>
       <Tab  onClick={()=> setActiveTab('about')}>About Us</Tab>
       <Tab onClick={()=> setActiveTab('contact')} >Contact</Tab>
-      <Tab  onClick={() => {navigate('/login'); setActiveTab('login')}}>Log In</Tab>  
+      <Tab  onClick={() => {navigate('/login')}}>Log In</Tab>  
 </TabList>
   <TabPanels>
     <TabPanel>
@@ -42,7 +61,7 @@ function Home() {
     <span className='home-text2'> A specialized Dentistry Clinical Management System to insure a unique experience for both patients and clinical staff</span>
     </div>
     <div className='doctor'>
-      <img src="https://s3-alpha-sig.figma.com/img/5fd1/cde4/07fc05af477483da6b00380edb02b533?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KJykoDP1~EYmvI38Dq7LteQDCaFOPSj-R8kwSFRklwlpjGNyZkt17yNBrCbmJDJIQEo4ABJh6Alw43spUCLpXzZMaqW4BnaJoOAyoVLDH-BBUwWYjAwZgln3EzsE5dKJAbz82tphw3oaA6Cub-jD95cmfl7XqrJKpSMQ2DuyEnAgoEqT2AYcj3tgVO3I99zxMD2HYEi6y4Aspz33Y9adU~350wnz12GfDUfxhBBMeYZLT8dOEfUiU9T~PZU8S45mhmpQW7Pm9y12eL7~ThtkxQNWp36s4xfAyUqWJxtL82rckzQnaKhBSRbVAf~Fp~P8tGwPQWETDgQzgmYScpFlDA__" alt="doctor" />
+    <img src= {doctor} alt="doctor" />
     </div>
     </div>
     <Card>
@@ -77,19 +96,36 @@ function Home() {
     <span className='about-text1'>FOCUS SMILE & SURGERY</span> <br />
     <span className='about-text2'>Your Smile, Our Mission</span> <br />
     <span className='about-text3'> xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx </span>
+    <span className='about-text3'> xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx </span>
+      <div className='bookapp'>
+        <button className='bookbutton'>Book today</button>
+      </div>
 
+      <div className='about-bottom'>
+        <div className='abouttxt'>
+        <div className='about-text4'>
+        IMPROVE YOUR SMILE AT THE BEST DENTAL HOSPITAL, CUFE SMILE
+        </div>
+        <div className='about-text5'>
+        We are a dedicated team of eye care professionals committed to providing our patients with the highest quality of care. Our mission is to help our patients maintain healthy eyes and clear vision throughout their lives. <br /> <br />
+
+Our clinic offers a comprehensive range of services, including routine eye exams, vision screenings, and treatment for a variety of eye conditions and diseases. Our skilled and experienced doctors use the latest technologies and techniques to ensure that our patients receive the best possible care.
+        </div>
+        </div>
+        <img src={about} alt="dental" />
+      </div>
     </div>
      
 </div>
     </TabPanel>
     <TabPanel>
-      <p>Contact us!</p>
+      <p>three!</p>
     </TabPanel>
     
   </TabPanels>
 </Tabs>
 
-      </div>
+        </div>
       </div>
 
     </div>

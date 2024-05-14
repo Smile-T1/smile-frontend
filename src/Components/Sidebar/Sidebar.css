@@ -36,7 +36,7 @@ a,
     justify-content: center;
     flex-direction: column;
     gap: .5rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-left: 5px;
 }
 
@@ -86,6 +86,10 @@ a,
     border-radius: 50%;
     cursor: pointer;
 }
+
+.options-sidebar-list{
+    width: 223px;
+}
 @media (max-width: 900px) {
     .sidebar-text,
     .Patient_name{
@@ -99,6 +103,12 @@ a,
     }
     .sidebar-link.active {
         width: 50px;
+    }
+    .options-sidebar-list {
+        width: 50px;
+    }
+    .sidebar-inner-container{
+        width: 53px;
     }
     .logo{
         margin-top: 19px;
