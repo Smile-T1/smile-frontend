@@ -35,8 +35,8 @@ function Home() {
        {activeTab === 'about' &&  
       <div className='about-waves'>
       <img src={waves} alt="background" /> </div> }
-{ (activeTab === 'home' || activeTab === 'contact') && <div className='eclipsehome1'></div> }      
-{(activeTab === 'home' || activeTab==='contact') && <div className='eclipsehome2'></div>}
+      {activeTab === 'home' && <div className='eclipsehome1'></div>}
+      {activeTab === 'home' && <div className='eclipsehome2'></div>}
       <div className={`upper-rectangle ${activeTab}`}>        
 
         <div className='logo'>
@@ -118,7 +118,7 @@ Our clinic offers a comprehensive range of services, including routine eye exams
 </div>
     </TabPanel>
     <TabPanel>
-      <p>Contact us!</p>
+      <p>three!</p>
     </TabPanel>
     
   </TabPanels>
