@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import "./PasswordCard.css";
-import {
-    Stack,
-    FormLabel,
-    Input,
-    FormControl,
-    InputGroup,
-    Button,
-    InputRightElement,
-    Textarea
-} from '@chakra-ui/react';
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import { DeleteIcon, CheckIcon } from '@chakra-ui/icons'
 
 function PasswordCard() {
     return (
         <div className='PasswordCardConatainer'>
-            regvtrfgv
+            <div className='PasswordCardInnerConatainer' style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <FormControl>
+                    <FormLabel>New Password</FormLabel>
+                    <Input size='lg' type="password" placeholder="Enter your password" />
+                </FormControl>
+                <FormControl>
+                    <FormLabel>New Password</FormLabel>
+                    <Input size='lg' type="password" placeholder="Enter new password" />
+                </FormControl>
+                <FormControl>
+                    <FormLabel>Confirm New Password</FormLabel>
+                    <Input size='lg' type="password" placeholder="Confirm new password" />
+                </FormControl>
+                <Button rightIcon={<CheckIcon />} colorScheme='teal' variant='solid' style={{ width: '100%', marginTop: '20px'}}>
+                        Save Changes
+                </Button>
+            </div>
         </div>
     )
 }

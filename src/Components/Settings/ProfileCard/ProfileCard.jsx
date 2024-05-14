@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./ProfileCard.css";
 import profilepic from '../../../assets/avatar_default_6.png';
 import { Button } from '@chakra-ui/react';
 import { IoMdPersonAdd } from "react-icons/io";
 import { RiLockPasswordFill } from "react-icons/ri";
 
-function ProfileCard() {
+function ProfileCard({ onCardSelect }) {
+    const [selectedButton, setSelectedButton] = useState('Info');
+
+    const handleButtonClick = (buttonName) => {
+        setSelectedButton(buttonName);
+        onCardSelect(buttonName === "Info" ? "Info" : "Password");
+    };
 
     return (
         <div className='ProfileCardConatainer'>
@@ -28,31 +34,28 @@ function ProfileCard() {
             </div>
             <div className='ProfileCardButtons'>
                 <Button
-                    colorScheme='teal' variant='outline'
-                    className='button-ProfileCard-method'
+                    colorScheme='teal'
+                    variant='outline'
+                    className={`button-ProfileCard-method ${selectedButton === "Info" ? "button-selected" : "button-unselected"}`}
                     leftIcon={<IoMdPersonAdd />}
                     style={{
-                        color: 'rgb(102 181 163)',
-                        borderColor: '#edeff1',
-                        borderStyle: 'solid',
                         borderRadius: '0.25rem',
                         width: '100%'
                     }}
+                    onClick={() => handleButtonClick("Info")}
                 >
                     Personal Information
                 </Button>
                 <Button
-                    colorScheme='teal' variant='outline'
-                    className='button-ProfileCard-method'
-                    // size='lg'
+                    colorScheme='teal' 
+                    variant='outline'
+                    className={`button-ProfileCard-method ${selectedButton === "Password" ? "button-selected" : "button-unselected"}`}
                     leftIcon={<RiLockPasswordFill />}
                     style={{
-                        color: 'rgb(102 181 163)',
-                        borderColor: '#edeff1',
-                        borderStyle: 'solid',
                         borderRadius: '0.25rem',
                         width: '100%'
                     }}
+                    onClick={() => handleButtonClick("Password")}
                 >
                     Change Password
                 </Button>
