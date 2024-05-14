@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Upcoming_appointment.css";
 import {
     Text,
@@ -6,6 +6,35 @@ import {
 } from '@chakra-ui/react'
 
 function Upcoming_appointment() {
+    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+    const daysInMonth = (month, year) => {
+        return new Date(year, month + 1, 0).getDate();
+    }
+
+    const getMonthName = (monthIndex) => {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        return months[monthIndex];
+    }
+
+    const prevMonth = () => {
+        if (currentMonth === 0) {
+            setCurrentMonth(11);
+            setCurrentYear(currentYear - 1);
+        } else {
+            setCurrentMonth(currentMonth - 1);
+        }
+    }
+
+    const nextMonth = () => {
+        if (currentMonth === 11) {
+            setCurrentMonth(0);
+            setCurrentYear(currentYear + 1);
+        } else {
+            setCurrentMonth(currentMonth + 1);
+        }
+    }
 
     return (
         <div className='Upcoming_appointment_Conainer'>
@@ -24,7 +53,11 @@ function Upcoming_appointment() {
                         </Button>
                     </div>
                     <div className='right-side-upcoming-appointment'>
-                        <h3 className='day-calendar-title'>April 2023</h3>
+                        <div className='month-navigation' style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '0.5rem' }}>
+                            <Button onClick={prevMonth}>Prev</Button>
+                            <h3 className='day-calendar-title' style={{ marginLeft: '0' }}>{getMonthName(currentMonth)} {currentYear}</h3>
+                            <Button onClick={nextMonth}>Next</Button>
+                        </div>
                         <div className='calendar-container'>
                             <div className='day-calendar'>
                                 <span>Sun</span>
@@ -35,15 +68,16 @@ function Upcoming_appointment() {
                                 <span>Fri</span>
                                 <span>Sat</span>
                             </div>
-                            <div className='day-calendar'>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                            </div>
+                            {[...Array(Math.ceil(daysInMonth(currentMonth, currentYear) / 7)).keys()].map(row => (
+                                <div className='day-calendar' key={row}>
+                                    {[...Array(7).keys()].map(col => (
+                                        <span key={row * 7 + col + 1}>
+                                            {(row * 7 + col + 1) <= daysInMonth(currentMonth, currentYear) &&
+                                                (row * 7 + col + 1)}
+                                        </span>
+                                    ))}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -52,4 +86,4 @@ function Upcoming_appointment() {
     )
 }
 
-export default Upcoming_appointment
+export default Upcoming_appointment;
