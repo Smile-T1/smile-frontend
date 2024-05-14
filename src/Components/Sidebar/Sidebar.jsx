@@ -29,7 +29,6 @@ function Sidebar() {
     };
   }, []);
 
-  var dropdown = document.getElementsByClassName("dropdown-btn");
   return (
     <div className='sidebar-portal'>
       <aside className='content-wrapper-sidebar bg-white h-screen sticky top-0 p-2 min-w-[50px] dashboard-sidebar block  w-1/5'
