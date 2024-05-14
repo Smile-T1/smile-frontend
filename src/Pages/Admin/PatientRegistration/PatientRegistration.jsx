@@ -12,7 +12,7 @@ function PatientRegistration() {
           <PatientRegistrationForm />
         </div>
       </div>
-    </div>
+    </div>  
   );
 }
 
