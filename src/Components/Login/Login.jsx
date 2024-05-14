@@ -17,7 +17,7 @@ function Login() {
 
     localStorage.setItem('userAccess', userAccess);
     localStorage.setItem('username', username);
-    
+
     if (userAccess === 'Patient') {
       navigate('/patient');
     } else if (userAccess === 'Admin') {
@@ -58,6 +58,5 @@ function Login() {
     </div>
     </div>
   );
-}
 
 export default Login;
