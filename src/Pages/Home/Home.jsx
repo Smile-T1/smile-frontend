@@ -66,9 +66,9 @@ function Home() {
     <Card>
       <CardBody>
         <div className='card-title'>
-          <span>Smile</span>
-          <span> Confidence </span>
-          <span>Happiness</span>
+          <span>SMILE</span>
+          <span>CONFIDENCE</span>
+          <span>HAPPINESS</span>
         </div>
         <div className='card-text'>
         <div className='location'>
@@ -118,9 +118,39 @@ Our clinic offers a comprehensive range of services, including routine eye exams
 </div>
     </TabPanel>
     <TabPanel>
-      <p>Contact us!</p>
-    </TabPanel>
-    
+      <div className='contactform'>
+    <h2>Contact us</h2>
+  <form>
+    <div className='formName'>
+    <label>
+      Name:
+      <input type="text" name="name" />
+    </label>
+    </div>
+    <div className='formEmail'>
+    <label>
+      Email:
+      <input type="email" name="email"  />
+    </label>
+    </div>
+    <div  className='formPhone'>
+    <label>
+      Phone:
+      <input type="tel" name="phone" />
+    </label>
+    </div>
+    <div className='formMessage' >
+    <label>
+      Message:
+      <input  name="message" />
+    </label>
+    </div>
+    <div className='formSubmit'>
+    <button>Submit</button>
+    </div>
+  </form>
+  </div>
+</TabPanel>
   </TabPanels>
 </Tabs>
 

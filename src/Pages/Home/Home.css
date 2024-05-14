@@ -217,7 +217,7 @@ letter-spacing: 0.02em;
 text-align: left;
 color: #3E68FF;
 margin-right: 10px;
-margin-left: 100px;
+margin-left: 90px;
 
     }
 
@@ -311,4 +311,51 @@ line-height: 25px;
 letter-spacing: 0.02em;
 text-align: left;
 
+}
+
+.contactform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: #cee2ce54;
+  width: 50%;
+  border-radius: 20%;
+  padding: 50px;
+}
+
+.formName,
+.formEmail,
+.formMessage,
+.formPhone {
+  display: block !important;
+  margin-bottom: 10px !important;
+
+
+}
+
+.formName input,
+.formEmail input,
+.formMessage input,
+.formPhone input{
+  border: 1px solid #000;
+  border-radius: 15px;
+  padding: 2px;
+}
+
+.contactform h2{
+  margin-bottom: 50px;
+}
+
+.formSubmit{
+  width: 250px;
+height: 40px;
+gap: 0px;
+border-radius: 15px;
+border: 1px 0px 0px 0px;
+opacity: 0px;
+background: #4483FD;
+color: white;
+text-align: center;
+padding-top: 6px;
 }
