@@ -68,8 +68,8 @@ function App() {
             <Route path="/admin/appointments" element={<RequestedAppointments />} />
             <Route path="/admin/patients" element={<Patients />} />
             <Route path="/admin/doctors" element={<Doctors />} />
-            <Route path="/doctorDashboard" element={<Dashboard name="Dashboard"><MainDashboard /></Dashboard>} />
-            <Route path="/doctorAppointment" element={<Dashboard name="Appointments"><DoctorAppointments /></Dashboard>} />
+            <Route path="/doctor/dashboard" element={<Dashboard name="Dashboard"><MainDashboard /></Dashboard>} />
+            <Route path="/doctor/appointment" element={<Dashboard name="Appointments"><DoctorAppointments /></Dashboard>} />
             <Route path="/doctorPatients" element={<Dashboard name="Patients"><DoctorPatients /></Dashboard>} />
             <Route path="/doctorSchedule" element={<Dashboard name="Schedule"><Schedule /></Dashboard>} />
           </Routes>

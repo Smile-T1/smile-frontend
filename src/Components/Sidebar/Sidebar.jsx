@@ -66,12 +66,14 @@ function Sidebar() {
               />
               <p className={`sidebar-text ${activeLink === (userAccess === 'Patient' ? '/patient/dashboard' : userAccess === 'Doctor' ? '/doctor/dashboard' : '/admin/dashboard') ? 'active' : ''}`}>Dashboard</p>
             </Link>
-            {userAccess === "Patient" && (
-              <Link to="/patient/appointment" className={`sidebar-link ${activeLink === '/patient/appointment' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/appointment')}>
+            {userAccess === "Patient" ||  userAccess === "Doctor"(
+              <Link to={userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment': null} 
+              className={`sidebar-link ${activeLink === (userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null) ? 'active' : ''}`}
+              >
                 <AppointmentsIcon
-                  fill={`${activeLink == "/patient/appointment" ? "#034561" : "black"}`}
+                  fill={`${activeLink === (userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null) ? "#034561" : "black"}`}
                 />
-                <p className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment</p>
+                <p className={`sidebar-text ${activeLink === (userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null) ? 'active' : ''}`}>Appointment</p>
               </Link>
             )}
             {userAccess === "Admin" && (
