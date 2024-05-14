@@ -10,9 +10,6 @@ import time from "../../assets/time.png";
 import logo from "../../assets/Smile_without.png";
 import doctor from "../../assets/doctor.png";
 import about from "../../assets/about.png";
-import logo from "../../assets/Smile_without.png";
-import doctor from "../../assets/doctor.png";
-import about from "../../assets/about.png";
 
 function Home() {
   const navigate = useNavigate();
