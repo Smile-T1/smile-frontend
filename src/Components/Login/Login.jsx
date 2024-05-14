@@ -14,7 +14,10 @@ function Login() {
     const responseData = await loginUser(username, password);
   
     const userAccess = responseData.userAccess;
-  
+
+    localStorage.setItem('userAccess', userAccess);
+    localStorage.setItem('username', username);
+    
     if (userAccess === 'Patient') {
       navigate('/patient');
     } else if (userAccess === 'Admin') {
