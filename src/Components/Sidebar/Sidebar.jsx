@@ -12,6 +12,7 @@ import { CiLogout } from "react-icons/ci";
 import { VscSettingsGear } from "react-icons/vsc";
 
 function Sidebar() {
+  const userAccess = localStorage.getItem('userAccess');
   const [activeLink, setActiveLink] = useState('/patient/dashboard');
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -55,12 +56,14 @@ function Sidebar() {
             <p className='Patient_name'>Dr. Anushka Singh</p>
           </div>
           <div className='options-sidebar-list'>
-            <Link to={'/patient/dashboard'} className={`sidebar-link ${activeLink === '/patient/dashboard' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/dashboard')}>
+            <Link to={userAccess === 'Patient' ? '/patient/dashboard' : userAccess === 'Doctor' ? '/doctor/dashboard' : '/admin/dashboard'} 
+            className={`sidebar-link ${activeLink === (userAccess === 'Patient' ? '/patient/dashboard' : userAccess === 'Doctor' ? '/doctor/dashboard' : '/admin/dashboard') ? 'active' : ''}`} 
+            onClick={() => setActiveLink('/patient/dashboard')}>
               <DashboardIcon
                 className="flex-shrink-0 w-6 h-6 cursor-pointer"
-                fill={`${activeLink === '/patient/dashboard' ? "#034561" : "black"}`}
+                fill={`${activeLink === (userAccess === 'Patient' ? '/patient/dashboard' : userAccess === 'Doctor' ? '/doctor/dashboard' : '/admin/dashboard') ? "#034561" : "black"}`}
               />
-              <p className={`sidebar-text ${activeLink === '/patient/dashboard' ? 'active' : ''}`}>Dashboard</p>
+              <p className={`sidebar-text ${activeLink === (userAccess === 'Patient' ? '/patient/dashboard' : userAccess === 'Doctor' ? '/doctor/dashboard' : '/admin/dashboard') ? 'active' : ''}`}>Dashboard</p>
             </Link>
             <Link to="/patient/appointment" className={`sidebar-link ${activeLink === '/patient/appointment' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/appointment')}>
               <AppointmentsIcon
