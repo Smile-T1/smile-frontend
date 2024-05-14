@@ -1,0 +1,58 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+.action-icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.edit-icon {
+  color: #007bff;
+}
+
+.delete-icon {
+  color: #dc3545;
+}
+
+.edit-icon:hover {
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    width: 300px;
+  }
+  /* change font size */
+  th,
+  td {
+    font-size: 0.8em;
+  }
+}
