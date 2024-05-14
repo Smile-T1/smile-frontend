@@ -19,8 +19,8 @@ function PasswordCard() {
                     <FormLabel>Confirm New Password</FormLabel>
                     <Input size='lg' type="password" placeholder="Confirm new password" />
                 </FormControl>
-                <Button rightIcon={<CheckIcon />} colorScheme='teal' variant='solid' style={{ width: '100%', marginTop: '20px'}}>
-                        Save Changes
+                <Button rightIcon={<CheckIcon />} colorScheme='teal' variant='solid' style={{ width: '100%', marginTop: '20px' }}>
+                    Save Changes
                 </Button>
             </div>
         </div>

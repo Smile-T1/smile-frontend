@@ -9,6 +9,7 @@ import AppointmentsIcon from "./icons/appointments";
 import BookAppointmentsIcon from "./icons/bookappointments";
 import MedicalRecordIcon from "./icons/medicalrecords";
 import ProfileModal from '../ModalInfo/ProfileModal ';
+import { CiLogout } from "react-icons/ci";
 import { VscSettingsGear } from "react-icons/vsc";
 
 function Sidebar() {
@@ -87,6 +88,10 @@ function Sidebar() {
                 fill={`${activeLink == "/patient/settings" ? "#034561" : "black"}`}
               />
               <p className={`sidebar-text ${activeLink === '/patient/settings' ? 'active' : ''}`}>Settings</p>
+            </Link>
+            <Link to="/" className={`sidebar-link ${activeLink === '/' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/settings')}>
+              <CiLogout />
+              <p className={`sidebar-text ${activeLink === '/' ? 'active' : ''}`}>Log out</p>
             </Link>
             <ProfileModal
               isOpen={isProfileModalOpen}
