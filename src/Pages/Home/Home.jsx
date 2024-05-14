@@ -11,7 +11,7 @@ import logo from "../../assets/Smile_without.png";
 import doctor from "../../assets/doctor.png";
 import about from "../../assets/about.png";
 
-function Home() {
+function Home(props) {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
 
