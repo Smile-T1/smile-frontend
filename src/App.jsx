@@ -1,12 +1,12 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 // import Dashboard from "./Admin/layout/dashboard";
 // import MainDashboard from "./Admin/dashboard";
 // import Appointment from "./Admin/appointments";
 // import Patients from "./Admin/patients";
 // import Schedule from "./Admin/schedule";
-import Signup from './Components/Signup/Signup.jsx';
-import Login from './Components/Login/Login.jsx';
+import Signup from "./Components/Signup/Signup.jsx";
+import Login from "./Components/Login/Login.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Sidebar from "./Components/Sidebar/Sidebar.jsx";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -21,9 +21,12 @@ import RequestedAppointments from "./Pages/Admin/RequestedAppointments/Requested
 import Patients from "./Pages/Admin/Patients/Patients.jsx";
 import Doctors from "./Pages/Admin/Doctors/Doctors.jsx";
 import styled from "styled-components";
-
+import Dashboard from "./Pages/Doctor/layout/dashboard.jsx";
+import MainDashboard from "./Components/dashboard/index.jsx";
+import DoctorPatients from "./Components/patients/index.jsx";
+import Schedule from "./Components/schedule/index.jsx";
+import DoctorAppointments from "./Components/appointments/index.jsx";
 const PageContainer = styled.div`
-  display: grid;
   height: 100%;
   overflow: hidden;
   grid-template-columns: 250px 1fr;
@@ -34,10 +37,21 @@ const PageContainer = styled.div`
 `;
 
 function App() {
+  const { pathname } = useLocation();
+  const isDoctorPage = pathname.includes("doctor");
   return (
     <div>
-      <PageContainer>
-        <Sidebar />
+      {/* uncomment this if you want to use the old sidebar */}
+      <PageContainer
+        className={`${isDoctorPage ? "block overflow-visible " : "grid"}`}
+      >
+        {!isDoctorPage && (
+          <div className={`d-flex hidden`}>
+            <div style={{ position: "fixed", zIndex: "99" }}>
+              <Sidebar />
+            </div>
+          </div>
+        )}
         <ChakraProvider>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -50,20 +64,8 @@ function App() {
               path="/patient/book_appointment"
               element={<Book_appointment_Patient />}
             />
-            <Route
-              path="/patient/appointment"
-              element={<Appointment_Patient />}
-            />
-            <Route
-              path="/patient/book_appointment"
-              element={<Book_appointment_Patient />}
-            />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route
-              path="/patient/medical_records"
-              element={<Medical_records_Patient />}
-            />
             <Route
               path="/patient/medical_records"
               element={<Medical_records_Patient />}
@@ -84,11 +86,37 @@ function App() {
             <Route path="/admin/patients" element={<Patients />} />
             <Route path="/admin/doctors" element={<Doctors />} />
             <Route
-              path="/admin/appointments"
-              element={<RequestedAppointments />}
+              path="/doctorDashboard"
+              element={
+                <Dashboard name="Dashboard">
+                  <MainDashboard />
+                </Dashboard>
+              }
             />
-            <Route path="/admin/patients" element={<Patients />} />
-            <Route path="/admin/doctors" element={<Doctors />} />
+            <Route
+              path="/doctorAppointment"
+              element={
+                <Dashboard name="Appointments">
+                  <DoctorAppointments />
+                </Dashboard>
+              }
+            />
+            <Route
+              path="/doctorPatients"
+              element={
+                <Dashboard name="Patients">
+                  <DoctorPatients />
+                </Dashboard>
+              }
+            />
+            <Route
+              path="/doctorSchedule"
+              element={
+                <Dashboard name="Schedule">
+                  <Schedule />
+                </Dashboard>
+              }
+            />
           </Routes>
         </ChakraProvider>
       </PageContainer>
