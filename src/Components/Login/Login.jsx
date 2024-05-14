@@ -12,8 +12,11 @@ function Login() {
 
   const handleLogin = async () => {
     const responseData = await loginUser(username, password);
-
+  
     const userAccess = responseData.userAccess;
+
+    localStorage.setItem('userAccess', userAccess);
+    localStorage.setItem('username', username);
 
     if (userAccess === 'Patient') {
       navigate('/patient');
@@ -23,7 +26,6 @@ function Login() {
       navigate('/doctor');
     }
   }
-
 
 
   return (
@@ -56,5 +58,4 @@ function Login() {
     </div>
   );
 }
-
-export default Login;
+export default Login
