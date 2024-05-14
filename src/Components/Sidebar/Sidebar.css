@@ -104,6 +104,9 @@ a,
     .sidebar-link.active {
         width: 50px;
     }
+    .options-sidebar-list {
+        width: 50px;
+    }
     .sidebar-inner-container{
         width: 53px;
     }
