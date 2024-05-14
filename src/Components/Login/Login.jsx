@@ -14,7 +14,6 @@ function Login() {
     const responseData = await loginUser(username, password);
   
     const userAccess = responseData.userAccess;
-
     localStorage.setItem('userAccess', userAccess);
     localStorage.setItem('username', username);
 
