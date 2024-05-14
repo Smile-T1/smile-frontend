@@ -8,14 +8,12 @@ import { DashboardIcon } from "./icons/dashboard";
 import AppointmentsIcon from "./icons/appointments";
 import BookAppointmentsIcon from "./icons/bookappointments";
 import MedicalRecordIcon from "./icons/medicalrecords";
-import ProfileModal from '../ModalInfo/ProfileModal ';
 import { CiLogout } from "react-icons/ci";
 import { VscSettingsGear } from "react-icons/vsc";
 
 function Sidebar() {
   const [activeLink, setActiveLink] = useState('/patient/dashboard');
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -53,7 +51,6 @@ function Sidebar() {
               alt=""
               loading="lazy"
               className='Profile_picture'
-              onClick={() => setIsProfileModalOpen(true)}
             />
             <p className='Patient_name'>Dr. Anushka Singh</p>
           </div>
@@ -93,10 +90,6 @@ function Sidebar() {
               <CiLogout />
               <p className={`sidebar-text ${activeLink === '/' ? 'active' : ''}`}>Log out</p>
             </Link>
-            <ProfileModal
-              isOpen={isProfileModalOpen}
-              onClose={() => setIsProfileModalOpen(false)}
-              profile_pic={profile_pic} />
           </div>
         </div>
       </aside>
