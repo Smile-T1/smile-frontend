@@ -4,14 +4,33 @@ import Table_Data from "../../../Components/Table_Data/Table_Data";
 import "./Doctors.css";
 import Header_Pages from "../../../Components/Header_Pages/Header_Pages";
 import Users_table from "../../../Components/Users_table/Users_table";
+const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 function Doctors() {
   const [doctors, setDoctors] = useState([]);
 
-  //   useEffect(() => {
-  //     fetch("http://localhost:3001/doctors")
-  //       .then((response) => response.json())
-  //       .then((data) => setDoctors(data));
-  //   }, []);
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await fetch(`${VITE_SERVER_HOST}/api/admin/doctors`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch doctors");
+        }
+        const data = await response.json();
+        setDoctors(data);
+      } catch (error) {
+        console.error("Error fetching doctors:", error);
+      }
+    };
+
+    fetchDoctors();
+  }, []);
+
   if (localStorage.getItem("token") === null) {
     window.location.href = "/login";
   }
@@ -25,7 +44,7 @@ function Doctors() {
         </div>
         <Users_table
           columns={["Name", "Email", "Mobile", "Address", "Speciality"]}
-          data={doctors}
+          data={doctors.doctors}
         />
       </div>
     </div>
