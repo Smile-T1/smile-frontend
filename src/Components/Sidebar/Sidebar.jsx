@@ -14,7 +14,17 @@ import { FaUserDoctor } from "react-icons/fa6";
 import ScheduleIcon from "./icons/Schedule";
 function Sidebar() {
   const userAccess = localStorage.getItem('userAccess');
-  const [activeLink, setActiveLink] = useState('/patient/dashboard');
+  const [activeLink, setActiveLink] = useState(() => {
+    switch (userAccess) {
+      case 'Patient':
+        return '/patient/dashboard';
+      case 'Doctor':
+        return '/doctor/dashboard';
+      case 'Admin':
+        return '/admin/dashboard';
+    }
+  });
+  
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
