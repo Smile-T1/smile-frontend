@@ -9,11 +9,13 @@ import {
     Flex,
 } from '@chakra-ui/react';
 import 'react-datepicker/dist/react-datepicker.css';
+import { format } from 'date-fns';
 
-function Book_app_Patient() {
+function Book_app_Patient({ handleBooking }) {
     const [selectedDoctor, setSelectedDoctor] = useState('');
     const [appointmentFor, setAppointmentFor] = useState('');
-    const [selectedAppointmentDate, setSelectedAppointmentDate] = useState(null);
+    const [selectedAppointmentDate, setSelectedAppointmentDate] = useState('');
+    const [selectedformattedAppointmentDate, setSelectedFormattedAppointmentDate] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
     const [note, setNote] = useState('');
     const [files, setFiles] = useState([]);
@@ -29,6 +31,7 @@ function Book_app_Patient() {
 
     const handleSelectedAppointmentDateChange = (date) => {
         setSelectedAppointmentDate(date);
+        setSelectedFormattedAppointmentDate(format(new Date(date), "dd-MM-yyyy"));
     };
 
     const handleSelectedTimeChange = (time) => {
@@ -43,18 +46,18 @@ function Book_app_Patient() {
         // Handle file upload logic here
     };
 
-    const handleBooking = () => {
+    const handleBookingRequest = () => {
         const appointmentData = {
             doctor: selectedDoctor,
-            date: selectedAppointmentDate,
+            date: selectedformattedAppointmentDate,
             time: selectedTime,
             notes: note,
-            files: files
+            files: files,
+            Type: appointmentFor
         };
-
-        // console.log(appointmentData)
-        handleBooking(appointmentData); 
+        handleBooking(appointmentData);
     };
+
 
     const handleCancel = () => {
         // Handle cancel logic here
@@ -81,18 +84,22 @@ function Book_app_Patient() {
                     <FormControl>
                         <FormLabel>Appointment for</FormLabel>
                         <Select placeholder="Appointment for" style={{ background: '#f6f6f6' }} onChange={handleAppointmentForChange}>
-                            <option value="Omar">Routine Check-up and Cleaning</option>
-                            <option value="Omar">Dental Filling</option>
-                            <option value="Omar">Root Canal Therapy</option>
-                            <option value="Omar">Tooth Extraction</option>
-                            <option value="Omar">Orthodontic Consultation</option>
-                            <option value="Omar">Cosmetic Dentistry</option>
-                            <option value="Omar">Emergency Dental Care</option>
+                            <option value="Routine Check-up and Cleaning">Routine Check-up and Cleaning</option>
+                            <option value="Dental Filling">Dental Filling</option>
+                            <option value="Root Canal Therapy">Root Canal Therapy</option>
+                            <option value="Tooth Extraction">Tooth Extraction</option>
+                            <option value="Orthodontic Consultation">Orthodontic Consultation</option>
+                            <option value="Cosmetic Dentistry">Cosmetic Dentistry</option>
+                            <option value="Emergency Dental Care">Emergency Dental Care</option>
                         </Select>
                     </FormControl>
                     <FormControl>
                         <FormLabel>Appointment date</FormLabel>
-                        <Input type={'date'} selected={selectedAppointmentDate} onChange={handleSelectedAppointmentDateChange} style={{ background: '#f6f6f6' }} />
+                        <Input 
+                        type={'date'} 
+                        selected={selectedAppointmentDate} 
+                        onChange={handleSelectedAppointmentDateChange} 
+                        style={{ background: '#f6f6f6' }} />
                     </FormControl>
                 </div>
                 <div style={{ width: '100%' }}>
@@ -138,7 +145,7 @@ function Book_app_Patient() {
                     </FormControl>
                     <div className='row-button-book-data' style={{ marginTop: '10px' }}>
                         <div className='book-cancel-buttons'>
-                            <Button colorScheme='blue' mr={3} style={{ borderRadius: '9999px', width: '115px' }} onClick={handleBooking}>Book</Button>
+                            <Button colorScheme='blue' mr={3} style={{ borderRadius: '9999px', width: '115px' }} onClick={handleBookingRequest}>Book</Button>
                             <Button variant='outline' colorScheme='blue' style={{ borderRadius: '9999px', width: '115px' }} onClick={handleCancel}>Cancel</Button>
                         </div>
                     </div>
