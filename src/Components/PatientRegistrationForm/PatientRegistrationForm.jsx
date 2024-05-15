@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import {
   FormControl,
@@ -21,7 +21,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { se } from "date-fns/locale";
 import format from "date-fns/format";
 import { set } from "date-fns";
-//get .env variables
+
 const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 
 function PatientRegistrationForm() {
@@ -31,12 +31,12 @@ function PatientRegistrationForm() {
   const [mobile, setMobile] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
   const [formatedDate, setFormatedDate] = useState("");
-  const [gender, setGender] = useState("Male");
+  const [gender, setGender] = useState("");
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
   const [history, setHistory] = useState("");
-
   const [files, setFiles] = useState([]);
+  const fileInputRef = useRef(null); // Define the ref for file input
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
@@ -50,6 +50,7 @@ function PatientRegistrationForm() {
     setSelectedDate(date.target.value);
     setFormatedDate(format(new Date(date.target.value), "dd-MM-yyyy"));
   };
+
   const handleGenderChange = (e) => {
     setGender(e.target.value);
   };
@@ -62,48 +63,47 @@ function PatientRegistrationForm() {
     setHistory(e.target.value);
   };
 
-  const handleUpload = (e) => {
-    if (files.length > 0) {
-      setFiles([]);
-    } else {
-      //open browse file
-      const input = document.createElement("input");
-      input.type = "file";
-      input.onchange = (e) => {
-        setFiles([...files, ...e.target.files]);
-      };
-      input.click();
-    }
+  const handleUpload = () => {
+    fileInputRef.current.click(); // Trigger file input click event
   };
 
   // Function to handle registration
   const handleRegistration = async () => {
     try {
       console.log("Registering patient...");
+      const patientDetails = JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        mobile,
+        dob: formatedDate,
+        gender,
+        address,
+        history,
+      });
+
+      const formData = new FormData();
+      // Append each file to the FormData object
+      formData.append("report", files[0]);
+      formData.append("patientDetails", patientDetails);
+      console.log(formData);
+
       // Make a POST request to your server endpoint
       const response = await axios.post(
         `${VITE_SERVER_HOST}/api/auth/patient/register`,
-        {
-          "Content-Type": "application/json",
-          firstName,
-          lastName,
-          gender: gender.toLocaleLowerCase(),
-          email,
-          mobile,
-          dob: formatedDate,
-          address,
-          history,
-        },
+        formData,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data", // Set content type to multipart/form-data
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       );
 
-      if (response.status == 201) {
+      if (response && response.status === 201) {
         setMessage("Patient registered successfully");
+      } else {
+        setMessage("Patient registration failed");
       }
     } catch (error) {
       if (
@@ -119,6 +119,7 @@ function PatientRegistrationForm() {
   };
 
   return (
+    // Form to register a new patient
     <div>
       <div className="Book-appoin-header">
         <h4>Add new patient</h4>
@@ -210,6 +211,12 @@ function PatientRegistrationForm() {
         <FormControl>
           <FormLabel>Report / files</FormLabel>
           <div className="report-files-patient">
+            <Input
+              type="file"
+              onChange={(e) => setFiles(e.target.files)}
+              style={{ display: "none" }}
+              ref={fileInputRef}
+            />
             <Button
               colorScheme="blue"
               style={{

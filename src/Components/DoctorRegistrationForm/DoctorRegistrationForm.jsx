@@ -68,7 +68,7 @@ function DoctorRegistrationForm() {
           "Content-Type": "application/json",
           firstName,
           lastName,
-          gender: gender.toLocaleLowerCase(),
+          gender,
           email,
           mobile,
           dob: formatedDate,
