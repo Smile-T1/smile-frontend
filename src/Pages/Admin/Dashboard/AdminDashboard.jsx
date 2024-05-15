@@ -6,10 +6,27 @@ import OverviewCard from "../../../Components/OverviewCards/OverviewCard";
 import NewRequestCard from "../../../Components/NewRequestCard/NewRequestCard";
 import Table_Data from "../../../Components/Table_Data/Table_Data";
 import Page_header from "../../../Components/Header_Pages/Header_Pages";
-
+import { useState } from "react";
+const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 function AdminDashboard() {
+  if (localStorage.getItem("token") === null) {
+    window.location.href = "/login";
+  }
   const today = new Date();
   const formattedDate = format(today, "MMMM do, yyyy");
+
+  //use effect to fetch data from the server
+  const [appointments, setAppointments] = useState([]);
+  const [doctors, setDoctors] = useState([]);
+  const [patients, setPatients] = useState([]);
+  const [surgeries, setSurgeries] = useState([]);
+
+  // useEffect(() => {
+  //   fetch(`${VITE_SERVER_HOST}/appointments`)
+  //     .then((response) => response.json())
+  //     .then((data) => setAppointments(data));
+  //   fetch(`${VITE_SERVER_HOST}/doctors`);
+  // });
 
   return (
     <div className="admin-dashboard">

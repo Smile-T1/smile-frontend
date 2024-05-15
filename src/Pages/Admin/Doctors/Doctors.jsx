@@ -12,7 +12,9 @@ function Doctors() {
   //       .then((response) => response.json())
   //       .then((data) => setDoctors(data));
   //   }, []);
-  
+  if (localStorage.getItem("token") === null) {
+    window.location.href = "/login";
+  }
 
   return (
     <div className="doctors">
