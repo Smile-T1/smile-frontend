@@ -65,7 +65,7 @@ function App() {
               <Route path="/admin/doctors" element={<Doctors />} />
               <Route path="/doctor/dashboard" element={<Dashboard name="Dashboard"><MainDashboard /></Dashboard>} />
               <Route path="/doctor/appointment" element={<Dashboard name="Appointments"><DoctorAppointments /></Dashboard>} />
-              <Route path="/doctorPatients" element={<Dashboard name="Patients"><DoctorPatients /></Dashboard>} />
+              <Route path="/doctor/patients" element={<Dashboard name="Patients"><DoctorPatients /></Dashboard>} />
               <Route path="/doctorSchedule" element={<Dashboard name="Schedule"><Schedule /></Dashboard>} />
             </Routes>
           </ChakraProvider>
