@@ -11,7 +11,7 @@ import MedicalRecordIcon from "./icons/medicalrecords";
 import { CiLogout } from "react-icons/ci";
 import { VscSettingsGear } from "react-icons/vsc";
 import { FaUserDoctor } from "react-icons/fa6";
-
+import ScheduleIcon from "./icons/Schedule";
 function Sidebar() {
   const userAccess = localStorage.getItem('userAccess');
   const [activeLink, setActiveLink] = useState('/patient/dashboard');
@@ -140,6 +140,14 @@ function Sidebar() {
                   fill={`${activeLink == "/patient/medical_records" ? "#034561" : "black"}`}
                 />
                 <p className={`sidebar-text ${activeLink === '/patient/medical_records' ? 'active' : ''}`}>Medical Records</p>
+              </Link>
+            )}
+            {userAccess === "Doctor" && (
+              <Link to="/doctor/schedule" className={`sidebar-link ${activeLink === '/doctor/schedule' ? 'active' : ''}`} onClick={() => setActiveLink('/doctor/schedule')}>
+                <ScheduleIcon
+                  fill={`${activeLink == "/doctor/schedule" ? "#034561" : "black"}`}
+                />
+                <p className={`sidebar-text ${activeLink === '/doctor/schedule' ? 'active' : ''}`}>Schedule</p>
               </Link>
             )}
             <Link to="userAccess === 'Patient' ? '/patient/settings' : userAccess === 'Doctor' ? '/doctor/settings' : '/admin/settings'"
