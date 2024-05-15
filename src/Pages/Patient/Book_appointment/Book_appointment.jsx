@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import "./Book_appointment.css";
 import Book_app_Patient from "../../../Components/Patient_Page/Book_app_Patient/Book_app_Patient";
@@ -7,7 +8,14 @@ import Page_header from "../../../Components/Header_Pages/Header_Pages";
 const serverHost = import.meta.env.VITE_SERVER_HOST;
 
 function Book_appointment() {
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token === undefined || token === null) {
+      navigate('/login');
+    }
+  }, []);
+  
   const handleBooking = async (appointmentData) => {
     try {
       const response = await axios.post(`${serverHost}/api/patient/appointment`, appointmentData, {
