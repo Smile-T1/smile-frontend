@@ -1,16 +1,24 @@
-import react from "react";
+import React from "react";
 import "./NewRequestCard.css";
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
+import { Card, CardBody, CardFooter } from "@chakra-ui/react";
 
-function NewRequestCard() {
+function NewRequestCard({ data }) {
+  const { patient, doctor, date, time, type } = data;
+
   return (
     <div className="NewRequest-card">
       <Card id="new">
         <CardBody>
-          <p id="body-name">Patient: John Doe</p>
+          <div className="top">
+            <p id="body-name">Patient: {patient}</p>
+            <p id="body-name">Doctor: {doctor}</p>
+          </div>
+
           <div className="bellow">
-            <p id="reason">Surgery</p>
-            <p id="body-DT">Date: 12/12/2021, 10:00 AM</p>
+            <p id="reason">Type: {type}</p>
+            <p id="body-DT">
+              Date: {date}, {time}
+            </p>
           </div>
         </CardBody>
       </Card>

@@ -6,7 +6,7 @@ import OverviewCard from "../../../Components/OverviewCards/OverviewCard";
 import NewRequestCard from "../../../Components/NewRequestCard/NewRequestCard";
 import Table_Data from "../../../Components/Table_Data/Table_Data";
 import Page_header from "../../../Components/Header_Pages/Header_Pages";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 function AdminDashboard() {
   if (localStorage.getItem("token") === null) {
@@ -16,17 +16,62 @@ function AdminDashboard() {
   const formattedDate = format(today, "MMMM do, yyyy");
 
   //use effect to fetch data from the server
-  const [appointments, setAppointments] = useState([]);
-  const [doctors, setDoctors] = useState([]);
-  const [patients, setPatients] = useState([]);
-  const [surgeries, setSurgeries] = useState([]);
+  const [appointments, setAppointments] = useState("");
+  const [doctors, setDoctors] = useState("");
+  const [patients, setPatients] = useState("");
+  const [surgeries, setSurgeries] = useState("0");
+  const [patientName, setPatientName] = useState("");
+  const [doctorName, setDoctorName] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [type, setType] = useState("");
 
-  // useEffect(() => {
-  //   fetch(`${VITE_SERVER_HOST}/appointments`)
-  //     .then((response) => response.json())
-  //     .then((data) => setAppointments(data));
-  //   fetch(`${VITE_SERVER_HOST}/doctors`);
-  // });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${VITE_SERVER_HOST}/api/admin/totals`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        const data = await response.json();
+        setAppointments(data.totalAppointments);
+        setDoctors(data.totalDoctors);
+        setPatients(data.totalPatients);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    const fetchLatestAppointments = async () => {
+      try {
+        const response = await fetch(
+          `${VITE_SERVER_HOST}/api/admin/latestAppointment`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        const data = await response.json();
+        setPatientName(data.patient);
+        setDoctorName(data.doctor);
+        setDate(data.date);
+        setTime(data.time);
+        setType(data.Type);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    //call both functions parallelly
+    fetchData();
+    fetchLatestAppointments();
+  }, []);
 
   return (
     <div className="admin-dashboard">
@@ -35,18 +80,26 @@ function AdminDashboard() {
         <h2 id="ad_head">{formattedDate}</h2>
         <div className="cards-container">
           <div className="overview-cards1">
-            <OverviewCard id="card1" header="Total Doctors" value="10" />
-            <OverviewCard header="Appointments" value="20" />
+            <OverviewCard id="card1" header="Total Doctors" value={doctors} />
+            <OverviewCard header="Appointments" value={appointments} />
           </div>
           <div className="overview-cards2">
-            <OverviewCard header="Total Patients" value="10" />
-            <OverviewCard header="Total Surgeries" value="20" />
+            <OverviewCard header="Total Patients" value={patients} />
+            <OverviewCard header="Total Surgeries" value={surgeries} />
           </div>
         </div>
         <div className="new">
           <h3>Newest Appointment request</h3>
           <div className="new-appointments">
-            <NewRequestCard />
+            <NewRequestCard
+              data={{
+                patient: patientName,
+                doctor: doctorName,
+                date: date,
+                time: time,
+                type: type,
+              }}
+            />
           </div>
           <div className="view">
             <p id="requests">+15 more requests</p>
