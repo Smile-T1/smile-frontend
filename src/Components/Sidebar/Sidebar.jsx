@@ -66,7 +66,7 @@ function Sidebar() {
               />
               <p className={`sidebar-text ${activeLink === (userAccess === 'Patient' ? '/patient/dashboard' : userAccess === 'Doctor' ? '/doctor/dashboard' : '/admin/dashboard') ? 'active' : ''}`}>Dashboard</p>
             </Link>
-            {userAccess === "Patient" ||  userAccess === "Doctor"(
+            {userAccess === "Patient" ||  userAccess === "Doctor" ?(
               <Link to={userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment': null} 
               className={`sidebar-link ${activeLink === (userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null) ? 'active' : ''}`}
               >
@@ -75,7 +75,7 @@ function Sidebar() {
                 />
                 <p className={`sidebar-text ${activeLink === (userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null) ? 'active' : ''}`}>Appointment</p>
               </Link>
-            )}
+            ): null}
             {userAccess === "Admin" && (
             <>
               <a href="#submenu1" data-bs-toggle="collapse" className={`nav-link align-middle sidebar-link ${activeLink === '/patient/appointment' ? 'active' : ''}`}
@@ -106,6 +106,15 @@ function Sidebar() {
               </ul>
             </>
             )} 
+             {userAccess === "Admin" || userAccess === "Doctor" ? (
+  <Link to="/admin/doctors" className={`sidebar-link ${activeLink === '/admin/doctors' ? 'active' : ''}`} onClick={() => setActiveLink('/admin/doctors')}>
+    <FaUserDoctor
+      fill={`${activeLink === "/admin/doctors" ? "#034561" : "black"}`}
+    />
+    <p className={`sidebar-text ${activeLink === '/admin/doctors' ? 'active' : ''}`}>Doctors</p>
+  </Link>
+) : null}
+
             {userAccess === "Admin" && (
               <Link to="/admin/doctors" className={`sidebar-link ${activeLink === '/admin/doctors' ? 'active' : ''}`} onClick={() => setActiveLink('/admin/doctors')}>
                 <FaUserDoctor

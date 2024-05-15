@@ -37,46 +37,59 @@ const PageContainer = styled.div`
 function App() {
   const { pathname } = useLocation();
   const isDoctorPage = pathname.includes("doctor");
-  const location = useLocation();
-  const path = location.pathname;
+  const isLoginPage = pathname === "/login";
+  const isHomePage = pathname === "/";
+
+  const showPageContainer = !(isLoginPage || isHomePage);
 
   return (
     <div>
-      <PageContainer
-        // className={`${isDoctorPage ? "block overflow-visible " : "grid"}`}
-      >
-        {/* {!isDoctorPage && (
-          <div className={`d-flex hidden`}>
-            <div style={{ position: "fixed", zIndex: "99" }}>
-            </div>
-          </div>
-        )} */}
+      {showPageContainer && (
+        <PageContainer>
+          <Sidebar />
+          <ChakraProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/patient/dashboard" element={<Dashboard_Patient />} />
+              <Route path="/patient/appointment" element={<Appointment_Patient />} />
+              <Route path="/patient/book_appointment" element={<Book_appointment_Patient />} />
+              <Route path="/:type/settings" element={<Settings />} />
+              <Route path="/patient/medical_records" element={<Medical_records_Patient />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/patient_registration" element={<PatientRegistration />} />
+              <Route path="/admin/doctor_registration" element={<DoctorRegistration />} />
+              <Route path="/admin/appointments" element={<RequestedAppointments />} />
+              <Route path="/admin/patients" element={<Patients />} />
+              <Route path="/admin/doctors" element={<Doctors />} />
+              <Route path="/doctor/dashboard" element={<Dashboard name="Dashboard"><MainDashboard /></Dashboard>} />
+              <Route path="/doctor/appointment" element={<Dashboard name="Appointments"><DoctorAppointments /></Dashboard>} />
+              <Route path="/doctorPatients" element={<Dashboard name="Patients"><DoctorPatients /></Dashboard>} />
+              <Route path="/doctorSchedule" element={<Dashboard name="Schedule"><Schedule /></Dashboard>} />
+            </Routes>
+          </ChakraProvider>
+        </PageContainer>
+      )}
+      {isHomePage && (
         <ChakraProvider>
-          {path !== '/' && path !== '/login' && <Sidebar />}
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/patient/dashboard" element={<Dashboard_Patient />} />
-            <Route path="/patient/appointment" element={<Appointment_Patient />} />
-            <Route path="/patient/book_appointment" element={<Book_appointment_Patient />} />
-            <Route path="/:type/settings" element={<Settings />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/patient/medical_records" element={<Medical_records_Patient />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/patient_registration" element={<PatientRegistration />} />
-            <Route path="/admin/doctor_registration" element={<DoctorRegistration />} />
-            <Route path="/admin/appointments" element={<RequestedAppointments />} />
-            <Route path="/admin/patients" element={<Patients />} />
-            <Route path="/admin/doctors" element={<Doctors />} />
-            <Route path="/doctor/dashboard" element={<Dashboard name="Dashboard"><MainDashboard /></Dashboard>} />
-            <Route path="/doctor/appointment" element={<Dashboard name="Appointments"><DoctorAppointments /></Dashboard>} />
-            <Route path="/doctorPatients" element={<Dashboard name="Patients"><DoctorPatients /></Dashboard>} />
-            <Route path="/doctorSchedule" element={<Dashboard name="Schedule"><Schedule /></Dashboard>} />
           </Routes>
         </ChakraProvider>
-      </PageContainer>
+      )}
+      {isLoginPage && (
+        <ChakraProvider>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </ChakraProvider>
+      )}
     </div>
   );
 }
 
 export default App;
+
