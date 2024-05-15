@@ -43,19 +43,17 @@ function InfoCard() {
                                 fontSize: '25px',
                                 fontWeight: '900'
                             }}><UploadIcon /></span>
-                            <p style={{ marginTop: '8px', fontSize: '.875rem', lineHeight: '1.25rem' }}>Drop/Drag your image here</p>
-                            <span style={{
-                                color: 'rgb(156 163 175)',
-                                fontSize: '.75rem',
-                                lineHeight: '1rem'
-                            }}>(Only *.jpeg and *.png images will be accepted)</span>
+                            <p className='description-title-image-settings'>Drop/Drag your image here</p>
+                            <span className='description-image-settings'>
+                                (Only *.jpeg and *.png images will be accepted)
+                            </span>
                         </div>
                         <div className='uploadprofilepicsectionright'>
                             <img src={InitialPic} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
                         </div>
                     </div>
                 </div>
-                <div class="form-group" style={{ display: 'flex', flexDirection: 'row', gap: '1em', width: '100%' }}>
+                <div class="form-group-settings">
                     <FormControl>
                         <FormLabel>First name</FormLabel>
                         <Input value={"Omar"} isReadOnly style={{ background: '#f6f6f6' }} />
@@ -65,7 +63,7 @@ function InfoCard() {
                         <Input value={"Adel"} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                 </div>
-                <div class="form-group" style={{ display: 'flex', flexDirection: 'row', gap: '1em', width: '100%' }}>
+                <div class="form-group-settings">
                     <FormControl>
                         <FormLabel>Username</FormLabel>
                         <Input value={"suiiiiiiiii"} isReadOnly style={{ background: '#f6f6f6' }} />
@@ -75,7 +73,7 @@ function InfoCard() {
                         <Input value={"01093774235"} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                 </div>
-                <div class="form-group" style={{ display: 'flex', flexDirection: 'row', gap: '1em', width: '100%' }}>
+                <div class="form-group-settings">
                     <FormControl>
                         <FormLabel>Email address</FormLabel>
                         <Input value={"omaradelhassan12@gmail.com"} isReadOnly style={{ background: '#f6f6f6' }} />

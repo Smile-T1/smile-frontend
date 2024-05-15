@@ -15,12 +15,7 @@ function Settings() {
   return (
     <div className='Dashboard-patient-portal'>
       <Header_Pages type='Patient' header='Settings'/>
-      <div style={{
-        display:'flex',
-        flexDirection:'row',
-        gap: '1.5rem', 
-        marginTop: '4rem'
-      }}>
+      <div className='settings-main-container-page'>
         <ProfileCard onCardSelect={handleCardSelection} />
         {selectedCard === "Info" && <InfoCard />}
         {selectedCard === "Password" && <PasswordCard />}

@@ -53,7 +53,7 @@ function ProfileCard({ onCardSelect }) {
                     leftIcon={<RiLockPasswordFill />}
                     style={{
                         borderRadius: '0.25rem',
-                        width: '100%'
+                        width: '100%',
                     }}
                     onClick={() => handleButtonClick("Password")}
                 >
