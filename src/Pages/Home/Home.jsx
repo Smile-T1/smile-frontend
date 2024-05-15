@@ -11,7 +11,7 @@ import logo from "../../assets/Smile_without.png";
 import doctor from "../../assets/doctor.png";
 import about from "../../assets/about.png";
 
-function Home() {
+function Home(props) {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
 
@@ -41,7 +41,6 @@ function Home() {
 
         <div className='logo'>
           <img src={logo} alt="" />
-          <img src={logo} alt="" />
           <span className='logo-name'>Smile Clinic</span>
         </div>
       <div className='homeMenu'>
@@ -67,14 +66,14 @@ function Home() {
     <Card>
       <CardBody>
         <div className='card-title'>
-          <span>Cloud Storage</span>
-          <span> CDS </span>
-          <span>xxxxxx</span>
+          <span>Smile</span>
+          <span> Confidence </span>
+          <span>Happiness</span>
         </div>
         <div className='card-text'>
         <div className='location'>
           <img src={location} alt="location" />
-        <span> CUFE</span> 
+        <span> Location</span> 
         </div>
         <div className='date'>
           <img src={date} alt="date" />
@@ -119,7 +118,7 @@ Our clinic offers a comprehensive range of services, including routine eye exams
 </div>
     </TabPanel>
     <TabPanel>
-      <p>three!</p>
+      <p>Contact us!</p>
     </TabPanel>
     
   </TabPanels>
