@@ -45,6 +45,7 @@ function Doctors() {
         <Users_table
           columns={["Name", "Email", "Mobile", "Address", "Speciality"]}
           data={doctors.doctors}
+          user="doctor"
         />
       </div>
     </div>
