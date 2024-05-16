@@ -12,6 +12,7 @@ import "./Table_Data.css";
 import { DeleteIcon } from '@chakra-ui/icons';
 import { MdEdit } from "react-icons/md";
 import DeleteModal from './DeleteModal';
+import EditModal from './EditModal';
 
 const AppointmentsData = [
   {
@@ -44,6 +45,7 @@ function Table_Data() {
   const [appointmentsData, setAppointmentsData] = useState(AppointmentsData);
   const [currentPage, setCurrentPage] = useState(1);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
   const pageSize = 10;
   const totalPageCount = Math.ceil(appointmentsData.length / pageSize);
@@ -66,11 +68,13 @@ function Table_Data() {
   const openModal = (id) => {
     setSelectedAppointmentId(id);
     setShowDeleteModal(true);
+    setShowEditModal(true);
   };
 
   const closeModal = () => {
     setSelectedAppointmentId(null);
     setShowDeleteModal(false);
+    setShowEditModal(false);
   };
 
   const onDelete = (id) => {
@@ -145,6 +149,7 @@ function Table_Data() {
         </nav>
       )}
       <DeleteModal isOpen={showDeleteModal} onClose={closeModal} onDelete={onDelete} selectedAppointmentId={selectedAppointmentId} />
+      {/* <EditModal isOpen={showDeleteModal} onClose={closeModal} selectedAppointmentId={selectedAppointmentId} /> */}
     </div>
   );
 }
