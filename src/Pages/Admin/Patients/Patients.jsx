@@ -4,48 +4,36 @@ import Users_table from "../../../Components/Users_table/Users_table";
 import "./Patients.css";
 import Header_Pages from "../../../Components/Header_Pages/Header_Pages";
 import { Input } from "@chakra-ui/react";
+const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 
 function Patients() {
   const handleSearch = (e) => {
     console.log(e.target.value);
   };
-  // const [appointments, setAppointments] = useState([]);
+  const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3001/appointments")
-  //     .then((response) => response.json())
-  //     .then((data) => setAppointments(data));
-  // }, []);
-  const appointments = [
-    {
-      id: 1,
-      name: "Metawaly",
-      email: "dfdf",
-      mobile: "010101010",
-      address: "Cairo",
-    },
-    {
-      id: 2,
-      name: "Metawaly",
-      email: "dfdf",
-      mobile: "010101010",
-      address: "Cairo",
-    },
-    {
-      id: 3,
-      name: "Metawaly",
-      email: "dfdf",
-      mobile: "010101010",
-      address: "Cairo",
-    },
-    {
-      id: 4,
-      name: "Metawaly",
-      email: "dfdf",
-      mobile: "010101010",
-      address: "Cairo",
-    },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${VITE_SERVER_HOST}/api/admin/patients`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch patients");
+        }
+        const data = await response.json();
+        setData(data);
+      } catch (error) {
+        console.error("Error fetching patients:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="patients">
@@ -55,8 +43,9 @@ function Patients() {
           <Input placeholder="Search" width="auto" />
         </div>
         <Users_table
-          columns={["ID", "Name", "Email", "Mobile", "Address"]}
-          data={appointments}
+          columns={["Name", "Email", "Mobile", "Address"]}
+          data={data.patients}
+          user="patient"
         />
       </div>
     </div>
