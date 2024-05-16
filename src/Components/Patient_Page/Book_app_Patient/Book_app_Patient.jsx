@@ -10,14 +10,19 @@ import {
 } from '@chakra-ui/react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
+import {
+    getDoctorsWithSpeciality,
+    handleBooking
+} from '../../../Pages/Patient/PatientPortalEndPoints';
 
-function Book_app_Patient({ handleBooking }) {
+function Book_app_Patient() {
     const [selectedDoctor, setSelectedDoctor] = useState('');
     const [appointmentFor, setAppointmentFor] = useState('');
     const [selectedAppointmentDate, setSelectedAppointmentDate] = useState('');
     const [selectedformattedAppointmentDate, setSelectedFormattedAppointmentDate] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
     const [note, setNote] = useState('');
+    const [selectedDoctorArray, setSelectedDoctorArray] = useState([]);
     const [files, setFiles] = useState([]);
     const [bookingData, setBookingData] = useState(null);
 
@@ -25,8 +30,14 @@ function Book_app_Patient({ handleBooking }) {
         setSelectedDoctor(e.target.value);
     };
 
-    const handleAppointmentForChange = (e) => {
+    const handleAppointmentForChange = async (e) => {
         setAppointmentFor(e.target.value);
+        try {
+            const selectedDoctorArray = await getDoctorsWithSpeciality(e.target.value);
+            setSelectedDoctorArray(selectedDoctorArray);
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     const handleSelectedAppointmentDateChange = (date) => {
@@ -48,16 +59,15 @@ function Book_app_Patient({ handleBooking }) {
 
     const handleBookingRequest = () => {
         const appointmentData = {
-            doctor: selectedDoctor,
-            date: selectedformattedAppointmentDate,
-            time: selectedTime,
-            notes: note,
-            files: files,
-            Type: appointmentFor
+            doctorUser: selectedDoctor,
+            dateappointment: selectedformattedAppointmentDate,
+            appointmentTime: selectedTime,
+            appointmentNotes: note,
+            Report: files,
+            appointmentType: appointmentFor
         };
         handleBooking(appointmentData);
     };
-
 
     const handleCancel = () => {
         // Handle cancel logic here
@@ -69,17 +79,6 @@ function Book_app_Patient({ handleBooking }) {
                 <h4>Book an appointment</h4>
             </div>
             <div className='book-form-patient'>
-                <div className='row-fill-book-data'>
-                    <FormControl>
-                        <FormLabel>Doctor</FormLabel>
-                        <Select placeholder="Choose doctor" style={{ background: '#f6f6f6' }} onChange={handleSelectedDoctorChange}>
-                            <option value="Omar">Dr.Omar</option>
-                            <option value="Hassan">Dr.Hassan</option>
-                            <option value="Hana">Dr.Hana</option>
-                            <option value="Ahmed">Dr.Ahmed</option>
-                        </Select>
-                    </FormControl>
-                </div>
                 <div className='row-fill-book-data'>
                     <FormControl>
                         <FormLabel>Appointment for</FormLabel>
@@ -95,13 +94,26 @@ function Book_app_Patient({ handleBooking }) {
                     </FormControl>
                     <FormControl>
                         <FormLabel>Appointment date</FormLabel>
-                        <Input 
-                        type={'date'} 
-                        selected={selectedAppointmentDate} 
-                        onChange={handleSelectedAppointmentDateChange} 
-                        style={{ background: '#f6f6f6' }} />
+                        <Input
+                            type="date"
+                            value={selectedAppointmentDate}
+                            onChange={(e) => handleSelectedAppointmentDateChange(e.target.value)}
+                            style={{ background: '#f6f6f6' }}
+                        />
                     </FormControl>
                 </div>
+                {selectedDoctorArray.length > 0 && appointmentFor !== '' && (
+                    <div className='row-fill-book-data'>
+                        <FormControl>
+                            <FormLabel>Doctor</FormLabel>
+                            <Select placeholder="Choose doctor" style={{ background: '#f6f6f6' }} onChange={handleSelectedDoctorChange}>
+                                {selectedDoctorArray.map((doctor, index) => (
+                                    <option key={index} value={doctor}>Dr.{doctor}</option>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </div>
+                )}
                 <div style={{ width: '100%' }}>
                     <FormControl>
                         <FormLabel> Time</FormLabel>
@@ -120,6 +132,7 @@ function Book_app_Patient({ handleBooking }) {
                                         borderLeftWidth: index === 0 ? '1px' : '0',
                                         width: '100%',
                                         fontSize: '14px',
+                                        background: selectedTime === time ? 'lightblue' : '', // Apply blue color if the time is selected
                                     }}
                                     onClick={() => handleSelectedTimeChange(time)}
                                 >

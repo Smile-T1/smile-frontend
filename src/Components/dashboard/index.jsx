@@ -86,7 +86,7 @@ const MainDashboard = () => {
   const { doctorAppointments } = useDataContext();
 
   return (
-    <div className="container mt-8 bg-[#F6F6F6] rounded-lg h-full p-6">
+    <div className="container bg-[#F6F6F6] rounded-lg h-full p-6">
       <div className=" grid md:grid-cols-3 sm:grid-cols-1 gap-4 ">
         <div className="border-[#4483FD] border rounded-xl p-3 bg-[#EBFFF5] flex justify-between ">
           <p className="text-xl font-semibold">345</p>
