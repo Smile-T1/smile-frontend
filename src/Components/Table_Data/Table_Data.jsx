@@ -27,10 +27,8 @@ function Table_Data() {
     const fetchData = async () => {
       try {
         const response = await getAllApointments();
-        console.log('response.appointments',response)
-
-    const appointmentsArray = response.appointments || [];
-    setAppointmentsData(appointmentsArray);
+        const appointmentsArray = response.appointments || [];
+        setAppointmentsData(appointmentsArray);
       } catch (error) {
         console.error("Error fetching appointments:", error.message);
       }
