@@ -99,7 +99,7 @@ function Table_Data() {
               {visibleAppointments.map((appointment, index) => (
                 <Tr key={appointment._id}>
                   <Td>{startIndex + index + 1}</Td>
-                  <Td>{appointment.doctor}</Td>
+                  <Td>{appointment.doctor.user.username}</Td>
                   <Td>{appointment.date}</Td>
                   <Td>{appointment.time}</Td>
                   <Td>{appointment.Type}</Td>
