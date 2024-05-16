@@ -18,12 +18,24 @@ function InfoCard() {
     const [address, setAddress] = useState("Faculty of Engineering");
     const [isAddressEditable, setIsAddressEditable] = useState(false);
     const [isChangesMade, setIsChangesMade] = useState(false);
-
+    const [uploadedImage, setUploadedImage] = useState(null);
 
     const handleAddressEdit = () => {
         setIsAddressEditable(!isAddressEditable);
         setIsChangesMade(true);
     };
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setUploadedImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <div className='InfoCardConatainer'>
             <div className='InfoCardInnerConatainer'>
@@ -35,7 +47,12 @@ function InfoCard() {
                     }}>Profile Image</p>
                     <div className='uploadprofilepicsection2'>
                         <div className='uploadprofilepicsectionleft'>
-                            <input type="file" tabIndex='-1' style={{ display: 'none' }} />
+                            <input
+                                type="file"
+                                style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }}
+                                onChange={handleImageUpload}
+                                accept=".jpeg,.png"
+                            />
                             <span style={{
                                 display: 'flex',
                                 justifyContent: 'center',
@@ -49,7 +66,11 @@ function InfoCard() {
                             </span>
                         </div>
                         <div className='uploadprofilepicsectionright'>
-                            <img src={InitialPic} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
+                            {uploadedImage ? (
+                                <img src={uploadedImage} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
+                            ) : (
+                                <img src={InitialPic} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
+                            )}
                         </div>
                     </div>
                 </div>
