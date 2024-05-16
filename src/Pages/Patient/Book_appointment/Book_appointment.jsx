@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import "./Book_appointment.css";
 import Book_app_Patient from "../../../Components/Patient_Page/Book_app_Patient/Book_app_Patient";
 import Page_header from "../../../Components/Header_Pages/Header_Pages";
