@@ -11,10 +11,20 @@ import MedicalRecordIcon from "./icons/medicalrecords";
 import { CiLogout } from "react-icons/ci";
 import { VscSettingsGear } from "react-icons/vsc";
 import { FaUserDoctor } from "react-icons/fa6";
-
+import ScheduleIcon from "./icons/Schedule";
 function Sidebar() {
   const userAccess = localStorage.getItem('userAccess');
-  const [activeLink, setActiveLink] = useState('/patient/dashboard');
+  const [activeLink, setActiveLink] = useState(() => {
+    switch (userAccess) {
+      case 'Patient':
+        return '/patient/dashboard';
+      case 'Doctor':
+        return '/doctor/dashboard';
+      case 'Admin':
+        return '/admin/dashboard';
+    }
+  });
+  
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -31,7 +41,7 @@ function Sidebar() {
 
   return (
     <div className='sidebar-portal'>
-      <aside className='content-wrapper-sidebar bg-white h-screen sticky top-0 p-2 min-w-[50px] dashboard-sidebar block  w-1/5'
+      <aside className='content-wrapper-sidebar bg-white h-screen sticky top-0 p-2 min-w-[50px] dashboard-sidebar block'
         style={{
           position: 'relative'
         }
@@ -66,55 +76,58 @@ function Sidebar() {
               />
               <p className={`sidebar-text ${activeLink === (userAccess === 'Patient' ? '/patient/dashboard' : userAccess === 'Doctor' ? '/doctor/dashboard' : '/admin/dashboard') ? 'active' : ''}`}>Dashboard</p>
             </Link>
-            {userAccess === "Patient" ||  userAccess === "Doctor" ?(
-              <Link to={userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment': null} 
-              className={`sidebar-link ${activeLink === (userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null) ? 'active' : ''}`}
+            {userAccess === "Patient" || userAccess === "Doctor" ? (
+              <Link to={userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null}
+                className={`sidebar-link ${activeLink === (userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null) ? 'active' : ''}`}
+                onClick={() => setActiveLink(userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null)}
               >
                 <AppointmentsIcon
                   fill={`${activeLink === (userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null) ? "#034561" : "black"}`}
                 />
                 <p className={`sidebar-text ${activeLink === (userAccess === 'Patient' ? '/patient/appointment' : userAccess === 'Doctor' ? '/doctor/appointment' : null) ? 'active' : ''}`}>Appointment</p>
               </Link>
-            ): null}
+            ) : null}
             {userAccess === "Admin" && (
-            <>
-              <a href="#submenu1" data-bs-toggle="collapse" className={`nav-link align-middle sidebar-link ${activeLink === '/patient/appointment' ? 'active' : ''}`}
-              style={{
-                paddingLeft: '16px',
-                paddingRight: '16px',
-              }}>
-                <AppointmentsIcon
-                  fill={`${activeLink == "/patient/appointment" ? "#034561" : "black"}`}
-                /> <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment</span>
-              </a>
-              <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                <li class="w-100">
-                  <Link href="#" className="nav-link px-0" onClick={() => setActiveLink('/patient/appointment')}>
-                    <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment list</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" class="nav-link px-0" onClick={() => setActiveLink('/patient/appointment')}>
-                    <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Add appointments</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" class="nav-link px-0" onClick={() => setActiveLink('/patient/appointment')}>
-                    <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment requests</span>
-                  </Link>
-                </li>
-              </ul>
-            </>
-            )} 
-             {userAccess === "Admin" || userAccess === "Doctor" ? (
-  <Link to="/admin/doctors" className={`sidebar-link ${activeLink === '/admin/doctors' ? 'active' : ''}`} onClick={() => setActiveLink('/admin/doctors')}>
-    <FaUserDoctor
-      fill={`${activeLink === "/admin/doctors" ? "#034561" : "black"}`}
-    />
-    <p className={`sidebar-text ${activeLink === '/admin/doctors' ? 'active' : ''}`}>Doctors</p>
-  </Link>
-) : null}
-
+              <>
+                <a href="#submenu1" data-bs-toggle="collapse" className={`nav-link align-middle sidebar-link ${activeLink === '/patient/appointment' ? 'active' : ''}`}
+                  style={{
+                    paddingLeft: '16px',
+                    paddingRight: '16px',
+                  }}>
+                  <AppointmentsIcon
+                    fill={`${activeLink == "/patient/appointment" ? "#034561" : "black"}`}
+                  /> <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment</span>
+                </a>
+                <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                  <li class="w-100">
+                    <Link href="#" className="nav-link px-0" onClick={() => setActiveLink('/patient/appointment')}>
+                      <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment list</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" class="nav-link px-0" onClick={() => setActiveLink('/patient/appointment')}>
+                      <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Add appointments</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" class="nav-link px-0" onClick={() => setActiveLink('/patient/appointment')}>
+                      <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment requests</span>
+                    </Link>
+                  </li>
+                </ul>
+              </>
+            )}
+            {userAccess === "Admin" || userAccess === "Doctor" ? (
+              <Link to={userAccess === 'Admin' ? '/admin/patients' : userAccess === 'Doctor' ? '/doctor/patients' : null}
+                className={`sidebar-link ${activeLink === (userAccess === 'Admin' ? '/admin/patients' : userAccess === 'Doctor' ? '/doctor/patients' : null) ? 'active' : ''}`}
+                onClick={() => setActiveLink(userAccess === 'Admin' ? '/admin/patients' : userAccess === 'Doctor' ? '/doctor/patients' : null)}
+              >
+                <FaUserDoctor
+                  fill={`${activeLink === (userAccess === 'Admin' ? '/admin/patients' : userAccess === 'Doctor' ? '/doctor/patients' : null) ? "#034561" : "black"}`}
+                />
+                <p className={`sidebar-text ${activeLink === (userAccess === 'Admin' ? '/admin/patients' : userAccess === 'Doctor' ? '/doctor/patients' : null) ? 'active' : ''}`}>Patients</p>
+              </Link>
+            ) : null}
             {userAccess === "Admin" && (
               <Link to="/admin/doctors" className={`sidebar-link ${activeLink === '/admin/doctors' ? 'active' : ''}`} onClick={() => setActiveLink('/admin/doctors')}>
                 <FaUserDoctor
@@ -139,14 +152,66 @@ function Sidebar() {
                 <p className={`sidebar-text ${activeLink === '/patient/medical_records' ? 'active' : ''}`}>Medical Records</p>
               </Link>
             )}
-            <Link to="userAccess === 'Patient' ? '/patient/settings' : userAccess === 'Doctor' ? '/doctor/settings' : '/admin/settings'"
-              className={`sidebar-link ${activeLink === (userAccess === 'Patient' ? '/patient/settings' : userAccess === 'Doctor' ? '/doctor/settings' : '/admin/settings') ? 'active' : ''}`}
-              onClick={() => setActiveLink(userAccess === 'Patient' ? '/patient/settings' : userAccess === 'Doctor' ? '/doctor/settings' : '/admin/settings')}
+            {userAccess === "Doctor" && (
+              <Link to="/doctor/schedule" className={`sidebar-link ${activeLink === '/doctor/schedule' ? 'active' : ''}`} onClick={() => setActiveLink('/doctor/schedule')}>
+                <ScheduleIcon
+                  fill={`${activeLink == "/doctor/schedule" ? "#034561" : "black"}`}
+                />
+                <p className={`sidebar-text ${activeLink === '/doctor/schedule' ? 'active' : ''}`}>Schedule</p>
+              </Link>
+            )}
+            <Link
+              to={
+                userAccess === 'Patient'
+                  ? '/patient/settings'
+                  : userAccess === 'Doctor'
+                    ? '/doctor/settings'
+                    : '/admin/settings'
+              }
+              className={`sidebar-link ${activeLink ===
+                  (userAccess === 'Patient'
+                    ? '/patient/settings'
+                    : userAccess === 'Doctor'
+                      ? '/doctor/settings'
+                      : '/admin/settings')
+                  ? 'active'
+                  : ''
+                }`}
+              onClick={() =>
+                setActiveLink(
+                  userAccess === 'Patient'
+                    ? '/patient/settings'
+                    : userAccess === 'Doctor'
+                      ? '/doctor/settings'
+                      : '/admin/settings'
+                )
+              }
             >
               <VscSettingsGear
-                fill={`${activeLink === (userAccess === 'Patient' ? '/patient/settings' : userAccess === 'Doctor' ? '/doctor/settings' : '/admin/settings') ? "#034561" : "black"}`}
+                fill={
+                  activeLink ===
+                    (userAccess === 'Patient'
+                      ? '/patient/settings'
+                      : userAccess === 'Doctor'
+                        ? '/doctor/settings'
+                        : '/admin/settings')
+                    ? '#034561'
+                    : 'black'
+                }
               />
-              <p className={`sidebar-text ${activeLink === (userAccess === 'Patient' ? '/patient/settings' : userAccess === 'Doctor' ? '/doctor/settings' : '/admin/settings') ? 'active' : ''}`}>Settings</p>
+              <p
+                className={`sidebar-text ${activeLink ===
+                    (userAccess === 'Patient'
+                      ? '/patient/settings'
+                      : userAccess === 'Doctor'
+                        ? '/doctor/settings'
+                        : '/admin/settings')
+                    ? 'active'
+                    : ''
+                  }`}
+              >
+                Settings
+              </p>
             </Link>
             <Link to="/" className={`sidebar-link ${activeLink === '/' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/settings')}>
               <CiLogout />

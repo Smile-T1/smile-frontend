@@ -6,7 +6,7 @@ import { CheckIcon } from '@chakra-ui/icons'
 function PasswordCard() {
     return (
         <div className='PasswordCardConatainer'>
-            <div className='PasswordCardInnerConatainer' style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div className='PasswordCardInnerConatainer'>
                 <FormControl>
                     <FormLabel>New Password</FormLabel>
                     <Input size='lg' type="password" placeholder="Enter your password" />

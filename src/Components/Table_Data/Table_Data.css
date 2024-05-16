@@ -25,9 +25,9 @@ tr:hover {
 
 @media (max-width: 768px) {
   .table-container {
-    width: 300px;
+    width: 50%;
+    overflow-x: auto;
   }
-  /* change font size */
   th,
   td {
     font-size: 0.8em;

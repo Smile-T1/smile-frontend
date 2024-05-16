@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 import "./Settings.css";
 import Header_Pages from '../../Components/Header_Pages/Header_Pages';
 import ProfileCard from '../../Components/Settings/ProfileCard/ProfileCard';
@@ -7,6 +8,13 @@ import PasswordCard from '../../Components/Settings/PasswordCard/PasswordCard';
 
 function Settings() {
   const [selectedCard, setSelectedCard] = useState('Info');
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token === undefined || token === null) {
+      navigate('/login');
+    }
+  }, []);
 
   const handleCardSelection = (card) => {
     setSelectedCard(card);
@@ -15,12 +23,7 @@ function Settings() {
   return (
     <div className='Dashboard-patient-portal'>
       <Header_Pages type='Patient' header='Settings'/>
-      <div style={{
-        display:'flex',
-        flexDirection:'row',
-        gap: '1.5rem', 
-        marginTop: '4rem'
-      }}>
+      <div className='settings-main-container-page'>
         <ProfileCard onCardSelect={handleCardSelection} />
         {selectedCard === "Info" && <InfoCard />}
         {selectedCard === "Password" && <PasswordCard />}

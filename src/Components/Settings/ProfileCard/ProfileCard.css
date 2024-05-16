@@ -58,3 +58,18 @@
     background: rgb(248, 249, 250) !important;
     border-color: transparent !important;
 }
+
+@media (max-width: 1170px) {
+    .ProfileCardConatainer{
+        width: 100%;
+    }
+}
+
+@media (max-width: 690px) {
+    .ProfileCardConatainer{
+        width: 50%;
+    }
+    .button-profile-card{
+        font-size: 1px;
+    }
+}
