@@ -18,11 +18,11 @@ function Login() {
     localStorage.setItem('username', username);
 
     if (userAccess === 'Patient') {
-      navigate('/patient');
+      navigate('/patient/dashboard');
     } else if (userAccess === 'Admin') {
-      navigate('/admin');
+      navigate('/admin/dashboard');
     } else if (userAccess === 'Doctor') {
-      navigate('/doctor');
+      navigate('/doctor/dashboard');
     }
   }
 

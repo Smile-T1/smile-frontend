@@ -106,7 +106,7 @@ function App() {
                 }
               />
               <Route
-                path="/doctorPatients"
+                path="/doctor/patients"
                 element={
                   <Dashboard name="Patients">
                     <DoctorPatients />
@@ -114,7 +114,7 @@ function App() {
                 }
               />
               <Route
-                path="/doctorSchedule"
+                path="/doctor/schedule"
                 element={
                   <Dashboard name="Schedule">
                     <Schedule />

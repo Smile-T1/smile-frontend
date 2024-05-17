@@ -28,7 +28,6 @@ const loginUser = async (username, password) => {
   //store token in local storage
   const token = responseData.token;
   localStorage.setItem("token", token);
-
   console.log("User ID:", id);
   console.log("Username:", userUsername);
   console.log("Profile Picture:", profilePic);
