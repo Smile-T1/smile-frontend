@@ -6,12 +6,14 @@ import MedicalRecords from "../../../Components/Patient_Page/MedicalRecords/Medi
 
 function Medical_Records() {
   const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token === undefined || token === null) {
+    if (!token) {
       navigate('/login');
     }
   }, []);
+  
   return (
     <div className='patient-portal'>
       <Page_header type='Patient' header='Medical Records' />

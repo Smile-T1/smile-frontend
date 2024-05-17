@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
+import {useNavigate} from 'react-router-dom';
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
@@ -6,12 +7,9 @@ import OverviewCard from "../../../Components/OverviewCards/OverviewCard";
 import NewRequestCard from "../../../Components/NewRequestCard/NewRequestCard";
 import Table_Data from "../../../Components/Table_Data/Table_Data";
 import Page_header from "../../../Components/Header_Pages/Header_Pages";
-import { useState, useEffect } from "react";
 const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 function AdminDashboard() {
-  if (localStorage.getItem("token") === null) {
-    window.location.href = "/login";
-  }
+  const navigate = useNavigate();
   const today = new Date();
   const formattedDate = format(today, "MMMM do, yyyy");
 
@@ -27,6 +25,10 @@ function AdminDashboard() {
   const [type, setType] = useState("");
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    }
     const fetchData = async () => {
       try {
         const response = await fetch(`${VITE_SERVER_HOST}/api/admin/totals`, {

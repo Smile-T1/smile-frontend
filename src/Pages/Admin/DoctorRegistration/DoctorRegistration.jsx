@@ -1,12 +1,19 @@
-import React from "react";
+import React, {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import "./DoctorRegistration.css";
 import DoctorRegistrationForm from "../../../Components/DoctorRegistrationForm/DoctorRegistrationForm";
 import Page_header from "../../../Components/Header_Pages/Header_Pages";
 
 function DoctorRegistration() {
-  if (localStorage.getItem("token") === null) {
-    window.location.href = "/login";
-  }
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    }
+  }, []);
+  
   return (
     <div className="Book_appointment_Patient_Page">
       <Page_header type="Admin" header="Doctor registration" />

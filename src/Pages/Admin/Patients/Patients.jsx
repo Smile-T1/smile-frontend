@@ -1,11 +1,20 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import {useNavigate} from 'react-router-dom';
 import Users_table from "../../../Components/Users_table/Users_table";
 import "./Patients.css";
 import Header_Pages from "../../../Components/Header_Pages/Header_Pages";
 import { Input } from "@chakra-ui/react";
 
 function Patients() {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    }
+  }, []);
+  
   const handleSearch = (e) => {
     console.log(e.target.value);
   };
