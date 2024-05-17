@@ -1,0 +1,22 @@
+.patient-portal{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #f6f6f6;
+}
+
+.Medical_Records_Patient{
+    padding: 15px 10px 10px 10px;
+    max-width: 1000px;
+}
+
+.Medical_Recordst_Patient{
+    width: 100%;
+    background-color: white;
+    overflow-y: auto;
+    align-self: center;
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 40px 100px 40px 100px;
+}
