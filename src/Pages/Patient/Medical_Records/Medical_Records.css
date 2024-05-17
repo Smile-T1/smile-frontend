@@ -11,7 +11,7 @@
     max-width: 1000px;
 }
 
-.Medical_Recordst_Patient{
+.MedicalRecordPatientRowData{
     width: 100%;
     background-color: white;
     overflow-y: auto;
@@ -19,4 +19,47 @@
     box-sizing: border-box;
     border-radius: 15px;
     padding: 40px 100px 40px 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+}
+
+.Medical-Records-Patient-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 10px 10px 10px;
+    max-width: 1000px;
+}
+
+@media (max-width: 530px) {
+    .MedicalRecordPatientRowData {
+        padding: 40px 30px 40px 30px;
+    }
+}
+
+
+@media (max-width: 1240px) {
+    .Medical-Records-Patient-container {
+        max-width: 800px;
+        }
+}
+
+@media (max-width: 1040px) {
+    .Medical-Records-Patient-container {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 660px) {
+    .Medical-Records-Patient-container {
+        max-width: 400px;
+    }
+}
+
+
+@media (max-width: 460px) {
+    .Medical-Records-Patient-container {
+        max-width: 250px;
+    }
 }
