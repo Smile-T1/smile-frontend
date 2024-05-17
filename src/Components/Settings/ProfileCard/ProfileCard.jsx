@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import "./ProfileCard.css";
-import profilepic from '../../../assets/avatar_default_6.png';
+import profilepicture from '../../../assets/avatar_default_6.png';
 import { Button } from '@chakra-ui/react';
 import { IoMdPersonAdd } from "react-icons/io";
 import { RiLockPasswordFill } from "react-icons/ri";
 
-function ProfileCard({ onCardSelect }) {
+function ProfileCard({ onCardSelect, firstName, lastName, email, mobile, profilePic }) {
     const [selectedButton, setSelectedButton] = useState('Info');
 
     const handleButtonClick = (buttonName) => {
@@ -15,22 +15,22 @@ function ProfileCard({ onCardSelect }) {
 
     return (
         <div className='ProfileCardConatainer'>
-            <img src={profilepic} className="ProfilePicContainer" />
+            <img src={profilePic ? profilePic : profilepicture} className="ProfilePicContainer" />
             <div className='ProfileCardInfo'>
                 <h2 style={{
                     fontWeight: '600',
                     fontSize: '0.875rem',
                     lineHeight: '1.25rem'
-                }}>Omar Adel</h2>
+                }}>{firstName} {lastName}</h2>
                 <span style={{
                     color: 'rgb(160 160 160)',
                     fontSize: '0.75rem',
                     lineHeight: '1rem'
-                }}>omaradelhassan12@gmail.com</span>
+                }}>{email}</span>
                 <span style={{
                     fontSize: '0.75rem',
                     lineHeight: '1rem'
-                }}>01093774235</span>
+                }}>{mobile}</span>
             </div>
             <div className='ProfileCardButtons'>
                 <Button
@@ -47,7 +47,7 @@ function ProfileCard({ onCardSelect }) {
                     Personal Information
                 </Button>
                 <Button
-                    colorScheme='teal' 
+                    colorScheme='teal'
                     variant='outline'
                     className={`button-ProfileCard-method ${selectedButton === "Password" ? "button-selected" : "button-unselected"}`}
                     leftIcon={<RiLockPasswordFill />}

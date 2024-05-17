@@ -12,6 +12,14 @@ import { CiLogout } from "react-icons/ci";
 import { VscSettingsGear } from "react-icons/vsc";
 import { FaUserDoctor } from "react-icons/fa6";
 import ScheduleIcon from "./icons/Schedule";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Box
+} from '@chakra-ui/react'
 function Sidebar() {
   const userAccess = localStorage.getItem('userAccess');
   const [activeLink, setActiveLink] = useState(() => {
@@ -24,7 +32,7 @@ function Sidebar() {
         return '/admin/dashboard';
     }
   });
-  
+
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -88,54 +96,167 @@ function Sidebar() {
               </Link>
             ) : null}
             {userAccess === "Admin" && (
-              <>
-                <a href="#submenu1" data-bs-toggle="collapse" className={`nav-link align-middle sidebar-link ${activeLink === '/patient/appointment' ? 'active' : ''}`}
-                  style={{
-                    paddingLeft: '16px',
-                    paddingRight: '16px',
-                  }}>
-                  <AppointmentsIcon
-                    fill={`${activeLink == "/patient/appointment" ? "#034561" : "black"}`}
-                  /> <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment</span>
-                </a>
-                <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                  <li class="w-100">
-                    <Link href="#" className="nav-link px-0" onClick={() => setActiveLink('/patient/appointment')}>
-                      <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment list</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" class="nav-link px-0" onClick={() => setActiveLink('/patient/appointment')}>
-                      <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Add appointments</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" class="nav-link px-0" onClick={() => setActiveLink('/patient/appointment')}>
-                      <span className={`sidebar-text ${activeLink === '/patient/appointment' ? 'active' : ''}`}>Appointment requests</span>
-                    </Link>
-                  </li>
-                </ul>
-              </>
+              <Accordion defaultIndex={[0]} allowMultiple>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box
+                        as='span'
+                        flex='1'
+                        textAlign='left'
+                        className={`nav-link align-middle sidebar-link`}
+                        style={{
+                          paddingLeft: '16px',
+                          paddingRight: '16px',
+                        }}
+                      >
+                        <AppointmentsIcon fill={"black"} />
+                        <span className={`sidebar-text`}>Appointment</span>
+                      </Box>
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>
+                    <>
+                      <Link
+                        to={"/admin/appointments"}
+                        className={`sidebar-link ${activeLink === '/admin/appointments' ? 'active' : ''} AccordionPanelitem`}
+                        onClick={() => setActiveLink('/admin/appointments')}
+                      >
+                        <AppointmentsIcon
+                          fill={`${activeLink == "/admin/appointments" ? "#034561" : "black"}`} />
+                        <p className={`sidebar-text ${activeLink === '/admin/appointments' ? 'active' : ''}`}>
+                          Appointment list
+                        </p>
+                      </Link>
+                      {/* <Link
+                        to="/admin/appointments"
+                        className={`sidebar-link ${activeLink === '/admin/appointments' ? 'active' : ''} AccordionPanelitem`}
+                        onClick={() => setActiveLink('/admin/appointments')}
+
+                      >
+                        <AppointmentsIcon fill={`${activeLink == "/admin/appointments" ? "#034561" : "black"}`} />
+                        <p
+                          className={`sidebar-text ${activeLink === '/admin/appointments' ? 'active' : ''}`}>
+                          Add appointments
+                        </p>
+                      </Link> */}
+                      {/* <Link
+                        to="/admin/appointments"
+                        className={`sidebar-link ${activeLink === '/admin/appointments' ? 'active' : ''} AccordionPanelitem`}
+                        onClick={() => setActiveLink('/admin/appointments')}
+                      >
+                        <AppointmentsIcon fill={`${activeLink == "/admin/appointments" ? "#034561" : "black"}`} />
+                        <p
+                          className={`sidebar-text ${activeLink === '/admin/appointments' ? 'active' : ''}`}>
+                          Appointment requests
+                        </p>
+                      </Link> */}
+                    </>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box
+                        as='span'
+                        flex='1'
+                        textAlign='left'
+                        className={`nav-link align-middle sidebar-link`}
+                        style={{
+                          paddingLeft: '16px',
+                          paddingRight: '16px',
+                        }}
+                      >
+                        <AppointmentsIcon fill={"black"} />
+                        <span className={`sidebar-text`}>Patients</span>
+                      </Box>
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>
+                    <>
+                      <Link
+                        to={"/admin/patients"}
+                        className={`sidebar-link ${activeLink === '/admin/patients' ? 'active' : ''} AccordionPanelitem`}
+                        onClick={() => setActiveLink('/admin/patients')}
+                      >
+                        <AppointmentsIcon
+                          fill={`${activeLink == "/admin/patients" ? "#034561" : "black"}`} />
+                        <p className={`sidebar-text ${activeLink === '/admin/patients' ? 'active' : ''}`}>
+                          View patients
+                        </p>
+                      </Link>
+                      <Link
+                        to="/admin/patient_registration"
+                        className={`sidebar-link ${activeLink === '/admin/patient_registration' ? 'active' : ''} AccordionPanelitem`}
+                        onClick={() => setActiveLink('/admin/patient_registration')}
+                      >
+                        <AppointmentsIcon fill={`${activeLink == "/admin/patient_registration" ? "#034561" : "black"}`} />
+                        <p
+                          className={`sidebar-text ${activeLink === '/admin/patient_registration' ? 'active' : ''}`}>
+                          Add new patient
+                        </p>
+                      </Link>
+                    </>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box
+                        as='span'
+                        flex='1'
+                        textAlign='left'
+                        className={`nav-link align-middle sidebar-link`}
+                        style={{
+                          paddingLeft: '16px',
+                          paddingRight: '16px',
+                        }}
+                      >
+                        <FaUserDoctor fill={"black"} />
+                        <span className={`sidebar-text`}>Doctors</span>
+                      </Box>
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>
+                    <>
+                      <Link
+                        to={"/admin/doctors"}
+                        className={`sidebar-link ${activeLink === '/admin/doctors' ? 'active' : ''} AccordionPanelitem`}
+                        onClick={() => setActiveLink('/admin/doctors')}
+                      >
+                        <FaUserDoctor
+                          fill={`${activeLink == "/admin/doctors" ? "#034561" : "black"}`} />
+                        <p className={`sidebar-text ${activeLink === '/admin/doctors' ? 'active' : ''} `}>
+                          View doctors
+                        </p>
+                      </Link>
+                      <Link
+                        to="/admin/doctor_registration"
+                        className={`sidebar-link ${activeLink === '/admin/doctor_registration' ? 'active' : ''} AccordionPanelitem`}
+                        onClick={() => setActiveLink('/admin/doctor_registration')}
+                      >
+                        <FaUserDoctor fill={`${activeLink == "/admin/doctor_registration" ? "#034561" : "black"}`} />
+                        <p
+                          className={`sidebar-text ${activeLink === '/admin/doctor_registration' ? 'active' : ''}`}>
+                          Add new doctor
+                        </p>
+                      </Link>
+                    </>
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
             )}
-            {userAccess === "Admin" || userAccess === "Doctor" ? (
-              <Link to={userAccess === 'Admin' ? '/admin/patients' : userAccess === 'Doctor' ? '/doctor/patients' : null}
-                className={`sidebar-link ${activeLink === (userAccess === 'Admin' ? '/admin/patients' : userAccess === 'Doctor' ? '/doctor/patients' : null) ? 'active' : ''}`}
-                onClick={() => setActiveLink(userAccess === 'Admin' ? '/admin/patients' : userAccess === 'Doctor' ? '/doctor/patients' : null)}
+            {userAccess === "Doctor" ? (
+              <Link to={'/doctor/patients'}
+                className={`sidebar-link ${activeLink === ('/doctor/patients') ? 'active' : ''}`}
+                onClick={() => setActiveLink('/doctor/patients')}
               >
                 <FaUserDoctor
-                  fill={`${activeLink === (userAccess === 'Admin' ? '/admin/patients' : userAccess === 'Doctor' ? '/doctor/patients' : null) ? "#034561" : "black"}`}
+                  fill={`${activeLink === ('/doctor/patients') ? "#034561" : "black"}`}
                 />
-                <p className={`sidebar-text ${activeLink === (userAccess === 'Admin' ? '/admin/patients' : userAccess === 'Doctor' ? '/doctor/patients' : null) ? 'active' : ''}`}>Patients</p>
+                <p className={`sidebar-text ${activeLink === ('/doctor/patients') ? 'active' : ''}`}>Patients</p>
               </Link>
             ) : null}
-            {userAccess === "Admin" && (
-              <Link to="/admin/doctors" className={`sidebar-link ${activeLink === '/admin/doctors' ? 'active' : ''}`} onClick={() => setActiveLink('/admin/doctors')}>
-                <FaUserDoctor
-                  fill={`${activeLink === "/admin/doctors" ? "#034561" : "black"}`}
-                />
-                <p className={`sidebar-text ${activeLink === '/admin/doctors' ? 'active' : ''}`}>Doctors</p>
-              </Link>
-            )}
             {userAccess === "Patient" && (
               <Link to="/patient/book_appointment" className={`sidebar-link ${activeLink === '/patient/book_appointment' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/book_appointment')}>
                 <BookAppointmentsIcon
@@ -160,60 +281,62 @@ function Sidebar() {
                 <p className={`sidebar-text ${activeLink === '/doctor/schedule' ? 'active' : ''}`}>Schedule</p>
               </Link>
             )}
-            <Link
-              to={
-                userAccess === 'Patient'
-                  ? '/patient/settings'
-                  : userAccess === 'Doctor'
-                    ? '/doctor/settings'
-                    : '/admin/settings'
-              }
-              className={`sidebar-link ${activeLink ===
-                  (userAccess === 'Patient'
-                    ? '/patient/settings'
-                    : userAccess === 'Doctor'
-                      ? '/doctor/settings'
-                      : '/admin/settings')
-                  ? 'active'
-                  : ''
-                }`}
-              onClick={() =>
-                setActiveLink(
+            {userAccess !== "Admin" && (
+              <Link
+                to={
                   userAccess === 'Patient'
                     ? '/patient/settings'
                     : userAccess === 'Doctor'
                       ? '/doctor/settings'
-                      : '/admin/settings'
-                )
-              }
-            >
-              <VscSettingsGear
-                fill={
-                  activeLink ===
-                    (userAccess === 'Patient'
-                      ? '/patient/settings'
-                      : userAccess === 'Doctor'
-                        ? '/doctor/settings'
-                        : '/admin/settings')
-                    ? '#034561'
-                    : 'black'
+                      : null
                 }
-              />
-              <p
-                className={`sidebar-text ${activeLink ===
+                className={`sidebar-link ${activeLink ===
+                  (userAccess === 'Patient'
+                    ? '/patient/settings'
+                    : userAccess === 'Doctor'
+                      ? '/doctor/settings'
+                      : null)
+                  ? 'active'
+                  : ''
+                  }`}
+                onClick={() =>
+                  setActiveLink(
+                    userAccess === 'Patient'
+                      ? '/patient/settings'
+                      : userAccess === 'Doctor'
+                        ? '/doctor/settings'
+                        : null
+                  )
+                }
+              >
+                <VscSettingsGear
+                  fill={
+                    activeLink ===
+                      (userAccess === 'Patient'
+                        ? '/patient/settings'
+                        : userAccess === 'Doctor'
+                          ? '/doctor/settings'
+                          : null)
+                      ? '#034561'
+                      : 'black'
+                  }
+                />
+                <p
+                  className={`sidebar-text ${activeLink ===
                     (userAccess === 'Patient'
                       ? '/patient/settings'
                       : userAccess === 'Doctor'
                         ? '/doctor/settings'
-                        : '/admin/settings')
+                        : null)
                     ? 'active'
                     : ''
-                  }`}
-              >
-                Settings
-              </p>
-            </Link>
-            <Link to="/" className={`sidebar-link ${activeLink === '/' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/settings')}>
+                    }`}
+                >
+                  Settings
+                </p>
+              </Link>
+            )}
+            <Link to="/" className={`sidebar-link ${activeLink === '/' ? 'active' : ''}`}>
               <CiLogout />
               <p className={`sidebar-text ${activeLink === '/' ? 'active' : ''}`}>Log out</p>
             </Link>

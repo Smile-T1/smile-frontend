@@ -12,8 +12,9 @@ function Login() {
 
   const handleLogin = async () => {
     const responseData = await loginUser(username, password);
-  
     const userAccess = responseData.userAccess;
+    const token = responseData.token;
+    localStorage.setItem("token", token);
     localStorage.setItem('userAccess', userAccess);
     localStorage.setItem('username', username);
 

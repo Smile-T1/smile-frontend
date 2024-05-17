@@ -6,7 +6,7 @@ const EditModal = ({ isOpen, onClose, selectedAppointmentId }) => {
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>Confirm Delete</ModalHeader>
+                <ModalHeader>Edit Appointment</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                     Are you sure you want to delete this appointment?

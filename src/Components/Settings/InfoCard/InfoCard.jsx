@@ -14,11 +14,11 @@ import {
 } from '@chakra-ui/react';
 import { DeleteIcon, CheckIcon } from '@chakra-ui/icons'
 
-function InfoCard() {
-    const [address, setAddress] = useState("Faculty of Engineering");
+function InfoCard({ firstName, lastName, username, mobile, email, address, profilePic }) {
+    const [addressvalue, setAddressValue] = useState(address);
     const [isAddressEditable, setIsAddressEditable] = useState(false);
     const [isChangesMade, setIsChangesMade] = useState(false);
-    const [uploadedImage, setUploadedImage] = useState(null);
+    const [uploadedImage, setUploadedImage] = useState(profilePic);
 
     const handleAddressEdit = () => {
         setIsAddressEditable(!isAddressEditable);
@@ -66,38 +66,34 @@ function InfoCard() {
                             </span>
                         </div>
                         <div className='uploadprofilepicsectionright'>
-                            {uploadedImage ? (
-                                <img src={uploadedImage} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
-                            ) : (
-                                <img src={InitialPic} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
-                            )}
+                            <img src={uploadedImage ? uploadedImage : InitialPic} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
                         </div>
                     </div>
                 </div>
                 <div class="form-group-settings">
                     <FormControl>
                         <FormLabel>First name</FormLabel>
-                        <Input value={"Omar"} isReadOnly style={{ background: '#f6f6f6' }} />
+                        <Input value={firstName} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                     <FormControl>
                         <FormLabel>Last name</FormLabel>
-                        <Input value={"Adel"} isReadOnly style={{ background: '#f6f6f6' }} />
+                        <Input value={lastName} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                 </div>
                 <div class="form-group-settings">
                     <FormControl>
                         <FormLabel>Username</FormLabel>
-                        <Input value={"suiiiiiiiii"} isReadOnly style={{ background: '#f6f6f6' }} />
+                        <Input value={username} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                     <FormControl>
                         <FormLabel>Phone number</FormLabel>
-                        <Input value={"01093774235"} isReadOnly style={{ background: '#f6f6f6' }} />
+                        <Input value={mobile} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                 </div>
                 <div class="form-group-settings">
                     <FormControl>
                         <FormLabel>Email address</FormLabel>
-                        <Input value={"omaradelhassan12@gmail.com"} isReadOnly style={{ background: '#f6f6f6' }} />
+                        <Input value={email} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                 </div>
                 <div className='row-modal-info' style={{ width: '100%' }}>
@@ -107,7 +103,7 @@ function InfoCard() {
                             <Textarea
                                 value={address}
                                 isReadOnly={!isAddressEditable}
-                                onChange={(e) => setAddress(e.target.value)}
+                                onChange={(e) => setAddressValue(e.target.value)}
                                 style={{ background: '#f6f6f6', minHeight: '70px' }} />
                             <InputRightElement width='4.5rem'>
                                 <Button h='1.75rem' size='sm' onClick={handleAddressEdit} background='white'>
