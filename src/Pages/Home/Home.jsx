@@ -9,7 +9,7 @@ import time from "../../assets/time.png";
 import logo from "../../assets/Smile.png";
 import doctor from "../../assets/doctor.png";
 import about from "../../assets/about.png";
-import activeIcon from "./icons/activeIcon";
+import ActiveIcon from "./icons/activeIcon";
 
 function Home(props) {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ function Home(props) {
       setActiveTab('about');
     }
     else if (index === 2) {
-      setActiveTab('home');
+      setActiveTab('contact');
     }
   };
 
@@ -44,26 +44,30 @@ function Home(props) {
       <div className={`upper-rectangle ${activeTab}`}>
         <div className='homeMenu'>
           <Tabs position='relative' variant='unstyled' onChange={handleTabChange}>
-            <div style={{display:'flex',gap:'322px', alignItems:'center', justifyContent:'center'}}>
-              <div className='logo' style={{marginTop: '0', height:'auto'}}>
+            <div style={{ display: 'flex', gap: '322px', alignItems: 'center', justifyContent: 'center' }}>
+              <div className='logo' style={{ marginTop: '0', height: 'auto' }}>
                 <img src={logo} alt="Smile Clinic" style={{ height: '97px', width: '150px' }} />
               </div>
-              <TabList>
-                <Tab onClick={() => setActiveTab('home')} >
+              <TabList className="homeTab">
+                <Tab onClick={() => setActiveTab('home')}
+                  className={`tab ${activeTab === 'home' ? 'active' : ''}`}>
+                  {/* {activeTab === 'home' && <ActiveIcon />} */}
                   Home
-                  {activeTab === 'home' && <activeIcon />}
                 </Tab>
-                <Tab onClick={() => setActiveTab('about')}>
+                <Tab onClick={() => setActiveTab('about')}
+                  className={`tab ${activeTab === 'about' ? 'active' : ''}`}>
+                  {/* {activeTab === 'about' && <ActiveIcon />} */}
                   About Us
-                  {activeTab === 'about' && <activeIcon />}
                 </Tab>
-                <Tab onClick={() => setActiveTab('contact')} >
+                <Tab onClick={() => setActiveTab('contact')}
+                  className={`tab ${activeTab === 'contact' ? 'active' : ''}`} >
+                  {/* {activeTab === 'contact' && <ActiveIcon />} */}
                   Contact
-                  {activeTab === 'contact' && <activeIcon />}
                 </Tab>
-                <Tab onClick={() => { navigate('/login') }}>
+                <Tab onClick={() => { navigate('/login') }}
+                  className={`tab ${activeTab === 'home' ? 'active' : ''}`}>
+                  {/* {activeTab === 'login' && <ActiveIcon />} */}
                   Log In
-                  {activeTab === 'login' && <activeIcon />}
                 </Tab>
               </TabList>
             </div>
