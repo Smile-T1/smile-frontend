@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import "./Dashboard.css";
 import Page_header from "../../../Components/Header_Pages/Header_Pages";
 import Upcoming_appointment from '../../../Components/Patient_Page/Dashboard/Upcoming_appointment/Upcoming_appointment';
@@ -7,6 +8,14 @@ import Medical_History from '../../../Components/Patient_Page/Dashboard/Medical_
 import Latest_reports from "../../../Components/Patient_Page/Dashboard/Latest_reports/Latest_reports";
 
 function Dashboard() {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    }
+  }, []);
 
   return (
     <div className='Dashboard-patient-portal'>

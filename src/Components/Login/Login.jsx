@@ -12,17 +12,18 @@ function Login() {
 
   const handleLogin = async () => {
     const responseData = await loginUser(username, password);
-  
     const userAccess = responseData.userAccess;
+    const token = responseData.token;
+    localStorage.setItem("token", token);
     localStorage.setItem('userAccess', userAccess);
     localStorage.setItem('username', username);
 
     if (userAccess === 'Patient') {
-      navigate('/patient');
+      navigate('/patient/dashboard');
     } else if (userAccess === 'Admin') {
-      navigate('/admin');
+      navigate('/admin/dashboard');
     } else if (userAccess === 'Doctor') {
-      navigate('/doctor');
+      navigate('/doctor/dashboard');
     }
   }
 

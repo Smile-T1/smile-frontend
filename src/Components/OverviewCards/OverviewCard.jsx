@@ -8,7 +8,7 @@ function Overviewcard(props) {
       <Card id="card2">
         <CardHeader>{props.header}</CardHeader>
         <CardBody>
-          <p id="body">300</p>
+          <p id="body">{props.value}</p>
         </CardBody>
       </Card>
     </div>

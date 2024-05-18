@@ -48,7 +48,7 @@ tr:hover {
 
 @media (max-width: 768px) {
   .table-container {
-    width: 300px;
+    width: 460px;
   }
   /* change font size */
   th,

@@ -21,6 +21,11 @@
   font-size: 0.9em;
 }
 
+.top {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+}
 @media (max-width: 768px) {
   .NewRequest-card {
     width: 250px;

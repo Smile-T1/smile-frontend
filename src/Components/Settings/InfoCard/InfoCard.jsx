@@ -14,16 +14,28 @@ import {
 } from '@chakra-ui/react';
 import { DeleteIcon, CheckIcon } from '@chakra-ui/icons'
 
-function InfoCard() {
-    const [address, setAddress] = useState("Faculty of Engineering");
+function InfoCard({ firstName, lastName, username, mobile, email, address, profilePic }) {
+    const [addressvalue, setAddressValue] = useState(address);
     const [isAddressEditable, setIsAddressEditable] = useState(false);
     const [isChangesMade, setIsChangesMade] = useState(false);
-
+    const [uploadedImage, setUploadedImage] = useState(profilePic);
 
     const handleAddressEdit = () => {
         setIsAddressEditable(!isAddressEditable);
         setIsChangesMade(true);
     };
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setUploadedImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <div className='InfoCardConatainer'>
             <div className='InfoCardInnerConatainer'>
@@ -35,7 +47,12 @@ function InfoCard() {
                     }}>Profile Image</p>
                     <div className='uploadprofilepicsection2'>
                         <div className='uploadprofilepicsectionleft'>
-                            <input type="file" tabIndex='-1' style={{ display: 'none' }} />
+                            <input
+                                type="file"
+                                style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }}
+                                onChange={handleImageUpload}
+                                accept=".jpeg,.png"
+                            />
                             <span style={{
                                 display: 'flex',
                                 justifyContent: 'center',
@@ -43,42 +60,40 @@ function InfoCard() {
                                 fontSize: '25px',
                                 fontWeight: '900'
                             }}><UploadIcon /></span>
-                            <p style={{ marginTop: '8px', fontSize: '.875rem', lineHeight: '1.25rem' }}>Drop/Drag your image here</p>
-                            <span style={{
-                                color: 'rgb(156 163 175)',
-                                fontSize: '.75rem',
-                                lineHeight: '1rem'
-                            }}>(Only *.jpeg and *.png images will be accepted)</span>
+                            <p className='description-title-image-settings'>Drop/Drag your image here</p>
+                            <span className='description-image-settings'>
+                                (Only *.jpeg and *.png images will be accepted)
+                            </span>
                         </div>
                         <div className='uploadprofilepicsectionright'>
-                            <img src={InitialPic} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
+                            <img src={uploadedImage ? uploadedImage : InitialPic} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
                         </div>
                     </div>
                 </div>
-                <div class="form-group" style={{ display: 'flex', flexDirection: 'row', gap: '1em', width: '100%' }}>
+                <div class="form-group-settings">
                     <FormControl>
                         <FormLabel>First name</FormLabel>
-                        <Input value={"Omar"} isReadOnly style={{ background: '#f6f6f6' }} />
+                        <Input value={firstName} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                     <FormControl>
                         <FormLabel>Last name</FormLabel>
-                        <Input value={"Adel"} isReadOnly style={{ background: '#f6f6f6' }} />
+                        <Input value={lastName} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                 </div>
-                <div class="form-group" style={{ display: 'flex', flexDirection: 'row', gap: '1em', width: '100%' }}>
+                <div class="form-group-settings">
                     <FormControl>
                         <FormLabel>Username</FormLabel>
-                        <Input value={"suiiiiiiiii"} isReadOnly style={{ background: '#f6f6f6' }} />
+                        <Input value={username} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                     <FormControl>
                         <FormLabel>Phone number</FormLabel>
-                        <Input value={"01093774235"} isReadOnly style={{ background: '#f6f6f6' }} />
+                        <Input value={mobile} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                 </div>
-                <div class="form-group" style={{ display: 'flex', flexDirection: 'row', gap: '1em', width: '100%' }}>
+                <div class="form-group-settings">
                     <FormControl>
                         <FormLabel>Email address</FormLabel>
-                        <Input value={"omaradelhassan12@gmail.com"} isReadOnly style={{ background: '#f6f6f6' }} />
+                        <Input value={email} isReadOnly style={{ background: '#f6f6f6' }} />
                     </FormControl>
                 </div>
                 <div className='row-modal-info' style={{ width: '100%' }}>
@@ -88,7 +103,7 @@ function InfoCard() {
                             <Textarea
                                 value={address}
                                 isReadOnly={!isAddressEditable}
-                                onChange={(e) => setAddress(e.target.value)}
+                                onChange={(e) => setAddressValue(e.target.value)}
                                 style={{ background: '#f6f6f6', minHeight: '70px' }} />
                             <InputRightElement width='4.5rem'>
                                 <Button h='1.75rem' size='sm' onClick={handleAddressEdit} background='white'>
