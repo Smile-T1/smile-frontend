@@ -47,6 +47,10 @@ function Sidebar() {
     };
   }, []);
 
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location.pathname]);
+
   return (
     <div className='sidebar-portal'>
       <aside className='content-wrapper-sidebar bg-white h-screen sticky top-0 p-2 min-w-[50px] dashboard-sidebar block'
