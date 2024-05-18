@@ -187,6 +187,7 @@
 }
 
 .tab.active{
+  color: blue;
   border-bottom: 2px solid blue;
 }
 
