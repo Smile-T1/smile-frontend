@@ -111,21 +111,51 @@ function Home(props) {
                         <div className='about-text5'>
                           We are a dedicated team of eye care professionals committed to providing our patients with the highest quality of care. Our mission is to help our patients maintain healthy eyes and clear vision throughout their lives. <br /> <br />
 
-                          Our clinic offers a comprehensive range of services, including routine eye exams, vision screenings, and treatment for a variety of eye conditions and diseases. Our skilled and experienced doctors use the latest technologies and techniques to ensure that our patients receive the best possible care.
-                        </div>
-                      </div>
-                      <img src={about} alt="dental" />
-                    </div>
-                  </div>
-
-                </div>
-              </TabPanel>
-              <TabPanel>
-                <p>Contact us!</p>
-              </TabPanel>
-
-            </TabPanels>
-          </Tabs>
+Our clinic offers a comprehensive range of services, including routine eye exams, vision screenings, and treatment for a variety of eye conditions and diseases. Our skilled and experienced doctors use the latest technologies and techniques to ensure that our patients receive the best possible care.
+        </div>
+        </div>
+        <img src={about} alt="dental" />
+      </div>
+    </div>
+     
+</div>
+    </TabPanel>
+    <TabPanel>
+      <div className='contactform'>
+    <h2>Contact us</h2>
+  <form>
+    <div className='formName'>
+    <label>
+      Name:
+      <input type="text" name="name" />
+    </label>
+    </div>
+    <div className='formEmail'>
+    <label>
+      Email:
+      <input type="email" name="email"  />
+    </label>
+    </div>
+    <div  className='formPhone'>
+    <label>
+      Phone:
+      <input type="tel" name="phone" />
+    </label>
+    </div>
+    <div className='formMessage' >
+    <label>
+      Message:
+      <input  name="message" />
+    </label>
+    </div>
+    <div className='formSubmit'>
+    <button>Submit</button>
+    </div>
+  </form>
+  </div>
+</TabPanel>
+  </TabPanels>
+</Tabs>
 
         </div>
       </div>
