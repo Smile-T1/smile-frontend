@@ -6,16 +6,17 @@ import waves from "../../assets/waves.png";
 import location from "../../assets/location.png";
 import date from "../../assets/date.png";
 import time from "../../assets/time.png";
-import logo from "../../assets/Smile_without.png";
+import logo from "../../assets/Smile.png";
 import doctor from "../../assets/doctor.png";
 import about from "../../assets/about.png";
+import ActiveIcon from "./icons/activeIcon";
 
 function Home(props) {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
 
   useEffect(() => {
-    localStorage.removeItem('token'); 
+    localStorage.removeItem('token');
   }, []);
 
   const handleTabChange = (index) => {
@@ -29,7 +30,7 @@ function Home(props) {
       setActiveTab('about');
     }
     else if (index === 2) {
-      setActiveTab('home');
+      setActiveTab('contact');
     }
   };
 
@@ -41,19 +42,35 @@ function Home(props) {
       {activeTab === 'home' && <div className='eclipsehome1'></div>}
       {activeTab === 'home' && <div className='eclipsehome2'></div>}
       <div className={`upper-rectangle ${activeTab}`}>
-
-        <div className='logo'>
-          <img src={logo} alt="" />
-          <span className='logo-name'>Smile Clinic</span>
-        </div>
         <div className='homeMenu'>
           <Tabs position='relative' variant='unstyled' onChange={handleTabChange}>
-            <TabList>
-              <Tab onClick={() => setActiveTab('home')} >Home</Tab>
-              <Tab onClick={() => setActiveTab('about')}>About Us</Tab>
-              <Tab onClick={() => setActiveTab('contact')} >Contact</Tab>
-              <Tab onClick={() => { navigate('/login') }}>Log In</Tab>
-            </TabList>
+            <div style={{ display: 'flex', gap: '322px', alignItems: 'center', justifyContent: 'center' }}>
+              <div className='logo' style={{ marginTop: '0', height: 'auto' }}>
+                <img src={logo} alt="Smile Clinic" style={{ height: '97px', width: '150px' }} />
+              </div>
+              <TabList className="homeTab">
+                <Tab onClick={() => setActiveTab('home')}
+                  className={`tab ${activeTab === 'home' ? 'active' : ''}`}>
+                  {/* {activeTab === 'home' && <ActiveIcon />} */}
+                  Home
+                </Tab>
+                <Tab onClick={() => setActiveTab('about')}
+                  className={`tab ${activeTab === 'about' ? 'active' : ''}`}>
+                  {/* {activeTab === 'about' && <ActiveIcon />} */}
+                  About Us
+                </Tab>
+                <Tab onClick={() => setActiveTab('contact')}
+                  className={`tab ${activeTab === 'contact' ? 'active' : ''}`} >
+                  {/* {activeTab === 'contact' && <ActiveIcon />} */}
+                  Contact
+                </Tab>
+                <Tab onClick={() => { navigate('/login') }}
+                  className={`tab ${activeTab === 'home' ? 'active' : ''}`}>
+                  {/* {activeTab === 'login' && <ActiveIcon />} */}
+                  Log In
+                </Tab>
+              </TabList>
+            </div>
             <TabPanels>
               <TabPanel>
                 <div className={`home ${activeTab}`}>
@@ -101,7 +118,6 @@ function Home(props) {
                     <div className='bookapp'>
                       <button className='bookbutton'>Book today</button>
                     </div>
-
                     <div className='about-bottom'>
                       <div className='abouttxt'>
                         <div className='about-text4'>
@@ -109,6 +125,12 @@ function Home(props) {
                         </div>
                         <div className='about-text5'>
                           We are a dedicated team of eye care professionals committed to providing our patients with the highest quality of care. Our mission is to help our patients maintain healthy eyes and clear vision throughout their lives. <br /> <br />
+                          Our clinic offers a comprehensive range of services, including routine eye exams, vision screenings, and treatment for a variety of eye conditions and diseases. Our skilled and experienced doctors use the latest technologies and techniques to ensure that our patients receive the best possible care.
+                        </div>
+                      </div>
+                      <img src={about} alt="dental" />
+                    </div>
+                  </div>
 
 Our clinic offers a comprehensive range of services, including routine eye exams, vision screenings, and treatment for a variety of eye conditions and diseases. Our skilled and experienced doctors use the latest technologies and techniques to ensure that our patients receive the best possible care.
         </div>
@@ -157,7 +179,6 @@ Our clinic offers a comprehensive range of services, including routine eye exams
 </TabPanel>
   </TabPanels>
 </Tabs>
-
         </div>
       </div>
 
