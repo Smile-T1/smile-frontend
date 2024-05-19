@@ -8,7 +8,7 @@ const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 function AllAppointments() {
   const [appointments, setAppointments] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/login");
@@ -26,13 +26,13 @@ function AllAppointments() {
           }
         );
         const data = await response.json();
-        // console.log(data.appointments);
-        // setAppointments(data.appointments);
+        setAppointments(data);
+        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-    await fetchData();
+    fetchData();
   }, []);
 
   return (
