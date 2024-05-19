@@ -85,7 +85,6 @@ function Home(props) {
                         <div className='time'>
                           <img src={time} alt="time" />
                           <span> 10:00 AM</span>
-
                         </div>
                       </div>
                     </CardBody>
@@ -149,7 +148,9 @@ Our clinic offers a comprehensive range of services, including routine eye exams
     </label>
     </div>
     <div className='formSubmit'>
-    <button>Submit</button>
+    <button>
+      Submit
+    </button>
     </div>
   </form>
   </div>
