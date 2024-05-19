@@ -1,41 +1,10 @@
 import React from "react";
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Button,
-    useToast
-} from "@chakra-ui/react";
-import { DeleteAppointmnetPatientByID } from "../../Pages/Patient/PatientPortalEndPoints";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button } from "@chakra-ui/react";
+
 const DeleteModal = ({ isOpen, onClose, onDelete, selectedAppointmentId }) => {
-    const toast = useToast();
-
-    function Toast(message, state) {
-        toast({
-            description: message,
-            status: state,
-            duration: 3000,
-            isClosable: true,
-        })
-    }
-
-    const handleDelete = async () => {
+    const handleDelete = () => {
         onDelete(selectedAppointmentId);
-        try {
-            const response = await DeleteAppointmnetPatientByID(selectedAppointmentId);
-            if (response && response.status === "success") {
-                Toast(response.message, response.status);
-            } else if (response && response.status === "error") {
-                Toast(response.message, response.status);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-        onClose();
+        onClose(); 
     };
 
     return (

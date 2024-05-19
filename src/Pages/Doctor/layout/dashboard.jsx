@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { DashboardIcon } from "./icons/dashboard";
 import AppointmentsIcon from "./icons/appointments";
 import PatientsIcon from "./icons/patients";
@@ -14,15 +14,6 @@ import PageHeader from "../../../Components/Header_Pages/Header_Pages";
 const Dashboard = ({ name, children }) => {
   const [Menu, setMenu] = useState(false);
   const { doctor } = useDataContext();
-  const navigate = useNavigate();
-  
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-    }
-  }, []);
-  
   return (
     <div className="flex" style={{flexDirection: 'column', alignItems: 'center', overflow: 'hidden'}}>
       <MobileSide Menu={Menu} name={name} setMenu={setMenu} />

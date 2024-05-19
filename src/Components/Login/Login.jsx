@@ -1,39 +1,36 @@
-import React, { useState } from 'react';
-import './Login.css';
+import React, { useState } from "react";
+import "./Login.css";
 const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
-import { loginUser } from './LoginEndpoints';
-import { useNavigate } from 'react-router-dom';
+import { loginUser } from "./LoginEndpoints";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     const responseData = await loginUser(username, password);
+    localStorage.setItem("user", responseData._id);
     const userAccess = responseData.userAccess;
-    const token = responseData.token;
-    localStorage.setItem("token", token);
-    localStorage.setItem('userAccess', userAccess);
-    localStorage.setItem('username', username);
+    localStorage.setItem("userAccess", userAccess);
+    localStorage.setItem("username", username);
 
-    if (userAccess === 'Patient') {
-      navigate('/patient/dashboard');
-    } else if (userAccess === 'Admin') {
-      navigate('/admin/dashboard');
-    } else if (userAccess === 'Doctor') {
-      navigate('/doctor/dashboard');
+    if (userAccess === "Patient") {
+      navigate("/patient/dashboard");
+    } else if (userAccess === "Admin") {
+      navigate("/admin/dashboard");
+    } else if (userAccess === "Doctor") {
+      navigate("/doctor/dashboard");
     }
-  }
-
+  };
 
   return (
-
-    <div className='login-page'>
+    <div className="login-page">
       <div className="login-container">
         <h2 className="login-header">Login</h2>
-        <h6 className='login-message'>Hello!  Please enter your credentials</h6>
+        <h6 className="login-message">Hello! Please enter your credentials</h6>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="input-container">
           <label className="input-label">Username:</label>
@@ -53,9 +50,11 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className="login-button" onClick={handleLogin}>Login</button>
+        <button className="login-button" onClick={handleLogin}>
+          Login
+        </button>
       </div>
     </div>
   );
 }
-export default Login
+export default Login;

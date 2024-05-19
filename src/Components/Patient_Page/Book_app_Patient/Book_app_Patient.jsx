@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import "./Book_app_Patient.css";
 import {
     FormControl,
@@ -7,7 +7,6 @@ import {
     Select,
     Button,
     Flex,
-    useToast
 } from '@chakra-ui/react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
@@ -26,17 +25,6 @@ function Book_app_Patient() {
     const [selectedDoctorArray, setSelectedDoctorArray] = useState([]);
     const [files, setFiles] = useState([]);
     const [bookingData, setBookingData] = useState(null);
-    const fileInputRef = useRef(null);
-    const toast = useToast();
-
-    function Toast(message, state) {
-        toast({
-            description: message,
-            status: state,
-            duration: 3000,
-            isClosable: true,
-        })
-    }
 
     const handleSelectedDoctorChange = (e) => {
         setSelectedDoctor(e.target.value);
@@ -66,46 +54,23 @@ function Book_app_Patient() {
     };
 
     const handleFileUpload = (e) => {
-        if (files.length > 0) {
-            setFiles([]);
-        } else {
-            fileInputRef.current.click();
-        }
+        // Handle file upload logic here
     };
 
-    const handleBookingRequest = async () => {
-        const formData = new FormData();
-        const appointmentDetails = JSON.stringify({
+    const handleBookingRequest = () => {
+        const appointmentData = {
             doctorUser: selectedDoctor,
             dateappointment: selectedformattedAppointmentDate,
             appointmentTime: selectedTime,
             appointmentNotes: note,
             Report: files,
             appointmentType: appointmentFor
-        });
-        formData.append("appointmentDetails", appointmentDetails);
-        formData.append("report", files[0]);
-        try {
-            const response = await handleBooking(formData);
-            if (response && response.status === "success") {
-                Toast(response.message, response.status);
-            } else if (response && response.status === "error") {
-                Toast(response.message, response.status);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        };
+        handleBooking(appointmentData);
     };
 
     const handleCancel = () => {
-        setSelectedDoctor('');
-        setAppointmentFor('');
-        setSelectedAppointmentDate('');
-        setSelectedFormattedAppointmentDate('');
-        setSelectedTime('');
-        setNote('');
-        setSelectedDoctorArray([]);
-        setFiles([]);
+        // Handle cancel logic here
     };
 
     return (
@@ -117,11 +82,7 @@ function Book_app_Patient() {
                 <div className='row-fill-book-data'>
                     <FormControl>
                         <FormLabel>Appointment for</FormLabel>
-                        <Select placeholder="Appointment for"
-                            value={appointmentFor}
-                            style={{ background: '#f6f6f6' }}
-                            onChange={handleAppointmentForChange}
-                        >
+                        <Select placeholder="Appointment for" style={{ background: '#f6f6f6' }} onChange={handleAppointmentForChange}>
                             <option value="Routine Check-up and Cleaning">Routine Check-up and Cleaning</option>
                             <option value="Dental Filling">Dental Filling</option>
                             <option value="Root Canal Therapy">Root Canal Therapy</option>
@@ -184,47 +145,15 @@ function Book_app_Patient() {
                 <div style={{ width: '100%' }}>
                     <FormControl>
                         <FormLabel>Note</FormLabel>
-                        <Input
-                            placeholder='Note (Optional)'
-                            size='lg'
-                            style={{ background: '#f6f6f6' }}
-                            onChange={handleNoteChange}
-                            value={note}
-                        />
+                        <Input placeholder='Note (Optional)' size='lg' style={{ background: '#f6f6f6' }} onChange={handleNoteChange} />
                     </FormControl>
                 </div>
                 <div style={{ width: '100%' }}>
                     <FormControl>
                         <FormLabel>Report / files</FormLabel>
                         <div className='report-files-patient'>
-                            <Input
-                                type="file"
-                                onChange={(e) => setFiles(e.target.files)}
-                                style={{ display: "none" }}
-                                ref={fileInputRef}
-                                accept="image/*, .pdf, .doc, .docx"
-                            />
-                            <Button
-                                colorScheme={files.length > 0 ? 'red' : 'blue'}
-                                style={{
-                                    borderRadius: '9999px',
-                                    width: '100px', fontFamily:
-                                        'Noto Sans, Arial, sans-serif',
-                                    fontSize: '14px',
-                                    margin: '8px 2px',
-                                    marginLeft: '1rem'
-                                }}
-                                onClick={() => handleFileUpload()}
-                            >
-                                {files.length > 0 ? 'Remove' : 'Upload'}
-                            </Button>
-                            {files.length > 0 ? (
-                                <p style={{ marginTop: '16px' }}>
-                                    <span>{files[0].name}</span>
-                                </p>
-                            ) : (
-                                <p style={{ marginTop: '16px' }}> or drag and drop files</p>
-                            )}
+                            <Button colorScheme='blue' style={{ borderRadius: '9999px', width: '100px', fontFamily: 'Noto Sans, Arial, sans-serif', fontSize: '14px', margin: '8px 2px', marginLeft: '1rem' }} onClick={handleFileUpload}>Upload</Button>
+                            <p style={{ marginTop: '16px' }}> or drag and drop files</p>
                         </div>
                     </FormControl>
                     <div className='row-button-book-data' style={{ marginTop: '10px' }}>

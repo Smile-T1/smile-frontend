@@ -9,10 +9,9 @@ import Latest_reports from "../../../Components/Patient_Page/Dashboard/Latest_re
 
 function Dashboard() {
   const navigate = useNavigate();
-  
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (!token) {
+    if (token === undefined || token === null) {
       navigate('/login');
     }
   }, []);
