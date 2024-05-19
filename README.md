@@ -1,1 +1,1 @@
-# smile-frontend
+# Smile Dentistry Clinic
