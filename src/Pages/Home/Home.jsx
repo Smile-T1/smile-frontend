@@ -157,7 +157,6 @@ Our clinic offers a comprehensive range of services, including routine eye exams
 </TabPanel>
   </TabPanels>
 </Tabs>
-
         </div>
       </div>
 
