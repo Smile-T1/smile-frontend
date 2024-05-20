@@ -43,7 +43,7 @@ function Dashboard() {
           />
           {recentMed.map((prescription, index) => (
             <Recent_Medications key={index} 
-            Medication={prescription.Medication} />
+            Medication={prescription?.prescriptions?.Medication} />
           ))}
         </div>
         <div className='Dashboard-Patient-downside'>

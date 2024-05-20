@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import "./Medical_Records.css";
 import Page_header from "../../../Components/Header_Pages/Header_Pages";
-// import Header_Pages from '../../../Components/Header_Pages/Header_Pages';
+// import {editappointment} from "../PatientPortalEndPoints"
+import PrescriptionData from '../../../Components/Patient_Page/Prescription/Prescription';
 
 function Prescription() {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function Prescription() {
     <Page_header type='Patient' header='Prescription' />
     <div className='Appointment_Patient_Page-container'>
       <div className='Appointment_Patient'>
-        {/* <Appointment_Table /> */}
+        <PrescriptionData />
       </div>
     </div>
   </div>

@@ -1,8 +1,6 @@
 import React from 'react';
 import "./Recent_Medications.css";
 import PlaceboMaxIcon from "./icons/PlaceboMax";
-import SugarpharmIcon from "./icons/Sugarpharm";
-import PanadolIcon from "./icons/Panadol";
 
 function Recent_Medications({Medication}) {
 

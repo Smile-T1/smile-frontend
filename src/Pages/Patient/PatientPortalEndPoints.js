@@ -150,7 +150,6 @@ export async function uploadProfilePhoto(data) {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         });
-        console.log('response', response)
         if (response.status === 200) {
             return { message: "Profile picture uploaded successfully", status: "success" };
         }
@@ -163,5 +162,42 @@ export async function uploadProfilePhoto(data) {
         else {
             console.error("Error:", error.message);
         }
+    }
+}
+
+export async function editappointment(data) {
+    try {
+        const response = await axios.put(`${serverHost}/api/patient/editAppointment`, data, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        console.log('response', response)
+        if (response.status === 200) {
+            return { message: "Change Saved", status: "success" };
+        }
+    } catch (error) {
+        if (error.response && error.response.status === 500) {
+            return { message: "Internal Server Error", status: "error" };
+        } else if (error.response && error.response.status === 404) {
+            return { message: "Error Occured", status: "error" };
+        }
+        else {
+            console.error("Error:", error.message);
+        }
+    }
+}
+
+export async function getprescriptions() {
+    try {
+        const response = await axios.get(`${serverHost}/api/patient/allPrescriptions`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error:", error.message);
+        throw error;
     }
 }
