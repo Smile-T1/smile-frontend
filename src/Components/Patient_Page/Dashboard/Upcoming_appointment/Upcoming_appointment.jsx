@@ -4,8 +4,9 @@ import {
     Text,
     Button,
 } from '@chakra-ui/react'
+import { formatDate, getDayOfWeek } from "../../../Dates/Dates";
 
-function Upcoming_appointment() {
+function Upcoming_appointment({doctorname,appointmentDate}) {
 
     return (
         <div className='Upcoming_appointment_Conainer'>
@@ -15,10 +16,10 @@ function Upcoming_appointment() {
                     <div className='left-side-upcoming-appointment'>
                         <Text className='guide-upcoming-appointment-left'>You next visit is arriving soon</Text>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-                            <span className="appointment-details">April 20, 2023</span>
-                            <span className="appointment-details">  Monday </span>
+                            <span className="appointment-details">{formatDate(appointmentDate)}</span>
+                            <span className="appointment-details">  {getDayOfWeek(appointmentDate)} </span>
                         </div>
-                        <Text className="appointment-details">Dr. Xyz Sharma</Text>
+                        <Text className="appointment-details">Dr. {doctorname}</Text>
                         <Button className="Reschedule_button_appointment" colorScheme="blue">
                             Reschedule
                         </Button>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Sidebar.css";
 import Logo from "../../assets/Smile.png";
 import { Link } from 'react-router-dom';
@@ -20,6 +21,8 @@ import {
   AccordionIcon,
   Box
 } from '@chakra-ui/react'
+import { getSettings } from "../../Pages/Patient/PatientPortalEndPoints";
+
 function Sidebar() {
   const userAccess = localStorage.getItem('userAccess');
   const [activeLink, setActiveLink] = useState(() => {
@@ -34,14 +37,23 @@ function Sidebar() {
   });
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
 
+    async function fetchData() {
+      try {
+        const response = await getSettings();
+        setUserData(response);
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    }
+    fetchData();
     window.addEventListener('resize', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -70,12 +82,12 @@ function Sidebar() {
           </div>
           <div className="profile-pic-sidebar flex flex-col items-center gap-2">
             <img
-              src={profile_pic}
+              src={userData?.patient?.profilePic? userData?.patient?.profilePic : profile_pic}
               alt=""
               loading="lazy"
               className='Profile_picture'
             />
-            <p className='Patient_name'>Dr. Anushka Singh</p>
+            <p className='Patient_name'>{userData?.patient?.firstName} {userData?.patient?.lastName}</p>
           </div>
           <div className='options-sidebar-list'>
             <Link to={userAccess === 'Patient' ? '/patient/dashboard' : userAccess === 'Doctor' ? '/doctor/dashboard' : '/admin/dashboard'}

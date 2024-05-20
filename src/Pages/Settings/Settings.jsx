@@ -22,7 +22,6 @@ function Settings() {
       try {
         const response = await getSettings();
         setUserData(response);
-        console.log(response);
       } catch (error) {
         console.error("Error fetching settings:", error);
       }
