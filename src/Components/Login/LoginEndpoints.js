@@ -15,25 +15,20 @@ const loginUser = async (username, password) => {
     body: JSON.stringify(data),
   });
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+  if (response.status === 200) {
+    const responseData = await response.json();
+    return { status:'success', message: "Login Successful ", data: responseData };
+  } else if (response.status === 400) {
+    const errorData = await response.json();
+    return { status:'error', message: "Invalid username or password ", error: errorData };
+  } else if (response.status === 500) {
+    const errorData = await response.json();
+    return { status:'error', message: "Internal server error ", error: errorData };
+  } 
+  else {
+    const errorData = await response.json();
+    return { status:'error', message: "Unexpected Error ", error: errorData };
   }
-
-  const responseData = await response.json();
-
-  const id = responseData._id;
-  const userUsername = responseData.username;
-  const profilePic = responseData.profilePic;
-  const userAccess = responseData.userAccess;
-  //store token in local storage
-  const token = responseData.token;
-  localStorage.setItem("token", token);
-  console.log("User ID:", id);
-  console.log("Username:", userUsername);
-  console.log("Profile Picture:", profilePic);
-  console.log("User Access:", userAccess);
-
-  return responseData;
 };
 
 export { loginUser };

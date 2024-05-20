@@ -6,7 +6,10 @@ import {
 } from '@chakra-ui/react'
 import { formatDate } from "../../../Dates/Dates";
 
-function Upcoming_appointment({doctorname,appointmentDate}) {
+const days = [1, 2, 3, 4, 5, 6, 7];
+const weeks = 4;
+
+function Upcoming_appointment({ doctorname, appointmentDate, date }) {
 
     return (
         <div className='Upcoming_appointment_Conainer'>
@@ -17,7 +20,7 @@ function Upcoming_appointment({doctorname,appointmentDate}) {
                         <Text className='guide-upcoming-appointment-left'>You next visit is arriving soon</Text>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                             <span className="appointment-details">{formatDate(appointmentDate)}</span>
-                            {/* <span className="appointment-details">  {getDayOfWeek(appointmentDate)} </span> */}
+                            {/* <span className="appointment-details">  {getDayName(date)} </span> */}
                         </div>
                         <Text className="appointment-details">Dr. {doctorname}</Text>
                         <Button className="Reschedule_button_appointment" colorScheme="blue">
@@ -25,7 +28,7 @@ function Upcoming_appointment({doctorname,appointmentDate}) {
                         </Button>
                     </div>
                     <div className='right-side-upcoming-appointment'>
-                        <h3 className='day-calendar-title'>April 2023</h3>
+                        <h3 className='day-calendar-title'>{formatDate(appointmentDate)}</h3>
                         <div className='calendar-container'>
                             <div className='day-calendar'>
                                 <span>Sun</span>
@@ -36,51 +39,13 @@ function Upcoming_appointment({doctorname,appointmentDate}) {
                                 <span>Fri</span>
                                 <span>Sat</span>
                             </div>
-                            <div className='day-calendar'>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                            </div>
-                            <div className='day-calendar'>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                            </div>
-                            <div className='day-calendar'>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                            </div>
-                            <div className='day-calendar'>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                            </div>
-                            <div className='day-calendar'>
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
-                                <span>6</span>
-                                <span>7</span>
-                            </div>
+                            {Array.from({ length: weeks }, (_, index) => (
+                                <div className='day-calendar' key={index}>
+                                    {days.map(day => (
+                                        <span key={day}>{day}</span>
+                                    ))}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

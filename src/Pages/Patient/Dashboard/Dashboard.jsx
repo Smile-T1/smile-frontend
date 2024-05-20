@@ -36,6 +36,7 @@ function Dashboard() {
           <Upcoming_appointment
             doctorname={dashboard?.newestAppointment?.doctor?.user?.username}
             appointmentDate={dashboard?.newestAppointment?.appointmentDate}
+            date={dashboard?.newestAppointment?.date}
           />
           <Recent_Medications />
         </div>

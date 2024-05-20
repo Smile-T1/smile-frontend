@@ -8,22 +8,45 @@ export function formatDate(dateString) {
     return formattedDate;
 }
 
-// export function getDayOfWeek(dateString) {
-//     // Attempt to parse the date string
-//     const date = new Date(dateString);
+export function getDayName(dateString) {
+    // Check if the input is defined and is a string
+    if (typeof dateString !== 'string') {
+        throw new Error('Invalid date string');
+    }
 
-//     // Check if the date is valid
-//     if (isNaN(date.getTime())) {
-//         // Provide a clear error message
-//         throw new RangeError(`Invalid date string provided: "${dateString}"`);
-//     }
+    // Split the input date string into an array [day, month, year]
+    const dateParts = dateString.split("-");
+    
+    // Ensure we have exactly 3 parts
+    if (dateParts.length !== 3) {
+        throw new Error('Invalid date format');
+    }
 
-//     // Define options for formatting the date
-//     const options = { weekday: 'long' };
-    
-//     // Get the day of the week using Intl.DateTimeFormat
-//     const dayOfWeek = new Intl.DateTimeFormat('en-US', options).format(date);
-    
-//     return dayOfWeek;
-// }
+    // Extract day, month, and year from the array and parse them as integers
+    const day = parseInt(dateParts[0], 10);
+    const month = parseInt(dateParts[1], 10) - 1; // Month is 0-indexed in JavaScript Date
+    const year = parseInt(dateParts[2], 10);
+
+    // Validate the parsed values
+    if (isNaN(day) || isNaN(month) || isNaN(year)) {
+        throw new Error('Invalid date components');
+    }
+
+    // Create a new Date object with the extracted values
+    const date = new Date(year, month, day);
+
+    // Check if the Date object is valid
+    if (isNaN(date.getTime())) {
+        throw new Error('Invalid date');
+    }
+
+    // Define an array with the names of the days of the week
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    // Get the day of the week from the Date object
+    const dayOfWeek = date.getDay();
+
+    // Return the corresponding day name
+    return daysOfWeek[dayOfWeek];
+}
 

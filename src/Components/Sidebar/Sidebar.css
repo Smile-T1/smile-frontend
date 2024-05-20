@@ -90,6 +90,13 @@ a,
 .options-sidebar-list{
     width: 223px;
 }
+
+.AccordionPanelitem{
+    position: relative;
+    left: 20px;
+    width: 200px;
+}
+
 @media (max-width: 900px) {
     .sidebar-text,
     .Patient_name{
