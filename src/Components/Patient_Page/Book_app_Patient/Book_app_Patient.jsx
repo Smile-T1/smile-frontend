@@ -46,6 +46,7 @@ function Book_app_Patient() {
         setAppointmentFor(e.target.value);
         try {
             const selectedDoctorArray = await getDoctorsWithSpeciality(e.target.value);
+            console.log(selectedDoctorArray)
             setSelectedDoctorArray(selectedDoctorArray);
         } catch (error) {
             console.error('Error:', error);
