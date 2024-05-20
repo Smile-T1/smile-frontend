@@ -18,8 +18,8 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  Box
-} from '@chakra-ui/react'
+  Box,
+} from "@chakra-ui/react";
 import { getSettings } from "../../Pages/Patient/PatientPortalEndPoints";
 
 function Sidebar() {
@@ -51,7 +51,7 @@ function Sidebar() {
       }
     }
     fetchData();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -81,19 +81,29 @@ function Sidebar() {
           </div>
           <div className="profile-pic-sidebar flex flex-col items-center gap-2">
             <img
-              src={(userData?.patient?.profilePic ? userData?.patient?.profilePic : profile_pic)
-                || (userData?.doctor?.profilePic ? userData?.doctor?.profilePic : profile_pic)
-                || (userData?.admin?.profilePic ? userData?.admin?.profilePic : profile_pic)
+              src={
+                (userData?.patient?.profilePic
+                  ? userData?.patient?.profilePic
+                  : profile_pic) ||
+                (userData?.doctor?.profilePic
+                  ? userData?.doctor?.profilePic
+                  : profile_pic) ||
+                (userData?.admin?.profilePic
+                  ? userData?.admin?.profilePic
+                  : profile_pic)
               }
               alt=""
               loading="lazy"
               className="Profile_picture"
             />
-            <p className='Patient_name'>
-              {userData?.doctor && (
-                <>Dr. </>
-              )}
-              {userData?.doctor?.firstName || userData?.patient?.firstName || userData?.admin?.firstName} {userData?.doctor?.lastName || userData?.patient?.lastName || userData?.admin?.lastName}
+            <p className="Patient_name">
+              {userData?.doctor && <>Dr. </>}
+              {userData?.doctor?.firstName ||
+                userData?.patient?.firstName ||
+                userData?.admin?.firstName}{" "}
+              {userData?.doctor?.lastName ||
+                userData?.patient?.lastName ||
+                userData?.admin?.lastName}
             </p>
           </div>
           <div className="options-sidebar-list">
@@ -254,28 +264,6 @@ function Sidebar() {
                           }`}
                         >
                           Appointment list
-                        </p>
-                      </Link>
-                      <Link
-                        to="/admin/appointments"
-                        className={`sidebar-link ${
-                          activeLink === "/admin/appointments" ? "active" : ""
-                        } AccordionPanelitem`}
-                        onClick={() => setActiveLink("/admin/appointments")}
-                      >
-                        <AppointmentsIcon
-                          fill={`${
-                            activeLink == "/admin/appointments"
-                              ? "#034561"
-                              : "black"
-                          }`}
-                        />
-                        <p
-                          className={`sidebar-text ${
-                            activeLink === "/admin/appointments" ? "active" : ""
-                          }`}
-                        >
-                          Add appointments
                         </p>
                       </Link>
                       <Link
