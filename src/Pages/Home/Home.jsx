@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Home.css";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, CardBody, Card } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
@@ -15,8 +15,12 @@ function Home(props) {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
 
+  useEffect(() => {
+    localStorage.removeItem('token');
+  }, []);
+
   const handleTabChange = (index) => {
-    if (index === 3) { 
+    if (index === 3) {
       navigate('/login');
     }
     else if (index === 0) {
