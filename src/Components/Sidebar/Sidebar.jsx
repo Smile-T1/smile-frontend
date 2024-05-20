@@ -491,7 +491,7 @@ function Sidebar() {
                 <p className={`sidebar-text ${activeLink === '/patient/prescription' ? 'active' : ''}`}>Prescription</p>
               </Link>
             )}
-            {userAccess === "Patient" && (
+            {/* {userAccess === "Patient" && (
               <Link
                 to="/patient/medical_records"
                 className={`sidebar-link ${
@@ -514,7 +514,7 @@ function Sidebar() {
                   Medical Records
                 </p>
               </Link>
-            )}
+            )} */}
             {userAccess === "Doctor" && (
               <Link
                 to="/doctor/schedule"

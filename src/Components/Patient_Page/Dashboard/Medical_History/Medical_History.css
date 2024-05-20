@@ -4,6 +4,7 @@
     height: 591px;
     border-radius: 15px;
     padding: 23px;
+    overflow-y: auto;
 }
 
 .Medical_History_inner_Container{

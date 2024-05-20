@@ -6,11 +6,12 @@ import Upcoming_appointment from '../../../Components/Patient_Page/Dashboard/Upc
 import Recent_Medications from "../../../Components/Patient_Page/Dashboard/Recent_Medications/Recent_Medications";
 import Medical_History from '../../../Components/Patient_Page/Dashboard/Medical_History/Medical_History';
 import Latest_reports from "../../../Components/Patient_Page/Dashboard/Latest_reports/Latest_reports";
-import { newestAppointment, recentMedications } from '../PatientPortalEndPoints.js';
+import { newestAppointment, recentMedications,getprescriptions } from '../PatientPortalEndPoints.js';
 
 function Dashboard() {
   const [dashboard, setDashboard] = useState([]);
   const [recentMed, setRecentMedications] = useState([]);
+  const [prescriptionData, setPrescriptionData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,6 +25,10 @@ function Dashboard() {
         setDashboard(response);
         const response2 = await recentMedications();
         setRecentMedications(response2.prescriptions || []);
+        const response3 = await getprescriptions();
+        console.log('response3',response3)
+        const appointmentsArray = Array.isArray(response3) ? response3 : [];
+        setPrescriptionData(appointmentsArray);
       } catch (error) {
         console.error("Error fetching settings:", error);
       }
@@ -47,7 +52,13 @@ function Dashboard() {
           ))}
         </div>
         <div className='Dashboard-Patient-downside'>
-          <Medical_History />
+        {/* {prescriptionData.map((prescription, index) => ( */}
+          <Medical_History 
+          prescriptionData={prescriptionData}
+          // name={prescription?.Doctor?.user?.username}
+          // Date={prescription?.Date}
+          />
+        {/* ))} */}
           <Latest_reports />
         </div>
       </div>

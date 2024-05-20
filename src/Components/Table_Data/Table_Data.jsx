@@ -27,6 +27,7 @@ function Table_Data() {
     const fetchData = async () => {
       try {
         const response = await getAllApointments();
+        console.log(response)
         const appointmentsArray = response.appointments || [];
         setAppointmentsData(appointmentsArray);
       } catch (error) {
@@ -115,7 +116,7 @@ function Table_Data() {
                         gap: '1rem'
                       }}>
                         <DeleteIcon color='red' style={{ cursor: 'pointer' }} onClick={() => openModal(appointment._id, 'delete')} />
-                        <MdEdit color='blue' style={{ cursor: 'pointer' }} onClick={() => openModal(appointment._id, 'edit')} />
+                        {/* <MdEdit color='blue' style={{ cursor: 'pointer' }} onClick={() => openModal(appointment._id, 'edit')} /> */}
                       </div>
                     )}
                   </Td>
