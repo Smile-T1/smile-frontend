@@ -4,7 +4,7 @@ import {
     Text,
     Button,
 } from '@chakra-ui/react'
-import { formatDate, getDayOfWeek } from "../../../Dates/Dates";
+import { formatDate } from "../../../Dates/Dates";
 
 function Upcoming_appointment({doctorname,appointmentDate}) {
 
@@ -17,7 +17,7 @@ function Upcoming_appointment({doctorname,appointmentDate}) {
                         <Text className='guide-upcoming-appointment-left'>You next visit is arriving soon</Text>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                             <span className="appointment-details">{formatDate(appointmentDate)}</span>
-                            <span className="appointment-details">  {getDayOfWeek(appointmentDate)} </span>
+                            {/* <span className="appointment-details">  {getDayOfWeek(appointmentDate)} </span> */}
                         </div>
                         <Text className="appointment-details">Dr. {doctorname}</Text>
                         <Button className="Reschedule_button_appointment" colorScheme="blue">

@@ -25,8 +25,8 @@ import { getSettings } from "../../Pages/Patient/PatientPortalEndPoints";
 
 function Sidebar() {
   const userAccess = localStorage.getItem("userAccess");
-  const { doctor } = useDataContext();
-  console.log(doctor);
+  // const { doctor } = useDataContext();
+  // console.log(doctor);
   const [activeLink, setActiveLink] = useState(() => {
     switch (userAccess) {
       case "Patient":

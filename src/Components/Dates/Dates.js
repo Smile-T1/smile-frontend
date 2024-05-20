@@ -8,9 +8,22 @@ export function formatDate(dateString) {
     return formattedDate;
 }
 
-export function getDayOfWeek(dateString) {
-    const date = new Date(dateString);
-    const options = { weekday: 'long' };
-    const dayOfWeek = new Intl.DateTimeFormat('en-US', options).format(date);
-    return dayOfWeek;
-}
+// export function getDayOfWeek(dateString) {
+//     // Attempt to parse the date string
+//     const date = new Date(dateString);
+
+//     // Check if the date is valid
+//     if (isNaN(date.getTime())) {
+//         // Provide a clear error message
+//         throw new RangeError(`Invalid date string provided: "${dateString}"`);
+//     }
+
+//     // Define options for formatting the date
+//     const options = { weekday: 'long' };
+    
+//     // Get the day of the week using Intl.DateTimeFormat
+//     const dayOfWeek = new Intl.DateTimeFormat('en-US', options).format(date);
+    
+//     return dayOfWeek;
+// }
+
