@@ -169,8 +169,8 @@ function Users_table({ columns, data, user }) {
                 const key = request._id ? request._id : index;
                 return (
                   <Tr key={key}>
-                    {request.patient && request.patient.firstName && (
-                      <Td>{`${request.patient.firstName} ${request.patient.lastName}`}</Td>
+                    {request.patient && request.patient.user.firstName && (
+                      <Td>{`${request.patient.user.firstName} ${request.patient.user.lastName}`}</Td>
                     )}
                     {request.doctor && request.doctor.user && (
                       <Td>{`${request.doctor.user.firstName} ${request.doctor.user.lastName}`}</Td>
