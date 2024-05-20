@@ -86,12 +86,13 @@ function Sidebar() {
           </div>
           <div className="profile-pic-sidebar flex flex-col items-center gap-2">
             <img
-              src={userData?.patient?.profilePic? userData?.patient?.profilePic : profile_pic}
+              src={(userData?.patient?.profilePic? userData?.patient?.profilePic : profile_pic) 
+                || (userData?.doctor?.profilePic? userData?.doctor?.profilePic : profile_pic)}
               alt=""
               loading="lazy"
               className="Profile_picture"
             />
-            <p className='Patient_name'>{userData?.patient?.firstName} {userData?.patient?.lastName}</p>
+            <p className='Patient_name'>{userData?.doctor?.firstName || userData?.patient?.firstName} {userData?.doctor?.lastName || userData?.patient?.lastName}</p>
           </div>
           <div className="options-sidebar-list">
             <Link
