@@ -28,7 +28,7 @@ import Delete from "./icons/delete";
 import Edit from "./icons/edit";
 import { useDataContext } from "../../context/Context";
 import api from "../../utils/api";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const DoctorPatients = () => {
   const currentDate = new Date();
