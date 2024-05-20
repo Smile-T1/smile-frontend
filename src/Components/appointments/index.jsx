@@ -67,13 +67,13 @@ const DoctorAppointments = () => {
                 {doctorAppointments?.map((item, index) => (
                   <Tr key={index}>
                     <Td isNumeric>{index + 1}</Td>
-                    <Td>{item.patient}</Td>
+                    <Td>{item.patientName}</Td>
                     <Td isNumeric>1********0</Td>
                     <Td>test@gmail.com</Td>
 
-                    <Td>{formattedDate}</Td>
-                    <Td>{item.time}</Td>
-                    <Td className="text-blue-500">{item.status}</Td>
+                    <Td>{item.appointment.date}</Td>
+                    <Td>{item.appointment.time}</Td>
+                    <Td className="text-blue-500">{item.appointment.status}</Td>
                   </Tr>
                 ))}
               </Tbody>

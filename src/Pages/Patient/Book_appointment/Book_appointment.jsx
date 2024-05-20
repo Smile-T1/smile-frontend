@@ -6,10 +6,9 @@ import Page_header from "../../../Components/Header_Pages/Header_Pages";
 
 function Book_appointment() {
   const navigate = useNavigate();
-
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (!token) {
+    if (token === undefined || token === null) {
       navigate('/login');
     }
   }, []);
