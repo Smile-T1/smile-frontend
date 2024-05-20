@@ -148,7 +148,7 @@ function Book_app_Patient() {
                             <FormLabel>Doctor</FormLabel>
                             <Select placeholder="Choose doctor" style={{ background: '#f6f6f6' }} onChange={handleSelectedDoctorChange}>
                                 {selectedDoctorArray.map((doctor, index) => (
-                                    <option key={index} value={doctor}>Dr.{doctor.username}</option>
+                                    <option key={index} value={doctor}>Dr.{doctor}</option>
                                 ))}
                             </Select>
                         </FormControl>
