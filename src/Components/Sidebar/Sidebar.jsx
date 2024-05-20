@@ -89,6 +89,9 @@ function Sidebar() {
               className="Profile_picture"
             />
             <p className='Patient_name'>
+              {userData?.doctor && (
+                <>Dr. </>
+              )}
               {userData?.doctor?.firstName || userData?.patient?.firstName || userData?.admin?.firstName} {userData?.doctor?.lastName || userData?.patient?.lastName || userData?.admin?.lastName}
             </p>
           </div>
