@@ -22,7 +22,6 @@ function Settings() {
       try {
         const response = await getSettings();
         setUserData(response);
-        console.log(response);
       } catch (error) {
         console.error("Error fetching settings:", error);
       }
@@ -41,21 +40,21 @@ function Settings() {
       <div className='settings-main-container-page'>
         <ProfileCard
           onCardSelect={handleCardSelection}
-          firstName={userData?.patient?.user?.firstName}
-          lastName={userData?.patient?.user?.lastName}
-          email={userData?.patient?.user?.email}
-          mobile={userData?.patient?.user?.mobile[0]}
-          profilePic={userData?.patient?.user?.profilePic}
+          firstName={userData?.doctor?.firstName || userData?.patient?.firstName}
+          lastName={userData?.doctor?.lastName || userData?.patient?.lastName}
+          email={userData?.doctor?.email || userData?.patient?.email}
+          mobile={userData?.doctor?.mobile[0] || userData?.patient?.mobile[0]}
+          profilePic={userData?.doctor?.profilePic || userData?.patient?.profilePic}
         />
         {selectedCard === "Info" &&
           <InfoCard
-            firstName={userData?.patient?.user?.firstName}
-            lastName={userData?.patient?.user?.lastName}
-            username={userData?.patient?.user?.username}
-            mobile={userData?.patient?.user?.mobile[0]}
-            email={userData?.patient?.user?.email}
-            address={userData?.patient?.user?.address}
-            profilePic={userData?.patient?.user?.profilePic}
+            firstName={userData?.doctor?.firstName || userData?.patient?.firstName}
+            lastName={userData?.doctor?.lastName || userData?.patient?.lastName}
+            username={userData?.doctor?.username || userData?.patient?.username}
+            mobile={userData?.doctor?.mobile[0] || userData?.patient?.mobile[0]}
+            email={userData?.doctor?.email || userData?.patient?.email}
+            address={userData?.doctor?.address || userData?.patient?.address}
+            profilePic={userData?.doctor?.profilePic || userData?.patient?.profilePic}
           />}
         {selectedCard === "Password" && <PasswordCard />}
       </div>

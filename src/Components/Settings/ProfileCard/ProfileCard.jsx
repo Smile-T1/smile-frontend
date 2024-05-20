@@ -65,4 +65,3 @@ function ProfileCard({ onCardSelect, firstName, lastName, email, mobile, profile
 }
 
 export default ProfileCard
-

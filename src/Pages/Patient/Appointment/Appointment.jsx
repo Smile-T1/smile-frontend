@@ -6,10 +6,9 @@ import Appointment_Table from "../../../Components/Table_Data/Table_Data.jsx";
 
 function Appointment() {
   const navigate = useNavigate();
-
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (!token) {
+    if (token === undefined || token === null) {
       navigate('/login');
     }
   }, []);

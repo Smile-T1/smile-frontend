@@ -23,32 +23,138 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { format } from "date-fns";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Delete from "./icons/delete";
 import Edit from "./icons/edit";
 import { useDataContext } from "../../context/Context";
+import api from "../../utils/api";
+// import Swal from "sweetalert2";
 
 const DoctorPatients = () => {
   const currentDate = new Date();
   const formattedDate = format(currentDate, "d MMMM, yyyy");
   const formattedTime = format(currentDate, "h:mm a");
-  const { doctorPatients } = useDataContext();
+  const { doctorPatients, doctorAppointments, fetchDoctorPatients } =
+    useDataContext();
   console.log(doctorPatients);
+
+  // const [PatientsData, setPatientsData] = useState([]);
+  // useEffect(() => {
+  //   doctorPatients?.map((patient) =>
+  //     setPatientsData([...PatientsData, patient.user])
+  //   );
+  // }, []);
+
   // Initialize state to manage open/close state of each drawer
   const [isOpenArray, setIsOpenArray] = useState(new Array(3).fill(false)); // Assuming 3 rows initially
-
+  const today = new Date();
   const { isOpen: isAnyDrawerOpen, onOpen, onClose } = useDisclosure();
+  const token = localStorage.getItem("token");
+  const [selectedPatient, setselectedPatient] = useState();
+  const [trigger, settrigger] = useState(false);
   const btnRefs = Array(3)
     .fill()
     .map((_, i) => React.useRef());
 
   // Function to handle opening/closing of drawer for a specific row
-  const toggleDrawer = (index) => {
+  const toggleDrawer = (index, item) => {
     const newArray = [...isOpenArray];
     newArray[index] = !newArray[index];
     setIsOpenArray(newArray);
+    setselectedPatient(item.user);
+    console.log(item.user);
+  };
+  const handleAddPrescriptions = async (e, item) => {
+    e.preventDefault();
+
+    const appointment = doctorAppointments.find(
+      (patient) => patient.appointment.patient.user == item.user._id
+    );
+
+    let formdata = new FormData(e.target);
+
+    try {
+      const result = await api.put(
+        "/api/doctor/editAppointment",
+        {
+          Medication: formdata.get("Medication"),
+          Dosage: formdata.get("Dosage"),
+          Consultation: formdata.get("Consultation"),
+          appointmentID: appointment?.appointment?._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      e.target.reset();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  const handleEditPatient = async (e, item) => {
+    e.preventDefault();
+    let formdata = new FormData(e.target);
+    try {
+      const result = await api.patch(
+        "/api/doctor/editPatientInfo",
+        {
+          patientId: item.user._id,
+          updateFields: Object.fromEntries(formdata.entries()),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      await fetchDoctorPatients();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleDelete = async (item) => {
+    const appointment = doctorAppointments.find(
+      (patient) => patient.appointment.patient.user == item.user._id
+    );
+    console.log(appointment);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const result = await api.post(
+            "/api/doctor/deleteAppointments",
+            {
+              appointmentId: appointment?.appointment?._id,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          fetchDoctorPatients();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
+  };
   return (
     <div className="container mt-8 bg-[#F6F6F6] rounded-lg h-full p-6">
       <div className="bg-[#FFFFFF] p-8">
@@ -102,19 +208,24 @@ const DoctorPatients = () => {
                     </Td>
                     <Td isNumeric>{item.user.mobile}</Td>
                     <Td>{item.user.email}</Td>
-                    <Td>27</Td>
-                    <Td>{item.prescription?.name}</Td>
+                    <Td>
+                      {today.getFullYear() -
+                        new Date(item.user.dob).getFullYear()}
+                    </Td>
+                    <Td>{item.prescription[0]?.Medication}</Td>
                     <Td className="text-blue-500 flex  gap-4">
-                      <Delete />
+                      <div onClick={() => handleDelete(item)}>
+                        <Delete />
+                      </div>
                       <Button
                         ref={btnRefs[index]}
                         backgroundColor={"white"}
-                        onClick={() => toggleDrawer(index)}
+                        onClick={() => toggleDrawer(index, item)}
                       >
                         <Drawer
                           isOpen={isOpenArray[index]}
                           placement="right"
-                          onClose={() => toggleDrawer(index)}
+                          onClose={() => toggleDrawer(index, item)}
                           finalFocusRef={btnRefs[index]}
                           size="xl"
                         >
@@ -122,11 +233,16 @@ const DoctorPatients = () => {
                           <DrawerContent>
                             <DrawerCloseButton />
                             <DrawerHeader>
-                              <h2>Patient Name</h2>
+                              <h2>
+                                {item.user.firstName} {item.user.lastName}
+                              </h2>
                             </DrawerHeader>
                             <DrawerBody>
                               <div className="border rounded-lg border-[#4483FD] border-dashed p-4">
-                                <FormControl className="flex flex-col gap-12">
+                                <form
+                                  className="flex flex-col gap-12"
+                                  onSubmit={(e) => handleEditPatient(e, item)}
+                                >
                                   <h3 className="text-[#034561] font-semibold">
                                     Personal details
                                   </h3>
@@ -139,6 +255,7 @@ const DoctorPatients = () => {
                                         type="text"
                                         name="firstName"
                                         className="rounded-lg"
+                                        defaultValue={item.user.firstName}
                                       />
                                     </InputGroup>
 
@@ -150,6 +267,7 @@ const DoctorPatients = () => {
                                         type="text"
                                         name="lastName"
                                         className="rounded-lg"
+                                        defaultValue={item.user.lastName}
                                       />
                                     </InputGroup>
                                   </div>
@@ -160,8 +278,9 @@ const DoctorPatients = () => {
                                       </FormLabel>
                                       <Input
                                         type="email"
-                                        name="emailName"
+                                        name="email"
                                         className="rounded-lg"
+                                        defaultValue={item.user.email}
                                       />
                                     </InputGroup>
 
@@ -171,8 +290,9 @@ const DoctorPatients = () => {
                                       </FormLabel>
                                       <Input
                                         type="tel"
-                                        name="phone"
+                                        name="mobile"
                                         className="rounded-lg"
+                                        defaultValue={item.user.mobile[0]}
                                       />
                                     </InputGroup>
                                   </div>
@@ -183,8 +303,12 @@ const DoctorPatients = () => {
                                       </FormLabel>
                                       <Input
                                         type="date"
-                                        name="birthDate"
+                                        name="dob"
                                         className="rounded-lg"
+                                        defaultValue={format(
+                                          item.user.dob,
+                                          "yyyy-MM-dd"
+                                        )}
                                       />
                                     </InputGroup>
 
@@ -195,8 +319,12 @@ const DoctorPatients = () => {
                                       <Input
                                         type="number"
                                         min={0}
-                                        name="lastName"
+                                        disabled
                                         className="rounded-lg"
+                                        defaultValue={
+                                          today.getFullYear() -
+                                          new Date(item.user.dob).getFullYear()
+                                        }
                                       />
                                     </InputGroup>
                                   </div>
@@ -209,35 +337,42 @@ const DoctorPatients = () => {
                                         type="text"
                                         name="address"
                                         className="rounded-lg"
+                                        defaultValue={item.user.address}
                                       />
                                     </InputGroup>
                                   </div>
-                                </FormControl>
+                                  <Button type="submit">Save</Button>
+                                </form>
                               </div>
                               <div className="border rounded-lg border-[#4483FD] border-dashed p-4 mt-8">
-                                <FormControl className="flex flex-col gap-12">
+                                <form
+                                  className="flex flex-col gap-12"
+                                  onSubmit={(e) =>
+                                    handleAddPrescriptions(e, item)
+                                  }
+                                >
                                   <h3 className="text-[#034561] font-semibold">
                                     Medical details
                                   </h3>
                                   <div className="flex items-center gap-4  ">
                                     <InputGroup className="w-1/2 items-center">
                                       <FormLabel className="text-nowrap items-center">
-                                        Treatment
+                                        Medication
                                       </FormLabel>
                                       <Input
                                         type="text"
-                                        name="firstName"
+                                        name="Medication"
                                         className="rounded-lg"
                                       />
                                     </InputGroup>
 
                                     <InputGroup className="items-center">
                                       <FormLabel className="text-nowrap items-center">
-                                        Any ongoing surgeries{" "}
+                                        Dosage{" "}
                                       </FormLabel>
                                       <Input
                                         type="text"
-                                        name="surgeries"
+                                        name="Dosage"
                                         className="rounded-lg"
                                       />
                                     </InputGroup>
@@ -245,27 +380,17 @@ const DoctorPatients = () => {
                                   <div className="flex items-center gap-4  ">
                                     <InputGroup className="w-1/2 items-center">
                                       <FormLabel className="text-nowrap items-center">
-                                        Blood group{" "}
+                                        Consultation{" "}
                                       </FormLabel>
                                       <Input
                                         type="text"
-                                        name="bloodGroup"
+                                        name="Consultation"
                                         className="rounded-lg"
                                       />
                                     </InputGroup>
-
-                                    <InputGroup className="items-center">
-                                      <FormLabel className="text-nowrap ">
-                                        Last visited{" "}
-                                      </FormLabel>
-                                      <Input
-                                        type="datetime-local"
-                                        name="lastVisited"
-                                        className="rounded-lg"
-                                      />
-                                    </InputGroup>
+                                    <Button type="submit">Submit</Button>
                                   </div>
-                                </FormControl>
+                                </form>
                               </div>
                               <div className="border rounded-lg border-[#4483FD] border-dashed p-4 mt-8">
                                 <h3 className="text-[#034561] font-semibold">
@@ -468,9 +593,8 @@ const DoctorPatients = () => {
                                 mr={3}
                                 onClick={() => toggleDrawer(index)}
                               >
-                                Cancel
+                                Close
                               </Button>
-                              <Button>Save</Button>
                             </DrawerFooter>
                           </DrawerContent>
                         </Drawer>

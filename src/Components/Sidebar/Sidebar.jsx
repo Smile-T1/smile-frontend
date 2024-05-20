@@ -18,10 +18,14 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  Box,
-} from "@chakra-ui/react";
+  Box
+} from '@chakra-ui/react'
+import { getSettings } from "../../Pages/Patient/PatientPortalEndPoints";
+
 function Sidebar() {
   const userAccess = localStorage.getItem("userAccess");
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [userData, setUserData] = useState([]);
   const [activeLink, setActiveLink] = useState(() => {
     switch (userAccess) {
       case "Patient":
@@ -33,19 +37,29 @@ function Sidebar() {
     }
   });
 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
 
-    window.addEventListener("resize", handleResize);
-
+    async function fetchData() {
+      try {
+        const response = await getSettings();
+        setUserData(response);
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    }
+    fetchData();
+    window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location.pathname]);
 
   return (
     <div className="sidebar-portal">
@@ -67,12 +81,20 @@ function Sidebar() {
           </div>
           <div className="profile-pic-sidebar flex flex-col items-center gap-2">
             <img
-              src={profile_pic}
+              src={(userData?.patient?.profilePic ? userData?.patient?.profilePic : profile_pic)
+                || (userData?.doctor?.profilePic ? userData?.doctor?.profilePic : profile_pic)
+                || (userData?.admin?.profilePic ? userData?.admin?.profilePic : profile_pic)
+              }
               alt=""
               loading="lazy"
               className="Profile_picture"
             />
-            <p className="Patient_name">Dr. Anushka Singh</p>
+            <p className='Patient_name'>
+              {userData?.doctor && (
+                <>Dr. </>
+              )}
+              {userData?.doctor?.firstName || userData?.patient?.firstName || userData?.admin?.firstName} {userData?.doctor?.lastName || userData?.patient?.lastName || userData?.admin?.lastName}
+            </p>
           </div>
           <div className="options-sidebar-list">
             <Link
