@@ -21,7 +21,6 @@ function Appointment() {
           <Appointment_Table />
         </div>
       </div>
-
     </div>
   )
 }

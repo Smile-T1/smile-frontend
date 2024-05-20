@@ -8,7 +8,7 @@ import PasswordCard from '../../Components/Settings/PasswordCard/PasswordCard';
 import { getSettings } from "../../Pages/Patient/PatientPortalEndPoints";
 
 function Settings() {
-  const [selectedCard, setSelectedCard] = useState('Info');
+  // const [selectedCard, setSelectedCard] = useState('Info');
   const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
 
@@ -30,23 +30,23 @@ function Settings() {
     fetchData();
   }, [navigate]);
 
-  const handleCardSelection = (card) => {
-    setSelectedCard(card);
-  };
+  // const handleCardSelection = (card) => {
+  //   setSelectedCard(card);
+  // };
 
   return (
     <div className='Dashboard-patient-portal'>
       <Header_Pages type='Patient' header='Settings' />
       <div className='settings-main-container-page'>
         <ProfileCard
-          onCardSelect={handleCardSelection}
+          // onCardSelect={handleCardSelection}
           firstName={userData?.doctor?.firstName || userData?.patient?.firstName}
           lastName={userData?.doctor?.lastName || userData?.patient?.lastName}
           email={userData?.doctor?.email || userData?.patient?.email}
           mobile={userData?.doctor?.mobile[0] || userData?.patient?.mobile[0]}
           profilePic={userData?.doctor?.profilePic || userData?.patient?.profilePic}
         />
-        {selectedCard === "Info" &&
+        {/* {selectedCard === "Info" && */}
           <InfoCard
             firstName={userData?.doctor?.firstName || userData?.patient?.firstName}
             lastName={userData?.doctor?.lastName || userData?.patient?.lastName}
@@ -55,8 +55,9 @@ function Settings() {
             email={userData?.doctor?.email || userData?.patient?.email}
             address={userData?.doctor?.address || userData?.patient?.address}
             profilePic={userData?.doctor?.profilePic || userData?.patient?.profilePic}
-          />}
-        {selectedCard === "Password" && <PasswordCard />}
+          />
+          {/* } */}
+        {/* {selectedCard === "Password" && <PasswordCard />} */}
       </div>
     </div>
   )

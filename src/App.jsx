@@ -22,6 +22,7 @@ import MainDashboard from "./Components/dashboard/index.jsx";
 import DoctorPatients from "./Components/patients/index.jsx";
 import Schedule from "./Components/schedule/index.jsx";
 import DoctorAppointments from "./Components/appointments/index.jsx";
+import Prescription from "./Pages/Patient/Prescription/Prescription.jsx";
 
 const PageContainer = styled.div`
   display: grid;
@@ -57,6 +58,7 @@ function App() {
               <Route path="/patient/book_appointment" element={<Book_appointment_Patient />} />
               <Route path="/:type/settings" element={<Settings />} />
               <Route path="/patient/medical_records" element={<Medical_records_Patient />} />
+              <Route path="/patient/prescription" element={<Prescription />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/patient_registration" element={<PatientRegistration />} />
               <Route path="/admin/doctor_registration" element={<DoctorRegistration />} />

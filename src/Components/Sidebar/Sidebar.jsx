@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Smile_without from "../../assets/Smile_without.png";
 import profile_pic from "../../assets/avatar_default_6.png";
 import { DashboardIcon } from "./icons/dashboard";
+import PrescriptionIcon from "./icons/prescription";
 import AppointmentsIcon from "./icons/appointments";
 import BookAppointmentsIcon from "./icons/bookappointments";
 import MedicalRecordIcon from "./icons/medicalrecords";
@@ -17,7 +18,6 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  AccordionIcon,
   Box
 } from '@chakra-ui/react'
 import { getSettings } from "../../Pages/Patient/PatientPortalEndPoints";
@@ -68,7 +68,7 @@ function Sidebar() {
           position: 'relative'
         }
         }>
-        <div className='sidebar-inner-container' style={{ position: 'fixed' }}>
+        <div className='sidebar-inner-container' style={{ position: 'fixed', height:'100vh', overflowY:'auto' }}>
           <div style={{ justifyContent: 'center', display: 'flex' }}>
             <a href="/" className='logo-link' style={{ alignItems: 'center' }}>
               {screenWidth <= 900 ? (
@@ -285,6 +285,14 @@ function Sidebar() {
                   fill={`${activeLink == "/patient/book_appointment" ? "#034561" : "black"}`}
                 />
                 <p className={`sidebar-text ${activeLink === '/patient/book_appointment' ? 'active' : ''}`}>Book appointment</p>
+              </Link>
+            )}
+            {userAccess === "Patient" && (
+              <Link to="/patient/prescription" className={`sidebar-link ${activeLink === '/patient/prescription' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/prescription')}>
+                <PrescriptionIcon
+                  fill={`${activeLink == "/patient/prescription" ? "#034561" : "black"}`}
+                />
+                <p className={`sidebar-text ${activeLink === '/patient/prescription' ? 'active' : ''}`}>Prescription</p>
               </Link>
             )}
             {userAccess === "Patient" && (
