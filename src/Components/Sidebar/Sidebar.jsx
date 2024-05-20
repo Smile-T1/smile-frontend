@@ -47,10 +47,6 @@ function Sidebar() {
     };
   }, []);
 
-  useEffect(() => {
-    setActiveLink(location.pathname);
-  }, [location.pathname]);
-
   return (
     <div className="sidebar-portal">
       <aside

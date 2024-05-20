@@ -56,12 +56,11 @@ export async function getAllApointments() {
 
 export async function getSettings() {
     try {
-        const response = await axios.get(`${serverHost}/api/settings`, {
+        const response = await axios.get(`${serverHost}/api/patient/settings`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         });
-        console.log(response.data)
         return response.data;
     } catch (error) {
         console.error("Error:", error.message);
