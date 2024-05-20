@@ -22,6 +22,8 @@ import MainDashboard from "./Components/dashboard/index.jsx";
 import DoctorPatients from "./Components/patients/index.jsx";
 import Schedule from "./Components/schedule/index.jsx";
 import DoctorAppointments from "./Components/appointments/index.jsx";
+import AllAppointments from "./Pages/Admin/AllAppointments/AllAppointments.jsx";
+import Requests from "./Pages/Admin/Requests/Requests.jsx";
 import Prescription from "./Pages/Patient/Prescription/Prescription.jsx";
 
 const PageContainer = styled.div`
@@ -65,10 +67,43 @@ function App() {
               <Route path="/admin/appointments" element={<RequestedAppointments />} />
               <Route path="/admin/patients" element={<Patients />} />
               <Route path="/admin/doctors" element={<Doctors />} />
-              <Route path="/doctor/dashboard" element={<Dashboard name="Dashboard"><MainDashboard /></Dashboard>} />
-              <Route path="/doctor/appointment" element={<Dashboard name="Appointments"><DoctorAppointments /></Dashboard>} />
-              <Route path="/doctor/patients" element={<Dashboard name="Patients"><DoctorPatients /></Dashboard>} />
-              <Route path="/doctor/schedule" element={<Dashboard name="Schedule"><Schedule /></Dashboard>} />
+              <Route
+                path="/admin/AllAppointments"
+                element={<AllAppointments />}
+              />
+              <Route path="/admin/requests" element={<Requests />} />
+              <Route
+                path="/doctor/dashboard"
+                element={
+                  <Dashboard name="Dashboard">
+                    <MainDashboard />
+                  </Dashboard>
+                }
+              />
+              <Route
+                path="/doctor/appointment"
+                element={
+                  <Dashboard name="Appointments">
+                    <DoctorAppointments />
+                  </Dashboard>
+                }
+              />
+              <Route
+                path="/doctor/patients"
+                element={
+                  <Dashboard name="Patients">
+                    <DoctorPatients />
+                  </Dashboard>
+                }
+              />
+              <Route
+                path="/doctor/schedule"
+                element={
+                  <Dashboard name="Schedule">
+                    <Schedule />
+                  </Dashboard>
+                }
+              />
             </Routes>
           </ChakraProvider>
         </PageContainer>
