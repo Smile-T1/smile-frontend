@@ -492,14 +492,6 @@ function Sidebar() {
               </Link>
             )}
             {userAccess === "Patient" && (
-              <Link to="/patient/prescription" className={`sidebar-link ${activeLink === '/patient/prescription' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/prescription')}>
-                <PrescriptionIcon
-                  fill={`${activeLink == "/patient/prescription" ? "#034561" : "black"}`}
-                />
-                <p className={`sidebar-text ${activeLink === '/patient/prescription' ? 'active' : ''}`}>Prescription</p>
-              </Link>
-            )}
-            {userAccess === "Patient" && (
               <Link
                 to="/patient/medical_records"
                 className={`sidebar-link ${
