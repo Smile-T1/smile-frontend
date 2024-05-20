@@ -3,22 +3,18 @@ import "./InfoCard.css";
 import UploadIcon from '../icons/uploadicon';
 import InitialPic from '../../../assets/InitialPic300.png';
 import {
-    Stack,
     FormLabel,
     Input,
     FormControl,
     InputGroup,
-    Button,
-    InputRightElement,
     Textarea,
     useToast
 } from '@chakra-ui/react';
-import { DeleteIcon, CheckIcon } from '@chakra-ui/icons'
 import { uploadProfilePhoto } from '../../../Pages/Patient/PatientPortalEndPoints';
 
 function InfoCard({ firstName, lastName, username, mobile, email, address, profilePic }) {
     const [addressvalue, setAddressValue] = useState(address);
-    const [isAddressEditable, setIsAddressEditable] = useState(false);
+    // const [isAddressEditable, setIsAddressEditable] = useState(false);
     const [isChangesMade, setIsChangesMade] = useState(false);
     const [uploadedImage, setUploadedImage] = useState();
     const toast = useToast();
@@ -32,10 +28,10 @@ function InfoCard({ firstName, lastName, username, mobile, email, address, profi
         })
     }
 
-    const handleAddressEdit = () => {
-        setIsAddressEditable(!isAddressEditable);
-        setIsChangesMade(true);
-    };
+    // const handleAddressEdit = () => {
+    //     setIsAddressEditable(!isAddressEditable);
+    //     setIsChangesMade(true);
+    // };
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
@@ -48,13 +44,18 @@ function InfoCard({ firstName, lastName, username, mobile, email, address, profi
                 setUploadedImage(reader.result);
             };
             reader.readAsDataURL(file);
-
+            // const editUserSettingsData = ({
+            //     currentPassword: password,
+            //     newPassword: newPassword,
+            //     // confirmPassword: confirmPassword,
+            // });
             try {
+                // const response = await editUserSettings(editUserSettingsData)
                 const response = await uploadProfilePhoto(formData);
                 if (response.status === 'success') {
-                    Toast(response.msg, 'success');
+                    Toast(response.message, 'success');
                 } else {
-                    Toast(response.msg, 'error');
+                    Toast(response.message, 'error');
                 }
             } catch (error) {
                 Toast('Error uploading profile photo', 'error');
@@ -130,25 +131,25 @@ function InfoCard({ firstName, lastName, username, mobile, email, address, profi
                         <InputGroup>
                             <Textarea
                                 value={address}
-                                isReadOnly={!isAddressEditable}
+                                isReadOnly
                                 onChange={(e) => setAddressValue(e.target.value)}
                                 style={{ background: '#f6f6f6', minHeight: '70px' }} />
-                            <InputRightElement width='4.5rem'>
+                            {/* <InputRightElement width='4.5rem'>
                                 <Button h='1.75rem' size='sm' onClick={handleAddressEdit} background='white'>
                                     <i className={`fa-regular ${isAddressEditable ? 'fa-check' : 'fa-pen-to-square'}`} />
                                 </Button>
-                            </InputRightElement>
+                            </InputRightElement> */}
                         </InputGroup>
                     </FormControl>
                 </div>
-                <Stack direction='row' spacing={4} style={{ width: '100%', justifyContent: 'center' }}>
+                {/* <Stack direction='row' spacing={4} style={{ width: '100%', justifyContent: 'center' }}>
                     <Button leftIcon={<DeleteIcon />} colorScheme='teal' variant='solid' style={{ width: '100%' }}>
                         Delete Account
                     </Button>
                     <Button rightIcon={<CheckIcon />} colorScheme='teal' variant='solid' style={{ width: '100%' }}>
                         Save Changes
                     </Button>
-                </Stack>
+                </Stack> */}
             </div>
         </div>
     )

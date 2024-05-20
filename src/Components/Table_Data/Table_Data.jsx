@@ -99,13 +99,13 @@ function Table_Data() {
               {visibleAppointments.map((appointment, index) => (
                 <Tr key={appointment._id}>
                   <Td>{startIndex + index + 1}</Td>
-                  <Td>{appointment.doctor.user.username}</Td>
-                  <Td>{appointment.date}</Td>
-                  <Td>{appointment.time}</Td>
-                  <Td>{appointment.Type}</Td>
+                  <Td>{appointment?.doctor?.user?.username}</Td>
+                  <Td>{appointment?.date}</Td>
+                  <Td>{appointment?.time}</Td>
+                  <Td>{appointment?.Type}</Td>
                   <Td>
                     <span style={{ color: appointment.status === 'Cancelled' ? 'red' : 'blue' }}>
-                      {appointment.status}
+                      {appointment?.status}
                     </span>
                   </Td>
                   <Td>

@@ -12,15 +12,13 @@ export async function handleBooking(appointmentData) {
             }
         });
         if (response.status === 200) {
-            console.log("Appointment booked successfully");
-        } else {
-            console.error("Unexpected response:", response.status, response.statusText);
+            return { message: "Appointment booked successfully", status: "success" };
         }
     } catch (error) {
         if (error.response && error.response.status === 400) {
-            console.error("Doctor has appointment in the same time");
+            return { message: "Doctor has appointment in the same time", status: "error" };
         } else if (error.response && error.response.status === 500) {
-            console.error("Internal server error in booking appointment");
+            return { message: "Internal server error in booking appointment", status: "error" };
         }
         else {
             console.error("Error:", error.message);
@@ -94,19 +92,18 @@ export async function DeleteAppointmnetPatientByID(id) {
 
 export async function changePassword(data) {
     try {
-        const response = await axios.post(`${serverHost}/api/changePassword`, data, {
+        const response = await axios.post(`${serverHost}/api/changePassword`,
+        data, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         });
-        console.log('response',response)
+        console.log('response', response)
         if (response.status === 200) {
             return { message: "Password changed successfully", status: "success" };
         }
     } catch (error) {
-        if (error.response && error.response.status === 400) {
-            return { message: "Confirm password must match new password.", status: "error" };
-        } else if (error.response && error.response.status === 404) {
+        if (error.response && error.response.status === 404) {
             return { message: "Old password is incorrect", status: "error" };
         } else if (error.response && error.response.status === 500) {
             return { message: "Internal server error", status: "error" };
@@ -131,6 +128,21 @@ export async function newestAppointment() {
     }
 }
 
+export async function recentMedications() {
+    try {
+        const response = await axios.get(`${serverHost}/api/patient/recentMedications`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        console.log('TGtrvtbrtbgtr',response)
+        return response.data;
+    } catch (error) {
+        console.error("Error:", error.message);
+        throw error;
+    }
+}
+
 export async function uploadProfilePhoto(data) {
     try {
         const response = await axios.post(`${serverHost}/api/patient/uploadProfilePic`, data, {
@@ -138,7 +150,6 @@ export async function uploadProfilePhoto(data) {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         });
-        console.log('response',response)
         if (response.status === 200) {
             return { message: "Profile picture uploaded successfully", status: "success" };
         }
@@ -151,5 +162,42 @@ export async function uploadProfilePhoto(data) {
         else {
             console.error("Error:", error.message);
         }
+    }
+}
+
+export async function editappointment(data) {
+    try {
+        const response = await axios.put(`${serverHost}/api/patient/editAppointment`, data, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        console.log('response', response)
+        if (response.status === 200) {
+            return { message: "Change Saved", status: "success" };
+        }
+    } catch (error) {
+        if (error.response && error.response.status === 500) {
+            return { message: "Internal Server Error", status: "error" };
+        } else if (error.response && error.response.status === 404) {
+            return { message: "Error Occured", status: "error" };
+        }
+        else {
+            console.error("Error:", error.message);
+        }
+    }
+}
+
+export async function getprescriptions() {
+    try {
+        const response = await axios.get(`${serverHost}/api/patient/allPrescriptions`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error:", error.message);
+        throw error;
     }
 }

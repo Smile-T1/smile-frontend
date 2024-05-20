@@ -5,13 +5,13 @@ import { Button } from '@chakra-ui/react';
 import { IoMdPersonAdd } from "react-icons/io";
 import { RiLockPasswordFill } from "react-icons/ri";
 
-function ProfileCard({ onCardSelect, firstName, lastName, email, mobile, profilePic }) {
-    const [selectedButton, setSelectedButton] = useState('Info');
+function ProfileCard({firstName, lastName, email, mobile, profilePic }) {
+    // const [selectedButton, setSelectedButton] = useState('Info');
 
-    const handleButtonClick = (buttonName) => {
-        setSelectedButton(buttonName);
-        onCardSelect(buttonName === "Info" ? "Info" : "Password");
-    };
+    // const handleButtonClick = (buttonName) => {
+    //     setSelectedButton(buttonName);
+    //     onCardSelect(buttonName === "Info" ? "Info" : "Password");
+    // };
 
     return (
         <div className='ProfileCardConatainer'>
@@ -36,17 +36,17 @@ function ProfileCard({ onCardSelect, firstName, lastName, email, mobile, profile
                 <Button
                     colorScheme='teal'
                     variant='outline'
-                    className={`button-ProfileCard-method ${selectedButton === "Info" ? "button-selected" : "button-unselected"}`}
+                    // className={`button-ProfileCard-method ${selectedButton === "Info" ? "button-selected" : "button-unselected"}`}
                     leftIcon={<IoMdPersonAdd />}
                     style={{
                         borderRadius: '0.25rem',
                         width: '100%'
                     }}
-                    onClick={() => handleButtonClick("Info")}
+                    // onClick={() => handleButtonClick("Info")}
                 >
                     Personal Information
                 </Button>
-                <Button
+                {/* <Button
                     colorScheme='teal'
                     variant='outline'
                     className={`button-ProfileCard-method ${selectedButton === "Password" ? "button-selected" : "button-unselected"}`}
@@ -58,7 +58,7 @@ function ProfileCard({ onCardSelect, firstName, lastName, email, mobile, profile
                     onClick={() => handleButtonClick("Password")}
                 >
                     Change Password
-                </Button>
+                </Button> */}
             </div>
         </div>
     )

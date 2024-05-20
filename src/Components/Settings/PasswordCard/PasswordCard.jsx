@@ -20,20 +20,26 @@ function PasswordCard() {
     }
 
     const handleSaveChanges = async () => {
-        const changePassworddata = JSON.stringify({
-            currentPassword: password,
-            newPassword: newPassword,
-            confirmPassword: confirmPassword,
-        });
-        try {
-            const response = await changePassword(changePassworddata);
-            if (response && response.status === "success") {
-                Toast(response.message, response.status);
-            } else if (response && response.status === "error") {
-                Toast(response.message, response.status);
+        if (newPassword !== confirmPassword) {
+            Toast('Confirm password must match new password', 'error');
+            return;
+        }else{
+            const changePassworddata = JSON.stringify({
+                currentPassword: password,
+                newPassword: newPassword,
+                // confirmPassword: confirmPassword,
+            });
+            console.log(changePassworddata)
+            try {
+                const response = await changePassword(changePassworddata);
+                if (response && response.status === "success") {
+                    Toast(response.message, response.status);
+                } else if (response && response.status === "error") {
+                    Toast(response.message, response.status);
+                }
+            } catch (error) {
+                console.error('Error:', error);
             }
-        } catch (error) {
-            console.error('Error:', error);
         }
     };
 

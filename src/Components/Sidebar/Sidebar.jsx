@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Smile_without from "../../assets/Smile_without.png";
 import profile_pic from "../../assets/avatar_default_6.png";
 import { DashboardIcon } from "./icons/dashboard";
+import PrescriptionIcon from "./icons/prescription";
 import AppointmentsIcon from "./icons/appointments";
 import BookAppointmentsIcon from "./icons/bookappointments";
 import MedicalRecordIcon from "./icons/medicalrecords";
@@ -17,9 +18,8 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  AccordionIcon,
-  Box,
-} from "@chakra-ui/react";
+  Box
+} from '@chakra-ui/react'
 import { getSettings } from "../../Pages/Patient/PatientPortalEndPoints";
 
 function Sidebar() {
@@ -66,12 +66,12 @@ function Sidebar() {
       <aside
         className="content-wrapper-sidebar bg-white h-screen sticky top-0 p-2 min-w-[50px] dashboard-sidebar block"
         style={{
-          position: "relative",
-        }}
-      >
-        <div className="sidebar-inner-container" style={{ position: "fixed" }}>
-          <div style={{ justifyContent: "center", display: "flex" }}>
-            <a href="/" className="logo-link" style={{ alignItems: "center" }}>
+          position: 'relative'
+        }
+        }>
+        <div className='sidebar-inner-container' style={{ position: 'fixed', height:'100vh', overflowY:'auto' }}>
+          <div style={{ justifyContent: 'center', display: 'flex' }}>
+            <a href="/" className='logo-link' style={{ alignItems: 'center' }}>
               {screenWidth <= 900 ? (
                 <img src={Smile_without} alt="Smile" className="logo" />
               ) : (
@@ -481,6 +481,22 @@ function Sidebar() {
                 >
                   Book appointment
                 </p>
+              </Link>
+            )}
+            {userAccess === "Patient" && (
+              <Link to="/patient/prescription" className={`sidebar-link ${activeLink === '/patient/prescription' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/prescription')}>
+                <PrescriptionIcon
+                  fill={`${activeLink == "/patient/prescription" ? "#034561" : "black"}`}
+                />
+                <p className={`sidebar-text ${activeLink === '/patient/prescription' ? 'active' : ''}`}>Prescription</p>
+              </Link>
+            )}
+            {userAccess === "Patient" && (
+              <Link to="/patient/prescription" className={`sidebar-link ${activeLink === '/patient/prescription' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/prescription')}>
+                <PrescriptionIcon
+                  fill={`${activeLink == "/patient/prescription" ? "#034561" : "black"}`}
+                />
+                <p className={`sidebar-text ${activeLink === '/patient/prescription' ? 'active' : ''}`}>Prescription</p>
               </Link>
             )}
             {userAccess === "Patient" && (

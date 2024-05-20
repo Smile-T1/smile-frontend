@@ -1,10 +1,8 @@
 import React from 'react';
 import "./Recent_Medications.css";
 import PlaceboMaxIcon from "./icons/PlaceboMax";
-import SugarpharmIcon from "./icons/Sugarpharm";
-import PanadolIcon from "./icons/Panadol";
 
-function Recent_Medications() {
+function Recent_Medications({Medication}) {
 
     return (
         <div className='Recent_Medications_Container'>
@@ -14,7 +12,7 @@ function Recent_Medications() {
                     <div className="Recent_Medications_row">
                         <div className='Recent_Medications_row_left'>
                             <PlaceboMaxIcon />
-                            <span className='Recent_Medications_Name'>PlaceboMax</span>
+                            <span className='Recent_Medications_Name'>{Medication}</span>
                         </div>
                         <div className='Recent_Medications_row_right'>
                             <div className='Recent_Medications_dosage'>
@@ -24,69 +22,6 @@ function Recent_Medications() {
                                 <span>-</span>
                                 <div>
                                     0
-                                </div>
-                                <span>-</span>
-                                <div>
-                                    1
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="Recent_Medications_row">
-                        <div className='Recent_Medications_row_left'>
-                            <SugarpharmIcon />
-                            <span className='Recent_Medications_Name'>Sugarpharm</span>
-                        </div>
-                        <div className='Recent_Medications_row_right'>
-                            <div className='Recent_Medications_dosage'>
-                                <div>
-                                    0
-                                </div>
-                                <span>-</span>
-                                <div>
-                                    0
-                                </div>
-                                <span>-</span>
-                                <div>
-                                    1
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="Recent_Medications_row">
-                        <div className='Recent_Medications_row_left'>
-                            <PanadolIcon />
-                            <span className='Recent_Medications_Name'>Pseudopill</span>
-                        </div>
-                        <div className='Recent_Medications_row_right'>
-                            <div className='Recent_Medications_dosage'>
-                                <div>
-                                    1
-                                </div>
-                                <span>-</span>
-                                <div>
-                                    1
-                                </div>
-                                <span>-</span>
-                                <div>
-                                    1
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="Recent_Medications_row">
-                        <div className='Recent_Medications_row_left'>
-                            <PanadolIcon />
-                            <span className='Recent_Medications_Name'>Sugarpharm</span>
-                        </div>
-                        <div className='Recent_Medications_row_right'>
-                            <div className='Recent_Medications_dosage'>
-                                <div>
-                                    1
-                                </div>
-                                <span>-</span>
-                                <div>
-                                    1
                                 </div>
                                 <span>-</span>
                                 <div>
