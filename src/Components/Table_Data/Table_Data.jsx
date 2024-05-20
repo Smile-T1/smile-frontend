@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   Thead,
@@ -13,45 +13,32 @@ import { DeleteIcon } from '@chakra-ui/icons';
 import { MdEdit } from "react-icons/md";
 import DeleteModal from './DeleteModal';
 import EditModal from './EditModal';
-
-const AppointmentsData = [
-  {
-    id: 1,
-    name: "Metawaly",
-    date: "2024-04-19",
-    time: "10:00 AM",
-    appointmentFor: "Check-up",
-    status: "Upcoming",
-  },
-  {
-    id: 2,
-    name: "Metawaly",
-    date: "2024-04-19",
-    time: "10:00 AM",
-    appointmentFor: "Check-up",
-    status: "Cancelled",
-  },
-  {
-    id: 3,
-    name: "Metawaly",
-    date: "2024-04-19",
-    time: "10:00 AM",
-    appointmentFor: "Check-up",
-    status: "Completed",
-  }
-];
+import { getAllApointments } from "../../Pages/Patient/PatientPortalEndPoints";
 
 function Table_Data() {
-  const [appointmentsData, setAppointmentsData] = useState(AppointmentsData);
+  const [appointmentsData, setAppointmentsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
   const pageSize = 10;
-  const totalPageCount = Math.ceil(appointmentsData.length / pageSize);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getAllApointments();
+        const appointmentsArray = response.appointments || [];
+        setAppointmentsData(appointmentsArray);
+      } catch (error) {
+        console.error("Error fetching appointments:", error.message);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const totalPageCount = appointmentsData ? Math.ceil(appointmentsData.length / pageSize) : 0;
   const startIndex = (currentPage - 1) * pageSize;
-  const visibleAppointments = appointmentsData.slice(startIndex, startIndex + pageSize);
+  const visibleAppointments = appointmentsData ? appointmentsData.slice(startIndex, startIndex + pageSize) : [];
 
   const nextPage = () => {
     if (currentPage < totalPageCount) {
@@ -65,10 +52,15 @@ function Table_Data() {
     }
   };
 
-  const openModal = (id) => {
+  const openModal = (id, action) => {
     setSelectedAppointmentId(id);
-    setShowDeleteModal(true);
-    setShowEditModal(true);
+    if (action === 'delete') {
+      setShowDeleteModal(true);
+      setShowEditModal(false);
+    } else if (action === 'edit') {
+      setShowDeleteModal(false);
+      setShowEditModal(true);
+    }
   };
 
   const closeModal = () => {
@@ -79,7 +71,7 @@ function Table_Data() {
 
   const onDelete = (id) => {
     const updatedAppointments = appointmentsData.map(appointment => {
-      if (appointment.id === id) {
+      if (appointment._id === id) {
         return { ...appointment, status: "Cancelled" };
       }
       return appointment;
@@ -89,49 +81,51 @@ function Table_Data() {
 
   return (
     <div className="table-container">
-      <TableContainer>
-        <Table variant="simple">
-          <Thead>
-            <Tr>
-              <Th>#</Th>
-              <Th>Name</Th>
-              <Th>Date</Th>
-              <Th>Time</Th>
-              <Th>Appointment for</Th>
-              <Th>Status</Th>
-              <Th>Action</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {visibleAppointments.map((appointment, index) => (
-              <Tr key={startIndex + index}>
-                <Td>{startIndex + index + 1}</Td>
-                <Td>{appointment.name}</Td>
-                <Td>{appointment.date}</Td>
-                <Td>{appointment.time}</Td>
-                <Td>{appointment.appointmentFor}</Td>
-                <Td>
-                  <span style={{ color: appointment.status === 'Cancelled' ? 'red' : 'blue' }}>
-                    {appointment.status}
-                  </span>
-                </Td>
-                <Td>
-                  {appointment.status !== 'Cancelled' && appointment.status !== 'Completed' &&(
-                    <div style={{
-                      display: 'flex',
-                      gap: '1rem'
-                    }}>
-                      <DeleteIcon color='red' style={{ cursor: 'pointer' }} onClick={() => openModal(appointment.id)}/>
-                      <MdEdit color='blue' style={{ cursor: 'pointer' }} />
-                    </div>
-                  )}
-                </Td>
+      {appointmentsData && (
+        <TableContainer>
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>#</Th>
+                <Th>Name</Th>
+                <Th>Date</Th>
+                <Th>Time</Th>
+                <Th>Appointment for</Th>
+                <Th>Status</Th>
+                <Th>Action</Th>
               </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
-      {appointmentsData.length > pageSize && (
+            </Thead>
+            <Tbody>
+              {visibleAppointments.map((appointment, index) => (
+                <Tr key={appointment._id}>
+                  <Td>{startIndex + index + 1}</Td>
+                  <Td>{appointment.doctor.user.username}</Td>
+                  <Td>{appointment.date}</Td>
+                  <Td>{appointment.time}</Td>
+                  <Td>{appointment.Type}</Td>
+                  <Td>
+                    <span style={{ color: appointment.status === 'Cancelled' ? 'red' : 'blue' }}>
+                      {appointment.status}
+                    </span>
+                  </Td>
+                  <Td>
+                    {appointment.status !== 'Cancelled' && appointment.status !== 'Completed' && (
+                      <div style={{
+                        display: 'flex',
+                        gap: '1rem'
+                      }}>
+                        <DeleteIcon color='red' style={{ cursor: 'pointer' }} onClick={() => openModal(appointment._id, 'delete')} />
+                        <MdEdit color='blue' style={{ cursor: 'pointer' }} onClick={() => openModal(appointment._id, 'edit')} />
+                      </div>
+                    )}
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      )}
+      {appointmentsData && appointmentsData.length > pageSize && (
         <nav aria-label="Page navigation example" style={{ marginTop: '1rem' }}>
           <ul className="pagination justify-content-center">
             <li className={`page-item ${currentPage === 1 && 'disabled'}`}>
@@ -149,7 +143,7 @@ function Table_Data() {
         </nav>
       )}
       <DeleteModal isOpen={showDeleteModal} onClose={closeModal} onDelete={onDelete} selectedAppointmentId={selectedAppointmentId} />
-      {/* <EditModal isOpen={showDeleteModal} onClose={closeModal} selectedAppointmentId={selectedAppointmentId} /> */}
+      <EditModal isOpen={showEditModal} onClose={closeModal} selectedAppointmentId={selectedAppointmentId} />
     </div>
   );
 }
