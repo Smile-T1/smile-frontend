@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Sidebar.css";
 import Logo from "../../assets/Smile.png";
 import { Link } from "react-router-dom";
@@ -12,7 +13,16 @@ import { CiLogout } from "react-icons/ci";
 import { VscSettingsGear } from "react-icons/vsc";
 import { FaUserDoctor } from "react-icons/fa6";
 import ScheduleIcon from "./icons/Schedule";
-import { useDataContext } from "../../context/Context";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Box
+} from '@chakra-ui/react'
+import { getSettings } from "../../Pages/Patient/PatientPortalEndPoints";
+
 function Sidebar() {
   const userAccess = localStorage.getItem("userAccess");
   const { doctor } = useDataContext();
@@ -29,14 +39,23 @@ function Sidebar() {
   });
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
 
-    window.addEventListener("resize", handleResize);
-
+    async function fetchData() {
+      try {
+        const response = await getSettings();
+        setUserData(response);
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    }
+    fetchData();
+    window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -62,14 +81,12 @@ function Sidebar() {
           </div>
           <div className="profile-pic-sidebar flex flex-col items-center gap-2">
             <img
-              src={profile_pic}
+              src={userData?.patient?.profilePic? userData?.patient?.profilePic : profile_pic}
               alt=""
               loading="lazy"
               className="Profile_picture"
             />
-            <p className="Patient_name">
-              Dr. {doctor?.user?.firstName} {doctor?.user.lastName}
-            </p>
+            <p className='Patient_name'>{userData?.patient?.firstName} {userData?.patient?.lastName}</p>
           </div>
           <div className="options-sidebar-list">
             <Link

@@ -10,31 +10,59 @@ import {
     InputGroup,
     Button,
     InputRightElement,
-    Textarea
+    Textarea,
+    useToast
 } from '@chakra-ui/react';
 import { DeleteIcon, CheckIcon } from '@chakra-ui/icons'
+import { uploadProfilePhoto } from '../../../Pages/Patient/PatientPortalEndPoints';
 
 function InfoCard() {
     const [address, setAddress] = useState("Faculty of Engineering");
     const [isAddressEditable, setIsAddressEditable] = useState(false);
     const [isChangesMade, setIsChangesMade] = useState(false);
-    const [uploadedImage, setUploadedImage] = useState(null);
+    const [uploadedImage, setUploadedImage] = useState();
+    const toast = useToast();
+
+    function Toast(message, state) {
+        toast({
+            description: message,
+            status: state,
+            duration: 3000,
+            isClosable: true,
+        })
+    }
 
     const handleAddressEdit = () => {
         setIsAddressEditable(!isAddressEditable);
         setIsChangesMade(true);
     };
 
-    const handleImageUpload = (e) => {
+    const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         if (file) {
+            const formData = new FormData();
+            formData.append("profilePic", file);
+
             const reader = new FileReader();
             reader.onloadend = () => {
                 setUploadedImage(reader.result);
             };
             reader.readAsDataURL(file);
+
+            try {
+                const response = await uploadProfilePhoto(formData);
+                if (response.status === 'success') {
+                    Toast(response.msg, 'success');
+                } else {
+                    Toast(response.msg, 'error');
+                }
+            } catch (error) {
+                Toast('Error uploading profile photo', 'error');
+                console.error('Error:', error);
+            }
         }
     };
+
 
     return (
         <div className='InfoCardConatainer'>
@@ -66,11 +94,7 @@ function InfoCard() {
                             </span>
                         </div>
                         <div className='uploadprofilepicsectionright'>
-                            {uploadedImage ? (
-                                <img src={uploadedImage} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
-                            ) : (
-                                <img src={InitialPic} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
-                            )}
+                            <img src={profilePic ? profilePic : InitialPic} style={{ height: '8rem', width: '100%', borderRadius: '0.25rem' }} />
                         </div>
                     </div>
                 </div>

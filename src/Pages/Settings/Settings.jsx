@@ -14,7 +14,18 @@ function Settings() {
     if (token === undefined || token === null) {
       navigate('/login');
     }
-  }, []);
+
+    async function fetchData() {
+      try {
+        const response = await getSettings();
+        setUserData(response);
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    }
+
+    fetchData();
+  }, [navigate]);
 
   const handleCardSelection = (card) => {
     setSelectedCard(card);
