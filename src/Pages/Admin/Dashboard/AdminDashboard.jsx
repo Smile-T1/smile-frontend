@@ -1,5 +1,5 @@
-import React, {useState,useEffect} from "react";
-import {useNavigate} from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
@@ -7,6 +7,7 @@ import OverviewCard from "../../../Components/OverviewCards/OverviewCard";
 import NewRequestCard from "../../../Components/NewRequestCard/NewRequestCard";
 import Table_Data from "../../../Components/Table_Data/Table_Data";
 import Page_header from "../../../Components/Header_Pages/Header_Pages";
+import Users_table from "../../../Components/Users_table/Users_table";
 const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 function AdminDashboard() {
   const navigate = useNavigate();
@@ -22,12 +23,14 @@ function AdminDashboard() {
   const [doctorName, setDoctorName] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [number, setNumber] = useState("");
   const [type, setType] = useState("");
+  const [appointmentsData, setAppointmentsData] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      navigate('/login');
+      navigate("/login");
     }
     const fetchData = async () => {
       try {
@@ -39,9 +42,10 @@ function AdminDashboard() {
           },
         });
         const data = await response.json();
-        setAppointments(data.totalAppointments);
         setDoctors(data.totalDoctors);
         setPatients(data.totalPatients);
+        setAppointments(data.totalAppointments);
+        setSurgeries(0);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -60,19 +64,46 @@ function AdminDashboard() {
           }
         );
         const data = await response.json();
-        setPatientName(data.patient);
-        setDoctorName(data.doctor);
-        setDate(data.date);
-        setTime(data.time);
-        setType(data.Type);
+        setAppointmentsData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
+    const fetchRequests = async () => {
+      try {
+        const response = await fetch(
+          `${VITE_SERVER_HOST}/api/admin/pendingAppoitments`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        const data = await response.json();
+        setPatientName(
+          data.data[0].patient.firstName + " " + data.data[0].patient.lastName
+        );
+        setDoctorName(
+          data.data[0].doctor.user.firstName +
+            " " +
+            data.data[0].doctor.user.lastName
+        );
+        setDate(data.data[0].date);
+        setType(data.data[0].Type);
+        setNumber(data.data.length - 1);
+        setTime(data.data[0].time);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
     //call both functions parallelly
     fetchData();
     fetchLatestAppointments();
+    fetchRequests();
   }, []);
 
   return (
@@ -104,16 +135,31 @@ function AdminDashboard() {
             />
           </div>
           <div className="view">
-            <p id="requests">+15 more requests</p>
+            <p id="requests">+{number} more requests</p>
             <button id="view-requests">
-              <Link to="/admin/appointments">View all</Link>
+              <Link to="/admin/requests">View all</Link>
             </button>
           </div>
         </div>
         <div className="table-container">
           <h3 id="app">Booked Appointments list</h3>
           <div className="table">
-            <Table_Data />
+            {appointmentsData && appointmentsData.data ? (
+              <Users_table
+                columns={[
+                  "Patient Name",
+                  "Doctor Name",
+                  "Date",
+                  "Time",
+                  "Type",
+                  "Status",
+                ]}
+                data={appointmentsData.data.slice(0, 5)}
+                user="appointment"
+              />
+            ) : (
+              <p>Loading...</p> // or some other loading indicator
+            )}
           </div>
         </div>
       </div>

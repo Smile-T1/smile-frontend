@@ -238,29 +238,50 @@ function Sidebar() {
                           Appointment list
                         </p>
                       </Link>
-                      {/* <Link
+                      <Link
                         to="/admin/appointments"
-                        className={`sidebar-link ${activeLink === '/admin/appointments' ? 'active' : ''} AccordionPanelitem`}
-                        onClick={() => setActiveLink('/admin/appointments')}
-
+                        className={`sidebar-link ${
+                          activeLink === "/admin/appointments" ? "active" : ""
+                        } AccordionPanelitem`}
+                        onClick={() => setActiveLink("/admin/appointments")}
                       >
-                        <AppointmentsIcon fill={`${activeLink == "/admin/appointments" ? "#034561" : "black"}`} />
+                        <AppointmentsIcon
+                          fill={`${
+                            activeLink == "/admin/appointments"
+                              ? "#034561"
+                              : "black"
+                          }`}
+                        />
                         <p
-                          className={`sidebar-text ${activeLink === '/admin/appointments' ? 'active' : ''}`}>
+                          className={`sidebar-text ${
+                            activeLink === "/admin/appointments" ? "active" : ""
+                          }`}
+                        >
                           Add appointments
                         </p>
-                      </Link> */}
-                      {/* <Link
-                        to="/admin/appointments"
-                        className={`sidebar-link ${activeLink === '/admin/appointments' ? 'active' : ''} AccordionPanelitem`}
-                        onClick={() => setActiveLink('/admin/appointments')}
+                      </Link>
+                      <Link
+                        to="/admin/requests"
+                        className={`sidebar-link ${
+                          activeLink === "/admin/requests" ? "active" : ""
+                        } AccordionPanelitem`}
+                        onClick={() => setActiveLink("/admin/requests")}
                       >
-                        <AppointmentsIcon fill={`${activeLink == "/admin/appointments" ? "#034561" : "black"}`} />
+                        <AppointmentsIcon
+                          fill={`${
+                            activeLink == "/admin/requests"
+                              ? "#034561"
+                              : "black"
+                          }`}
+                        />
                         <p
-                          className={`sidebar-text ${activeLink === '/admin/appointments' ? 'active' : ''}`}>
+                          className={`sidebar-text ${
+                            activeLink === "/admin/requests" ? "active" : ""
+                          }`}
+                        >
                           Appointment requests
                         </p>
-                      </Link> */}
+                      </Link>
                     </>
                   </AccordionPanel>
                 </AccordionItem>

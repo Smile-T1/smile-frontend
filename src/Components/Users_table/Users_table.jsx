@@ -10,14 +10,17 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import "./Users_table.css";
-import { FaEdit, FaTrash } from "react-icons/fa"; // Import icons from Font Awesome
+import { FaEdit, FaTrash, FaCheck } from "react-icons/fa"; // Import icons from Font Awesome
+//import font awesome accept icon
+import { AiFillCheckCircle } from "react-icons/ai";
 const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 
-const handleDelete = async (id, user) => {
-  console.log("Delete user with id:", id);
+const handleDelete = async (userId) => {
+  console.log("asdad");
+  console.log("Delete user with id:", userId);
   try {
     const response = await fetch(
-      `${VITE_SERVER_HOST}/api/admin/delete/${user}/${id}`,
+      `${VITE_SERVER_HOST}/api/admin/users/${userId}`,
       {
         method: "DELETE",
         headers: {
@@ -35,6 +38,32 @@ const handleDelete = async (id, user) => {
     const data = await response.json();
   } catch (error) {
     console.error("Error deleting user:", error);
+  }
+};
+
+const handleRequest = async (appointmentId, action) => {
+  try {
+    const response = await fetch(
+      `${VITE_SERVER_HOST}/api/admin/handleAppointment`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ appointmentId, action }),
+      }
+    );
+    console.log(response);
+    if (response.status == 200) {
+      window.location.reload();
+    }
+    if (!response.ok) {
+      throw new Error("Failed to approve request");
+    }
+    const data = await response.json();
+  } catch (error) {
+    console.error("Error approving request:", error);
   }
 };
 
@@ -78,7 +107,7 @@ function Users_table({ columns, data, user }) {
                     <Td
                       onClick={async () => {
                         console.log(doctor._id);
-                        await handleDelete(doctor._id);
+                        await handleDelete(doctor.user._id);
                       }}
                     >
                       <div className="action-icons">
@@ -111,15 +140,88 @@ function Users_table({ columns, data, user }) {
                     )}
                     {patient.user && <Td>{patient.user.address}</Td>}
 
-                    <Td
-                      onClick={async () => {
-                        console.log(patient._id);
-                        await handleDelete(patient._id);
-                      }}
-                    >
+                    <Td>
+                      {user === "patient" || user === "doctor" ? (
+                        <div className="action-icons">
+                          <FaEdit className="edit-icon" />
+                          <FaTrash
+                            className="delete-icon"
+                            onClick={async () => {
+                              switch (user) {
+                                case "patient":
+                                  await handleDelete(patient.user._id);
+                                  break;
+                                case "doctor":
+                                  await handleDelete(doctor.user._id);
+                                  break;
+                              }
+                            }}
+                          />
+                        </div>
+                      ) : null}
+                    </Td>
+                  </Tr>
+                );
+              })}
+            {data &&
+              user === "requests" &&
+              data.map((request, index) => {
+                const key = request._id ? request._id : index;
+                return (
+                  <Tr key={key}>
+                    {request.patient && request.patient.firstName && (
+                      <Td>{`${request.patient.firstName} ${request.patient.lastName}`}</Td>
+                    )}
+                    {request.doctor && request.doctor.user && (
+                      <Td>{`${request.doctor.user.firstName} ${request.doctor.user.lastName}`}</Td>
+                    )}
+                    <Td>{request.date}</Td>
+                    <Td>{request.time}</Td>
+                    <Td>{request.Type}</Td>
+                    <Td>
                       <div className="action-icons">
-                        <FaEdit className="edit-icon" />
-                        <FaTrash className="delete-icon" />
+                        <FaCheck
+                          className="edit-icon"
+                          onClick={async () => {
+                            await handleRequest(request._id, "accept");
+                          }}
+                        />
+                        <FaTrash
+                          className="delete-icon"
+                          onClick={async () => {
+                            await handleRequest(request._id, "decline");
+                          }}
+                        />
+                      </div>
+                    </Td>
+                  </Tr>
+                );
+              })}
+            {data &&
+              user === "appointment" &&
+              data.map((request, index) => {
+                const key = request._id ? request._id : index;
+                return (
+                  <Tr key={key}>
+                    {request.patient && request.patient.user && (
+                      <Td>{`${request.patient.user.firstName} ${request.patient.user.lastName}`}</Td>
+                    )}
+                    {request.doctor && request.doctor.user && (
+                      <Td>{`${request.doctor.user.firstName} ${request.doctor.user.lastName}`}</Td>
+                    )}
+                    <Td>{request.date}</Td>
+                    <Td>{request.time}</Td>
+                    <Td>{request.Type}</Td>
+                    <Td>{request.status}</Td>
+                    <Td>
+                      <div className="action-icons">
+                        <FaTrash
+                          className="delete-icon"
+                          onClick={async () => {
+                            console.log(request._id);
+                            await handleRequest(request._id, "decline");
+                          }}
+                        />
                       </div>
                     </Td>
                   </Tr>

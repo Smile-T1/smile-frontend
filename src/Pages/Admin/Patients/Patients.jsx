@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Users_table from "../../../Components/Users_table/Users_table";
 import "./Patients.css";
 import Header_Pages from "../../../Components/Header_Pages/Header_Pages";
@@ -8,14 +8,14 @@ const VITE_SERVER_HOST = import.meta.env.VITE_SERVER_HOST;
 
 function Patients() {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      navigate('/login');
+      navigate("/login");
     }
   }, []);
-  
+
   const handleSearch = (e) => {
     console.log(e.target.value);
   };
@@ -35,6 +35,7 @@ function Patients() {
           throw new Error("Failed to fetch patients");
         }
         const data = await response.json();
+        console.log(data);
         setData(data);
       } catch (error) {
         console.error("Error fetching patients:", error);

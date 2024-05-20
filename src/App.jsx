@@ -23,6 +23,7 @@ import DoctorPatients from "./Components/patients/index.jsx";
 import Schedule from "./Components/schedule/index.jsx";
 import DoctorAppointments from "./Components/appointments/index.jsx";
 import AllAppointments from "./Pages/Admin/AllAppointments/AllAppointments.jsx";
+import Requests from "./Pages/Admin/Requests/Requests.jsx";
 
 const PageContainer = styled.div`
   display: grid;
@@ -89,6 +90,7 @@ function App() {
                 path="/admin/AllAppointments"
                 element={<AllAppointments />}
               />
+              <Route path="/admin/requests" element={<Requests />} />
               <Route
                 path="/doctor/dashboard"
                 element={
