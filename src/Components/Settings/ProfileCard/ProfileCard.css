@@ -1,0 +1,75 @@
+.ProfileCardConatainer {
+    transition-delay: .1s;
+    opacity: 1;
+    transform: translateZ(0);
+    transition-duration: 1s;
+    padding: 1.5rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-radius: .75rem;
+    border-width: 1px;
+    border-color: rgb(232 235 238);
+    width: 267.328px;
+    height: 388px;
+    background: white;
+}
+
+.ProfilePicContainer {
+    object-fit: cover;
+    border-color: rgb(102 181 163);
+    border-style: dashed;
+    border-width: 1px;
+    border-radius: 9999px;
+    width: 10rem;
+    height: 10rem;
+    max-width: 100%;
+}
+
+.ProfileCardInfo {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.ProfileCardButtons {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    gap: .75rem;
+    width: 100%;
+}
+
+.button-selected {
+    color: rgb(102, 181, 163) !important;
+    border-color: transparent !important;
+    border-style: solid !important;
+}
+
+.button-unselected {
+    color: black !important;
+    background: rgb(248, 249, 250) !important;
+    border-color: transparent !important;
+}
+
+@media (max-width: 1170px) {
+    .ProfileCardConatainer{
+        width: 100%;
+    }
+}
+
+@media (max-width: 690px) {
+    .ProfileCardConatainer{
+        width: 50%;
+    }
+    .button-profile-card{
+        font-size: 1px;
+    }
+}

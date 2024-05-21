@@ -1,42 +1,615 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
 import Logo from "../../assets/Smile.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import Smile_without from "../../assets/Smile_without.png";
+import profile_pic from "../../assets/avatar_default_6.png";
+import { DashboardIcon } from "./icons/dashboard";
+import PrescriptionIcon from "./icons/prescription";
+import AppointmentsIcon from "./icons/appointments";
+import BookAppointmentsIcon from "./icons/bookappointments";
+import MedicalRecordIcon from "./icons/medicalrecords";
+import { CiLogout } from "react-icons/ci";
+import { VscSettingsGear } from "react-icons/vsc";
+import { FaUserDoctor } from "react-icons/fa6";
+import ScheduleIcon from "./icons/Schedule";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  Box
+} from '@chakra-ui/react'
+import { getSettings } from "../../Pages/Patient/PatientPortalEndPoints";
 
 function Sidebar() {
-  const [activeLink, setActiveLink] = useState('/patient/dashboard');
+  const userAccess = localStorage.getItem("userAccess");
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [userData, setUserData] = useState([]);
+  const [activeLink, setActiveLink] = useState(() => {
+    switch (userAccess) {
+      case "Patient":
+        return "/patient/dashboard";
+      case "Doctor":
+        return "/doctor/dashboard";
+      case "Admin":
+        return "/admin/dashboard";
+    }
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    async function fetchData() {
+      try {
+        const response = await getSettings();
+        setUserData(response);
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    }
+    fetchData();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location.pathname]);
 
   return (
-    <div className='sidebar-portal'>
-      <div className='content-wrapper-sidebar px-4'>
-        <a href="/" className='logo-link'>
-          <img src={Logo} alt="Smile" className='logo'/>
-        </a>
-        <div className='options-sidebar-list'>
-          <Link to={'/patient/dashboard'} className={`sidebar-link ${activeLink === '/patient/dashboard' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/dashboard')}>
-            <i className="fa-solid fa-house icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Dashboard</p>
-          </Link>
-          <Link to="/patient/registration" className={`sidebar-link ${activeLink === '/patient/registration' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/registration')}>
-            <i className="fa-solid fa-address-card icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Registration</p>
-          </Link>
-          <Link to="/patient/appointment" className={`sidebar-link ${activeLink === '/patient/appointment' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/appointment')}>
-            <i className="fa-regular fa-calendar-check icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Appointment</p>
-          </Link>
-          <Link to="/patient/book_appointment" className={`sidebar-link ${activeLink === '/patient/book_appointment' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/book_appointment')}>
-            <i className="fa-solid fa-book-medical icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Book appointment</p>
-          </Link>
-          <Link to="/patient/medical_records" className={`sidebar-link ${activeLink === '/patient/medical_records' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/medical_records')}>
-            <i className="fa-solid fa-notes-medical icon" viewBox="0 0 24 24"/>
-            <p className='sidebar-text'>Medical Records</p>
-          </Link>
+    <div className="sidebar-portal">
+      <aside
+        className="content-wrapper-sidebar bg-white h-screen sticky top-0 p-2 min-w-[50px] dashboard-sidebar block"
+        style={{
+          position: 'relative'
+        }
+        }>
+        <div className='sidebar-inner-container' style={{ position: 'fixed', height:'100vh', overflowY:'auto' }}>
+          <div style={{ justifyContent: 'center', display: 'flex' }}>
+            <a href="/" className='logo-link' style={{ alignItems: 'center' }}>
+              {screenWidth <= 900 ? (
+                <img src={Smile_without} alt="Smile" className="logo" />
+              ) : (
+                <img src={Logo} alt="Smile" className="logo" />
+              )}
+            </a>
+          </div>
+          <div className="profile-pic-sidebar flex flex-col items-center gap-2">
+            <img
+              src={
+                (userData?.patient?.profilePic
+                  ? userData?.patient?.profilePic
+                  : profile_pic) ||
+                (userData?.doctor?.profilePic
+                  ? userData?.doctor?.profilePic
+                  : profile_pic) ||
+                (userData?.admin?.profilePic
+                  ? userData?.admin?.profilePic
+                  : profile_pic)
+              }
+              alt=""
+              loading="lazy"
+              className="Profile_picture"
+            />
+            <p className="Patient_name">
+              {userData?.doctor && <>Dr. </>}
+              {userData?.doctor?.firstName ||
+                userData?.patient?.firstName ||
+                userData?.admin?.firstName}{" "}
+              {userData?.doctor?.lastName ||
+                userData?.patient?.lastName ||
+                userData?.admin?.lastName}
+            </p>
+          </div>
+          <div className="options-sidebar-list">
+            <Link
+              to={
+                userAccess === "Patient"
+                  ? "/patient/dashboard"
+                  : userAccess === "Doctor"
+                  ? "/doctor/dashboard"
+                  : "/admin/dashboard"
+              }
+              className={`sidebar-link ${
+                activeLink ===
+                (userAccess === "Patient"
+                  ? "/patient/dashboard"
+                  : userAccess === "Doctor"
+                  ? "/doctor/dashboard"
+                  : "/admin/dashboard")
+                  ? "active"
+                  : ""
+              }`}
+              onClick={() =>
+                setActiveLink(
+                  userAccess === "Patient"
+                    ? "/patient/dashboard"
+                    : userAccess === "Doctor"
+                    ? "/doctor/dashboard"
+                    : "/admin/dashboard"
+                )
+              }
+            >
+              <DashboardIcon
+                className="flex-shrink-0 w-6 h-6 cursor-pointer"
+                fill={`${
+                  activeLink ===
+                  (userAccess === "Patient"
+                    ? "/patient/dashboard"
+                    : userAccess === "Doctor"
+                    ? "/doctor/dashboard"
+                    : "/admin/dashboard")
+                    ? "#034561"
+                    : "black"
+                }`}
+              />
+              <p
+                className={`sidebar-text ${
+                  activeLink ===
+                  (userAccess === "Patient"
+                    ? "/patient/dashboard"
+                    : userAccess === "Doctor"
+                    ? "/doctor/dashboard"
+                    : "/admin/dashboard")
+                    ? "active"
+                    : ""
+                }`}
+              >
+                Dashboard
+              </p>
+            </Link>
+            {userAccess === "Patient" || userAccess === "Doctor" ? (
+              <Link
+                to={
+                  userAccess === "Patient"
+                    ? "/patient/appointment"
+                    : userAccess === "Doctor"
+                    ? "/doctor/appointment"
+                    : null
+                }
+                className={`sidebar-link ${
+                  activeLink ===
+                  (userAccess === "Patient"
+                    ? "/patient/appointment"
+                    : userAccess === "Doctor"
+                    ? "/doctor/appointment"
+                    : null)
+                    ? "active"
+                    : ""
+                }`}
+                onClick={() =>
+                  setActiveLink(
+                    userAccess === "Patient"
+                      ? "/patient/appointment"
+                      : userAccess === "Doctor"
+                      ? "/doctor/appointment"
+                      : null
+                  )
+                }
+              >
+                <AppointmentsIcon
+                  fill={`${
+                    activeLink ===
+                    (userAccess === "Patient"
+                      ? "/patient/appointment"
+                      : userAccess === "Doctor"
+                      ? "/doctor/appointment"
+                      : null)
+                      ? "#034561"
+                      : "black"
+                  }`}
+                />
+                <p
+                  className={`sidebar-text ${
+                    activeLink ===
+                    (userAccess === "Patient"
+                      ? "/patient/appointment"
+                      : userAccess === "Doctor"
+                      ? "/doctor/appointment"
+                      : null)
+                      ? "active"
+                      : ""
+                  }`}
+                >
+                  Appointment
+                </p>
+              </Link>
+            ) : null}
+            {userAccess === "Admin" && (
+              <Accordion defaultIndex={[0]} allowMultiple>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box
+                        as="span"
+                        flex="1"
+                        textAlign="left"
+                        className={`nav-link align-middle sidebar-link`}
+                        style={{
+                          paddingLeft: "16px",
+                          paddingRight: "16px",
+                        }}
+                      >
+                        <AppointmentsIcon fill={"black"} />
+                        <span className={`sidebar-text`}>Appointment</span>
+                      </Box>
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>
+                    <>
+                      <Link
+                        to={"/admin/AllAppointments"}
+                        className={`sidebar-link ${
+                          activeLink === "/admin/AllAppointments"
+                            ? "active"
+                            : ""
+                        } AccordionPanelitem`}
+                        onClick={() => setActiveLink("/admin/AllAppointments")}
+                      >
+                        <AppointmentsIcon
+                          fill={`${
+                            activeLink == "/admin/appointments"
+                              ? "#034561"
+                              : "black"
+                          }`}
+                        />
+                        <p
+                          className={`sidebar-text ${
+                            activeLink === "/admin/appointments" ? "active" : ""
+                          }`}
+                        >
+                          Appointment list
+                        </p>
+                      </Link>
+                      <Link
+                        to="/admin/requests"
+                        className={`sidebar-link ${
+                          activeLink === "/admin/requests" ? "active" : ""
+                        } AccordionPanelitem`}
+                        onClick={() => setActiveLink("/admin/requests")}
+                      >
+                        <AppointmentsIcon
+                          fill={`${
+                            activeLink == "/admin/requests"
+                              ? "#034561"
+                              : "black"
+                          }`}
+                        />
+                        <p
+                          className={`sidebar-text ${
+                            activeLink === "/admin/requests" ? "active" : ""
+                          }`}
+                        >
+                          Appointment requests
+                        </p>
+                      </Link>
+                    </>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box
+                        as="span"
+                        flex="1"
+                        textAlign="left"
+                        className={`nav-link align-middle sidebar-link`}
+                        style={{
+                          paddingLeft: "16px",
+                          paddingRight: "16px",
+                        }}
+                      >
+                        <AppointmentsIcon fill={"black"} />
+                        <span className={`sidebar-text`}>Patients</span>
+                      </Box>
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>
+                    <>
+                      <Link
+                        to={"/admin/patients"}
+                        className={`sidebar-link ${
+                          activeLink === "/admin/patients" ? "active" : ""
+                        } AccordionPanelitem`}
+                        onClick={() => setActiveLink("/admin/patients")}
+                      >
+                        <AppointmentsIcon
+                          fill={`${
+                            activeLink == "/admin/patients"
+                              ? "#034561"
+                              : "black"
+                          }`}
+                        />
+                        <p
+                          className={`sidebar-text ${
+                            activeLink === "/admin/patients" ? "active" : ""
+                          }`}
+                        >
+                          View patients
+                        </p>
+                      </Link>
+                      <Link
+                        to="/admin/patient_registration"
+                        className={`sidebar-link ${
+                          activeLink === "/admin/patient_registration"
+                            ? "active"
+                            : ""
+                        } AccordionPanelitem`}
+                        onClick={() =>
+                          setActiveLink("/admin/patient_registration")
+                        }
+                      >
+                        <AppointmentsIcon
+                          fill={`${
+                            activeLink == "/admin/patient_registration"
+                              ? "#034561"
+                              : "black"
+                          }`}
+                        />
+                        <p
+                          className={`sidebar-text ${
+                            activeLink === "/admin/patient_registration"
+                              ? "active"
+                              : ""
+                          }`}
+                        >
+                          Add new patient
+                        </p>
+                      </Link>
+                    </>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Box
+                        as="span"
+                        flex="1"
+                        textAlign="left"
+                        className={`nav-link align-middle sidebar-link`}
+                        style={{
+                          paddingLeft: "16px",
+                          paddingRight: "16px",
+                        }}
+                      >
+                        <FaUserDoctor fill={"black"} />
+                        <span className={`sidebar-text`}>Doctors</span>
+                      </Box>
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>
+                    <>
+                      <Link
+                        to={"/admin/doctors"}
+                        className={`sidebar-link ${
+                          activeLink === "/admin/doctors" ? "active" : ""
+                        } AccordionPanelitem`}
+                        onClick={() => setActiveLink("/admin/doctors")}
+                      >
+                        <FaUserDoctor
+                          fill={`${
+                            activeLink == "/admin/doctors" ? "#034561" : "black"
+                          }`}
+                        />
+                        <p
+                          className={`sidebar-text ${
+                            activeLink === "/admin/doctors" ? "active" : ""
+                          } `}
+                        >
+                          View doctors
+                        </p>
+                      </Link>
+                      <Link
+                        to="/admin/doctor_registration"
+                        className={`sidebar-link ${
+                          activeLink === "/admin/doctor_registration"
+                            ? "active"
+                            : ""
+                        } AccordionPanelitem`}
+                        onClick={() =>
+                          setActiveLink("/admin/doctor_registration")
+                        }
+                      >
+                        <FaUserDoctor
+                          fill={`${
+                            activeLink == "/admin/doctor_registration"
+                              ? "#034561"
+                              : "black"
+                          }`}
+                        />
+                        <p
+                          className={`sidebar-text ${
+                            activeLink === "/admin/doctor_registration"
+                              ? "active"
+                              : ""
+                          }`}
+                        >
+                          Add new doctor
+                        </p>
+                      </Link>
+                    </>
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
+            )}
+            {userAccess === "Doctor" ? (
+              <Link
+                to={"/doctor/patients"}
+                className={`sidebar-link ${
+                  activeLink === "/doctor/patients" ? "active" : ""
+                }`}
+                onClick={() => setActiveLink("/doctor/patients")}
+              >
+                <FaUserDoctor
+                  fill={`${
+                    activeLink === "/doctor/patients" ? "#034561" : "black"
+                  }`}
+                />
+                <p
+                  className={`sidebar-text ${
+                    activeLink === "/doctor/patients" ? "active" : ""
+                  }`}
+                >
+                  Patients
+                </p>
+              </Link>
+            ) : null}
+            {userAccess === "Patient" && (
+              <Link
+                to="/patient/book_appointment"
+                className={`sidebar-link ${
+                  activeLink === "/patient/book_appointment" ? "active" : ""
+                }`}
+                onClick={() => setActiveLink("/patient/book_appointment")}
+              >
+                <BookAppointmentsIcon
+                  fill={`${
+                    activeLink == "/patient/book_appointment"
+                      ? "#034561"
+                      : "black"
+                  }`}
+                />
+                <p
+                  className={`sidebar-text ${
+                    activeLink === "/patient/book_appointment" ? "active" : ""
+                  }`}
+                >
+                  Book appointment
+                </p>
+              </Link>
+            )}
+            {userAccess === "Patient" && (
+              <Link to="/patient/prescription" className={`sidebar-link ${activeLink === '/patient/prescription' ? 'active' : ''}`} onClick={() => setActiveLink('/patient/prescription')}>
+                <PrescriptionIcon
+                  fill={`${activeLink == "/patient/prescription" ? "#034561" : "black"}`}
+                />
+                <p className={`sidebar-text ${activeLink === '/patient/prescription' ? 'active' : ''}`}>Prescription</p>
+              </Link>
+            )}
+            {/* {userAccess === "Patient" && (
+              <Link
+                to="/patient/medical_records"
+                className={`sidebar-link ${
+                  activeLink === "/patient/medical_records" ? "active" : ""
+                }`}
+                onClick={() => setActiveLink("/patient/medical_records")}
+              >
+                <MedicalRecordIcon
+                  fill={`${
+                    activeLink == "/patient/medical_records"
+                      ? "#034561"
+                      : "black"
+                  }`}
+                />
+                <p
+                  className={`sidebar-text ${
+                    activeLink === "/patient/medical_records" ? "active" : ""
+                  }`}
+                >
+                  Medical Records
+                </p>
+              </Link>
+            )} */}
+            {userAccess === "Doctor" && (
+              <Link
+                to="/doctor/schedule"
+                className={`sidebar-link ${
+                  activeLink === "/doctor/schedule" ? "active" : ""
+                }`}
+                onClick={() => setActiveLink("/doctor/schedule")}
+              >
+                <ScheduleIcon
+                  fill={`${
+                    activeLink == "/doctor/schedule" ? "#034561" : "black"
+                  }`}
+                />
+                <p
+                  className={`sidebar-text ${
+                    activeLink === "/doctor/schedule" ? "active" : ""
+                  }`}
+                >
+                  Schedule
+                </p>
+              </Link>
+            )}
+            {userAccess !== "Admin" && (
+              <Link
+                to={
+                  userAccess === "Patient"
+                    ? "/patient/settings"
+                    : userAccess === "Doctor"
+                    ? "/doctor/settings"
+                    : null
+                }
+                className={`sidebar-link ${
+                  activeLink ===
+                  (userAccess === "Patient"
+                    ? "/patient/settings"
+                    : userAccess === "Doctor"
+                    ? "/doctor/settings"
+                    : null)
+                    ? "active"
+                    : ""
+                }`}
+                onClick={() =>
+                  setActiveLink(
+                    userAccess === "Patient"
+                      ? "/patient/settings"
+                      : userAccess === "Doctor"
+                      ? "/doctor/settings"
+                      : null
+                  )
+                }
+              >
+                <VscSettingsGear
+                  fill={
+                    activeLink ===
+                    (userAccess === "Patient"
+                      ? "/patient/settings"
+                      : userAccess === "Doctor"
+                      ? "/doctor/settings"
+                      : null)
+                      ? "#034561"
+                      : "black"
+                  }
+                />
+                <p
+                  className={`sidebar-text ${
+                    activeLink ===
+                    (userAccess === "Patient"
+                      ? "/patient/settings"
+                      : userAccess === "Doctor"
+                      ? "/doctor/settings"
+                      : null)
+                      ? "active"
+                      : ""
+                  }`}
+                >
+                  Settings
+                </p>
+              </Link>
+            )}
+            <Link
+              to="/"
+              className={`sidebar-link ${activeLink === "/" ? "active" : ""}`}
+            >
+              <CiLogout />
+              <p
+                className={`sidebar-text ${activeLink === "/" ? "active" : ""}`}
+              >
+                Log out
+              </p>
+            </Link>
+          </div>
         </div>
-      </div>
+      </aside>
     </div>
-  )
+  );
 }
 
 export default Sidebar;

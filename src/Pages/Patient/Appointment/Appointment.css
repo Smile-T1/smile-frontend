@@ -1,0 +1,30 @@
+.Appointment_Patient_Page{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #f6f6f6;
+}
+
+.Appointment_Patient{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    overflow-y: auto;
+    align-self: center;
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 40px 0 40px 0;
+}
+
+.Appointment_Patient_Page-container{
+    padding: 15px 10px 10px 10px;
+    width: 1000px;
+}
+
+@media (max-width: 530px) {
+    .Appointment_Patient {
+        padding: 40px 332px 40px 341px;
+    }
+}
