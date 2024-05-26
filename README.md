@@ -1,6 +1,6 @@
 # Smile Dentistry Clinic
 
-Smile Dentistry Clinic is a comprehensive dental clinic management system. This web application includes portals for admins, doctors, and patients. Patients can book, view, and delete appointments, as well as access their medical records. Admins can manage patients and doctors, and approve appointments. Doctors can view patient details and add prescriptions. The project is built using React with JSX, and styled with Bootstrap, Tailwind CSS, and Chakra UI.
+Smile Dentistry Clinic is a comprehensive dental clinic management system. This web application includes portals for admins, doctors, and patients. Patients can book, view, and delete appointments, as well as access their medical records. Admins can manage patients and doctors, and approve appointments. Doctors can view patient details and add prescriptions.
 
 ## Table of Contents
 
