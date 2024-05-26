@@ -67,7 +67,7 @@ To set up Smile locally, follow these steps:
    yarn dev
 
 ## Environment Variables
-- **VITE_SERVER_HOST**: Host URL for the server.]
+- **VITE_SERVER_HOST**: Host URL for the server.
 
 ## Usage
 
@@ -79,10 +79,10 @@ To set up Smile locally, follow these steps:
 
 | Name | GitHub | LinkedIn |
 | ---- | ------ | -------- |
-| Omar Adel Hassan | [@Omar_Adel](https://github.com/omar-adel1) | [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/omar-adel-59b707231/) |
+| Omar Adel Hassan | [@Omar Adel](https://github.com/omar-adel1) | [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/omar-adel-59b707231/) |
 | Hassan Elsheikh | [@Hassan Elsheikh](https://github.com/hassanelsheikh) | [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hassan-elsheikh-b90aa1225/) |
 | Ahmed Mkader | [@Ahmed Mkader](https://github.com/ahmedelmasry2002) | [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ahmed-mkader-b81589212/) |
-| Hana Mahmoud | [@Hana_Mahmoud](https://github.com/hanafares25) | [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hana-mahmoud-fares/) |
+| Hana Mahmoud | [@Hana Mahmoud](https://github.com/hanafares25) | [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hana-mahmoud-fares/) |
 
 ## Acknowledgements
 
